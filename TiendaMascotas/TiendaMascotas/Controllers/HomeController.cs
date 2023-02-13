@@ -14,11 +14,12 @@ namespace TiendaMascotas.Controllers
             return View();
         }
 
-        public ActionResult components()
+        public ActionResult login()
         {
 
             return View();
         }
+
 
     }
 }
