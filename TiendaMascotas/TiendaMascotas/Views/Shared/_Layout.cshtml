@@ -6,25 +6,122 @@
     <meta name="description" content="Diseño de pag web gratis">
     <meta name="author" content="Devcrud">
     <title>Proyecto Web - Grupo #9</title>
-
-    <!-- font icons -->
     <link href="~/assets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
-
-    <!-- Bootstrap + Creative Design main styles -->
-    <link rel="stylesheet" href="assets/css/creative-design.css">
+    <link href="~/assets/css/creative-design.css" rel="stylesheet" />
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <nav id="scrollspy" class="navbar page-navbar navbar-light navbar-expand-md fixed-top" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="navbar-brand" href="#"><strong class="text-primary">Proyecto</strong> <span class="text-dark">MascoWEB</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#adopciones">Adopciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#productos">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#otro">Otro(si lo hay)</a>
+                    </li>
+                    <li class="nav-item ml-md-4">
+                        <a class="nav-link btn btn-primary" href="Login.cshtml">Iniciar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+       
+    <header id="home" class="header">
+        <div class="overlay"></div>
+        <div class="header-content">
+            <p>Proyecto Progra Web</p>
+            <h6>Tienda de Mascotas</h6>
+        </div>
+    </header>
     
     @RenderBody()
-    
-    <!-- core  -->
+
+    <section class="pb-0">
+        <div class="container">
+            <div class="pre-footer">
+                <ul class="list">
+                    <li class="list-head">
+                        <h6 class="font-weight-bold">ACERCA DE NOSOTROS</h6>
+                    </li>
+                    <li class="list-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae nobis fugit maxime deleniti minus optio accusamus, quam maiores explicabo sunt.</p>
+                        <a href="#"><strong class="text-primary">Proyecto</strong> <span class="text-dark">MascoWEB</span></a>
+                    </li>
+                </ul>
+                <ul class="list">
+                    <li class="list-head">
+                        <h6 class="font-weight-bold">USEFUL LINKS</h6>
+                    </li>
+                    <li class="list-body">
+                        <div class="row">
+                            <div class="col">
+                                <a href="#">Link 1</a>
+                                <a href="#">Link 2</a>
+                                <a href="#">Link 3</a>
+                                <a href="#">Link 4</a>
+                            </div>
+                            <div class="col">
+                                <a href="#">Link 5</a>
+                                <a href="#">Link 6</a>
+                                <a href="#">Link 7</a>
+                                <a href="#">Link 8</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="list">
+                    <li class="list-head">
+                        <h6 class="font-weight-bold">INFORMACIÓN DE CONTACTO</h6>
+                    </li>
+                    <li class="list-body">
+                        <p>Contáctenos y le responderemos en menos de 24 horas.</p>
+                        <p><i class="ti-location-pin"></i> Ubicados en San Pedro, Universidad Fidélitas</p>
+                        <p><i class="ti-email"></i>  ufide@ufide.ac.cr</p>
+                        <div class="social-links">
+                            <a href="javascript:void(0)" class="link"><i class="ti-facebook"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-twitter-alt"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-google"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-pinterest-alt"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-instagram"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-rss"></i></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <footer class="footer">
+                <p>
+                    Copyright
+                    <script>document.write(new Date().getFullYear())</script> &copy; <a href="http://www.devcrud.com">DevCRUD</a>
+                </p>
+            </footer>
+
+        </div>
+    </section>
+
     <script src="~/assets/vendors/jquery/jquery-3.4.1.js"></script>
     <script src="~/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
-
-    <!-- bootstrap affix -->
     <script src="~/assets/vendors/bootstrap/bootstrap.affix.js"></script>
-
-    <!-- Creative Design js -->
     <script src="~/assets/js/creative-design.js"></script>
 
 </body>
