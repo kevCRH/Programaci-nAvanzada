@@ -84,3 +84,7 @@ C:\Users\User\Documents\GitHub\ProgramacionAvanzada\TiendaMascotas\TiendaMascota
 C:\Users\User\Documents\GitHub\ProgramacionAvanzada\TiendaMascotas\TiendaMascotas\obj\Debug\TiendaMascotas.csproj.CopyComplete
 C:\Users\User\Documents\GitHub\ProgramacionAvanzada\TiendaMascotas\TiendaMascotas\obj\Debug\TiendaMascotas.dll
 C:\Users\User\Documents\GitHub\ProgramacionAvanzada\TiendaMascotas\TiendaMascotas\obj\Debug\TiendaMascotas.pdb
+C:\Users\User\Documents\GitHub\ProgramacionAvanzada\TiendaMascotas\TiendaMascotas\bin\EntityFramework.dll
+C:\Users\User\Documents\GitHub\ProgramacionAvanzada\TiendaMascotas\TiendaMascotas\bin\EntityFramework.SqlServer.dll
+C:\Users\User\Documents\GitHub\ProgramacionAvanzada\TiendaMascotas\TiendaMascotas\bin\EntityFramework.xml
+C:\Users\User\Documents\GitHub\ProgramacionAvanzada\TiendaMascotas\TiendaMascotas\bin\EntityFramework.SqlServer.xml

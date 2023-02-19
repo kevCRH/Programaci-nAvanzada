@@ -1,5 +1,6 @@
 use ProyectoPA
 
+/*Creación de las Tablas*/
 CREATE TABLE Usuarios(/*Considero que la edad no es necesaria xq eso me lo puede dar un API de la cédula. Nombre y apellido se pueden hacer una sola*/
 	idUsuario INT NOT NULL IDENTITY(1,1),
 	nombre VARCHAR(30) NOT NULL,
@@ -78,13 +79,14 @@ CREATE TABLE DetalleFactura(
 
 CREATE TABLE Bitacoras(
     idBitacora INT NOT NULL IDENTITY(1,1),
-	consecutivoError VARCHAR(30) NOT NULL,
+	/*consecutivoError VARCHAR(30) NOT NULL,*/ /*El profe utiliza este como el id autoincrementable. En nuestro caso estariamos duplicando este atributo*/
     fechaHora DATETIME NOT NULL,
     origen NVARCHAR(100) NOT NULL,
 	mensajeError NVARCHAR(MAX) NOT NULL,
 	/*idUsuario INT NOT NULL,*/ /*Esta linea hace match con el usuario al cual se le presento el error, la hacemos?*/
 );
 
+/*Llaves foráneas*/
 ALTER TABLE Usuarios ADD FOREIGN KEY(idRol) REFERENCES Roles(idRol);
 ALTER TABLE Animales ADD FOREIGN KEY(idTipoAnimal) REFERENCES TipoAnimal(idTipoAnimal);
 ALTER TABLE Adopciones ADD FOREIGN KEY(nombreUsuario) REFERENCES Usuarios(nombreUsuario);
@@ -93,3 +95,32 @@ ALTER TABLE Productos ADD FOREIGN KEY(idTipoProducto) REFERENCES TipoProductos(i
 ALTER TABLE Factura ADD FOREIGN KEY(cedula) REFERENCES Usuarios(cedula);
 ALTER TABLE DetalleFactura ADD FOREIGN KEY(idFactura) REFERENCES Factura(idFactura);
 ALTER TABLE DetalleFactura ADD FOREIGN KEY(idProducto) REFERENCES Productos(idProducto);
+
+
+/*Insert en las tablas*/
+INSERT INTO Roles VALUES ('2','1')
+INSERT INTO "Usuarios" VALUES ('', 'NombrePrueba', 'ApellidoPrueba', '122223333', 'Prueba2', '123', 20,1, '1') /*Solo se puede insertar de forma directa no con este Script*/
+
+SELECT * FROM "Usuarios";
+SELECT * FROM "Roles";
+
+/*Procedimientos almacenados*/
+CREATE PROCEDURE ValidarUsuario
+	@nombreUsuario VARCHAR(30),
+	@contrasenna VARCHAR(30)
+AS
+BEGIN
+
+	SELECT idUsuario,
+		  nombre,
+		  apellido,
+		  cedula,
+		  nombreUsuario,
+		  edad,
+		  estado,
+		  idRol
+	  FROM dbo.Usuarios
+	  WHERE nombreUsuario = @nombreUsuario
+	  AND contrasenna = @contrasenna
+	  AND estado = 1
+END

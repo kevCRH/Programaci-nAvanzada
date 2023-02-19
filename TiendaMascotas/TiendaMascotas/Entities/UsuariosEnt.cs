@@ -15,5 +15,7 @@ namespace TiendaMascotas.Entities
 
         public String Cedula { get; set; }
 
+        public int ConfirmarContrasenna { get; set; }
+
     }
 }

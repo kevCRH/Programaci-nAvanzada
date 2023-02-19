@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProyectoPAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Adopciones">
+    <Key>
+      <PropertyRef Name="idAdopcion" />
+    </Key>
+    <Property Name="idAdopcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idAnimal" Type="Int32" Nullable="false" />
+    <Property Name="fechaAdopcion" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Animales" Relationship="Self.FK__Adopcione__idAni__398D8EEE" FromRole="Adopciones" ToRole="Animales" />
+  </EntityType>
+  <EntityType Name="Animales">
+    <Key>
+      <PropertyRef Name="idAnimal" />
+    </Key>
+    <Property Name="idAnimal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idTipoAnimal" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Adopciones" Relationship="Self.FK__Adopcione__idAni__398D8EEE" FromRole="Animales" ToRole="Adopciones" />
+    <NavigationProperty Name="TipoAnimal" Relationship="Self.FK__Animales__idTipo__37A5467C" FromRole="Animales" ToRole="TipoAnimal" />
+  </EntityType>
+  <EntityType Name="DetalleFactura">
+    <Key>
+      <PropertyRef Name="idDetalleFactura" />
+    </Key>
+    <Property Name="idDetalleFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idFactura" Type="Int32" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="monto" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Factura" Relationship="Self.FK__DetalleFa__idFac__3C69FB99" FromRole="DetalleFactura" ToRole="Factura" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleFa__idPro__3D5E1FD2" FromRole="DetalleFactura" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Factura">
+    <Key>
+      <PropertyRef Name="idFactura" />
+    </Key>
+    <Property Name="idFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="terminos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idFac__3C69FB99" FromRole="Factura" ToRole="DetalleFactura" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="precio" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
+    <Property Name="descuento" Type="Int32" Nullable="false" />
+    <Property Name="idTipoProducto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idPro__3D5E1FD2" FromRole="Productos" ToRole="DetalleFactura" />
+    <NavigationProperty Name="TipoProductos" Relationship="Self.FK__Productos__idTip__3A81B327" FromRole="Productos" ToRole="TipoProductos" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="idRol" />
+    </Key>
+    <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__36B12243" FromRole="Roles" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="TipoAnimal">
+    <Key>
+      <PropertyRef Name="idTipoAnimal" />
+    </Key>
+    <Property Name="idTipoAnimal" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipoAnimal1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Animales" Relationship="Self.FK__Animales__idTipo__37A5467C" FromRole="TipoAnimal" ToRole="Animales" />
+  </EntityType>
+  <EntityType Name="TipoProductos">
+    <Key>
+      <PropertyRef Name="idTipoProducto" />
+    </Key>
+    <Property Name="idTipoProducto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipoProducto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK__Productos__idTip__3A81B327" FromRole="TipoProductos" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombreUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="contrasenna" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="edad" Type="Int32" Nullable="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__36B12243" FromRole="Usuarios" ToRole="Roles" />
+  </EntityType>
+  <EntityType Name="Bitacoras">
+    <Key>
+      <PropertyRef Name="idBitacora" />
+      <PropertyRef Name="consecutivoError" />
+      <PropertyRef Name="fechaHora" />
+      <PropertyRef Name="origen" />
+      <PropertyRef Name="mensajeError" />
+    </Key>
+    <Property Name="idBitacora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="consecutivoError" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fechaHora" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="origen" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mensajeError" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Adopcione__idAni__398D8EEE">
+    <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
+    <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animales">
+        <PropertyRef Name="idAnimal" />
+      </Principal>
+      <Dependent Role="Adopciones">
+        <PropertyRef Name="idAnimal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Animales__idTipo__37A5467C">
+    <End Role="TipoAnimal" Type="Self.TipoAnimal" Multiplicity="1" />
+    <End Role="Animales" Type="Self.Animales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoAnimal">
+        <PropertyRef Name="idTipoAnimal" />
+      </Principal>
+      <Dependent Role="Animales">
+        <PropertyRef Name="idTipoAnimal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleFa__idFac__3C69FB99">
+    <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
+    <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Factura">
+        <PropertyRef Name="idFactura" />
+      </Principal>
+      <Dependent Role="DetalleFactura">
+        <PropertyRef Name="idFactura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleFa__idPro__3D5E1FD2">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+    <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="DetalleFactura">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Productos__idTip__3A81B327">
+    <End Role="TipoProductos" Type="Self.TipoProductos" Multiplicity="1" />
+    <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoProductos">
+        <PropertyRef Name="idTipoProducto" />
+      </Principal>
+      <Dependent Role="Productos">
+        <PropertyRef Name="idTipoProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuarios__idRol__36B12243">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="idRol" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="idRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProyectoPAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Adopciones" EntityType="Self.Adopciones" />
+    <EntitySet Name="Animales" EntityType="Self.Animales" />
+    <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" />
+    <EntitySet Name="Factura" EntityType="Self.Factura" />
+    <EntitySet Name="Productos" EntityType="Self.Productos" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="TipoAnimal" EntityType="Self.TipoAnimal" />
+    <EntitySet Name="TipoProductos" EntityType="Self.TipoProductos" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <EntitySet Name="Bitacoras" EntityType="Self.Bitacoras" />
+    <AssociationSet Name="FK__Adopcione__idAni__398D8EEE" Association="Self.FK__Adopcione__idAni__398D8EEE">
+      <End Role="Animales" EntitySet="Animales" />
+      <End Role="Adopciones" EntitySet="Adopciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Animales__idTipo__37A5467C" Association="Self.FK__Animales__idTipo__37A5467C">
+      <End Role="TipoAnimal" EntitySet="TipoAnimal" />
+      <End Role="Animales" EntitySet="Animales" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleFa__idFac__3C69FB99" Association="Self.FK__DetalleFa__idFac__3C69FB99">
+      <End Role="Factura" EntitySet="Factura" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleFa__idPro__3D5E1FD2" Association="Self.FK__DetalleFa__idPro__3D5E1FD2">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Productos__idTip__3A81B327" Association="Self.FK__Productos__idTip__3A81B327">
+      <End Role="TipoProductos" EntitySet="TipoProductos" />
+      <End Role="Productos" EntitySet="Productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuarios__idRol__36B12243" Association="Self.FK__Usuarios__idRol__36B12243">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <FunctionImport Name="ValidarUsuario" ReturnType="Collection(ProyectoPAModel.ValidarUsuario_Result)">
+      <Parameter Name="nombreUsuario" Mode="In" Type="String" />
+      <Parameter Name="contrasenna" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="ValidarUsuario_Result">
+    <Property Type="Int32" Name="idUsuario" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="apellido" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="cedula" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="nombreUsuario" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="edad" Nullable="false" />
+    <Property Type="Int32" Name="estado" Nullable="false" />
+    <Property Type="String" Name="idRol" Nullable="false" MaxLength="30" />
+  </ComplexType>
+</Schema>
