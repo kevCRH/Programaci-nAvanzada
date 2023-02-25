@@ -87,29 +87,25 @@
       <PropertyRef Name="idUsuario" />
     </Key>
     <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombreCompleto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="nombreUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="contrasenna" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="edad" Type="Int32" Nullable="false" />
-    <Property Name="estado" Type="Int32" Nullable="false" />
+    <Property Name="estado" Type="Boolean" Nullable="false" />
     <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__36B12243" FromRole="Usuarios" ToRole="Roles" />
   </EntityType>
   <EntityType Name="Bitacoras">
     <Key>
       <PropertyRef Name="idBitacora" />
-      <PropertyRef Name="consecutivoError" />
       <PropertyRef Name="fechaHora" />
       <PropertyRef Name="origen" />
       <PropertyRef Name="mensajeError" />
     </Key>
     <Property Name="idBitacora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="consecutivoError" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="fechaHora" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="origen" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="mensajeError" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fechaHora" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="origen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mensajeError" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
   <Association Name="FK__Adopcione__idAni__398D8EEE">
     <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
@@ -218,6 +214,12 @@
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Usuarios" EntitySet="Usuarios" />
     </AssociationSet>
+    <FunctionImport Name="Registrar">
+      <Parameter Name="nombreCompleto" Mode="In" Type="String" />
+      <Parameter Name="cedula" Mode="In" Type="String" />
+      <Parameter Name="nombreUsuario" Mode="In" Type="String" />
+      <Parameter Name="contrasenna" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="ValidarUsuario" ReturnType="Collection(ProyectoPAModel.ValidarUsuario_Result)">
       <Parameter Name="nombreUsuario" Mode="In" Type="String" />
       <Parameter Name="contrasenna" Mode="In" Type="String" />
@@ -225,12 +227,10 @@
   </EntityContainer>
   <ComplexType Name="ValidarUsuario_Result">
     <Property Type="Int32" Name="idUsuario" Nullable="false" />
-    <Property Type="String" Name="nombre" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="apellido" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="nombreCompleto" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="cedula" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="nombreUsuario" Nullable="false" MaxLength="30" />
-    <Property Type="Int32" Name="edad" Nullable="false" />
-    <Property Type="Int32" Name="estado" Nullable="false" />
+    <Property Type="Boolean" Name="estado" Nullable="false" />
     <Property Type="String" Name="idRol" Nullable="false" MaxLength="30" />
   </ComplexType>
 </Schema>

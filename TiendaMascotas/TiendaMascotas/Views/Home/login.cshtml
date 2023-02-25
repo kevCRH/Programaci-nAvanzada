@@ -19,14 +19,36 @@
                 <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
             </div>
             <span>o use su correo para registrarse</span>
-            @Html.TextBoxFor(Model => Model.Nombre, new { @placeholder = "Nombre y apellidos" })
-            @Html.TextBoxFor(Model => Model.Cedula, new { @placeholder = "Cédula" })
-            @Html.TextBoxFor(Model => Model.NombreUsuario, new { @placeholder = "Nombre de Usuario" })
-            @Html.TextBoxFor(Model => Model.Contrasenna, new { @placeholder = "Contraseña" })
-            @Html.TextBoxFor(Model => Model.ConfirmarContrasenna, new { @placeholder = "Confirmar Contraseña" })
+            @Html.TextBoxFor(Model => Model.Nombre, new {
+                @placeholder = "Nombre y apellidos",
+                @autocomplete = "Off",
+                @required=true })
 
-            <input type="Submit" value="Registrarse">
-            <button>Registrarse</button>
+            @Html.TextBoxFor(Model => Model.Cedula, new {
+                @placeholder = "Cédula",
+                @autocomplete = "Off",
+                @required = true })
+
+            @Html.TextBoxFor(Model => Model.NombreUsuario, new {
+                @placeholder = "Nombre de Usuario",
+                @autocomplete = "Off",
+                @required = true,
+                @onblur = "ValidarRegistrar();" })
+
+            @Html.PasswordFor(Model => Model.Contrasenna, new {
+                @placeholder = "Contraseña",
+                @autocomplete = "Off",
+                @required = true,
+                @onblur = "ValidarContrasenna();" })
+
+            @Html.PasswordFor(Model => Model.ConfirmarContrasenna, new {
+                @placeholder = "Confirmar Contraseña",
+                @autocomplete = "Off",
+                @required = true,
+                @onblur = "ValidarContrasenna();" })
+
+            <input type="Submit" id="btRegistrarse" value="Registrarse">
+            <!--<button>Registrarse</button>-->
         }
     </div>
     <div class="form-container sign-in-container">
@@ -37,8 +59,8 @@
                 <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
             </div>
             <span>o utilice su cuenta personal</span>
-            @Html.TextBoxFor(Model => Model.NombreUsuario, new { @placeholder = "Usuario" })
-            @Html.PasswordFor(Model => Model.Contrasenna, new { @placeholder = "Contraseña" })
+            @Html.TextBoxFor(Model => Model.NombreUsuario, new { @placeholder = "Usuario", autocomplete = "Off", @required = true })
+            @Html.PasswordFor(Model => Model.Contrasenna, new { @placeholder = "Contraseña", autocomplete = "Off", @required = true })
             <a href="#">Olvidó su contraseña?</a>
             <input type="Submit" value="Iniciar Sesión"> <!--Buscar la clase por defecto para el CSS-->
             <!--<button>Iniciar Sesión</button>-->
@@ -60,3 +82,4 @@
     </div>
 </div>
 
+<script src="~/assets/js/FuncionesLogin.js"></script>

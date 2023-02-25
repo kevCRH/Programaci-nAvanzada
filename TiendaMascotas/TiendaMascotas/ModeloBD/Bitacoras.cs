@@ -15,7 +15,6 @@ namespace TiendaMascotas.ModeloBD
     public partial class Bitacoras
     {
         public int idBitacora { get; set; }
-        public string consecutivoError { get; set; }
         public System.DateTime fechaHora { get; set; }
         public string origen { get; set; }
         public string mensajeError { get; set; }

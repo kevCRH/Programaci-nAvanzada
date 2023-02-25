@@ -3,13 +3,13 @@ use ProyectoPA
 /*Creación de las Tablas*/
 CREATE TABLE Usuarios(/*Considero que la edad no es necesaria xq eso me lo puede dar un API de la cédula. Nombre y apellido se pueden hacer una sola*/
 	idUsuario INT NOT NULL IDENTITY(1,1),
-	nombre VARCHAR(30) NOT NULL,
-	apellido VARCHAR(30) NOT NULL,
+	nombreCompleto VARCHAR(30) NOT NULL,
+	/*apellido VARCHAR(30) NOT NULL,*/ /*No es lo adecuado pero lo junte el nombre completo para que el diseño de registrar no se me viera afectado*/
 	cedula VARCHAR(50) NOT NULL UNIQUE,
 	nombreUsuario VARCHAR(30) NOT NULL UNIQUE,
 	contrasenna VARCHAR(30) NOT NULL,
-	edad INT NOT NULL,
-	estado INT NOT NULL,
+	/*edad INT NOT NULL,*/ /*La edad la podemos sacar con la cédula*/
+	estado BIT NOT NULL,
 	idRol VARCHAR(30) NOT NULL
 	PRIMARY KEY(idUsuario)
 );
@@ -97,10 +97,7 @@ ALTER TABLE DetalleFactura ADD FOREIGN KEY(idFactura) REFERENCES Factura(idFactu
 ALTER TABLE DetalleFactura ADD FOREIGN KEY(idProducto) REFERENCES Productos(idProducto);
 
 
-/*Insert en las tablas*/
-INSERT INTO Roles VALUES ('2','1')
-INSERT INTO "Usuarios" VALUES ('', 'NombrePrueba', 'ApellidoPrueba', '122223333', 'Prueba2', '123', 20,1, '1') /*Solo se puede insertar de forma directa no con este Script*/
-
+/*Select de las tablas*/
 SELECT * FROM "Usuarios";
 SELECT * FROM "Roles";
 
@@ -110,17 +107,26 @@ CREATE PROCEDURE ValidarUsuario
 	@contrasenna VARCHAR(30)
 AS
 BEGIN
-
 	SELECT idUsuario,
-		  nombre,
-		  apellido,
+		  nombreCompleto,
 		  cedula,
 		  nombreUsuario,
-		  edad,
 		  estado,
 		  idRol
 	  FROM dbo.Usuarios
 	  WHERE nombreUsuario = @nombreUsuario
 	  AND contrasenna = @contrasenna
 	  AND estado = 1
+END
+
+
+CREATE PROCEDURE Registrar 
+	@nombreCompleto VARCHAR(30),
+	@cedula VARCHAR(50),
+	@nombreUsuario VARCHAR(30),
+	@contrasenna VARCHAR(30)
+AS
+BEGIN
+INSERT INTO Usuarios (nombreCompleto, cedula, nombreUsuario, contrasenna, estado, idRol)
+     VALUES (@nombreCompleto, @cedula, @nombreUsuario, @contrasenna, 1, 1)
 END

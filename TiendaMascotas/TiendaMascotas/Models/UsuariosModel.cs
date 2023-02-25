@@ -27,6 +27,35 @@ namespace TiendaMascotas.Models
                 
             }
         }
+
+        public void Registrar(UsuariosEnt entidad)
+        {
+            using (var conexion = new ProyectoPAEntities())
+            {
+                conexion.Registrar(entidad.Nombre, entidad.Cedula, entidad.NombreUsuario, entidad.Contrasenna);
+            }
+        }
+
+        public string ValidarRegistrar(string validar)
+        {
+            using (var conexion = new ProyectoPAEntities())
+            {
+                var respuesta = (from x in conexion.Usuarios
+                                 where x.nombreUsuario == validar
+                                 select x).FirstOrDefault();
+                
+                if (respuesta == null)
+                    return string.Empty;
+                else
+                {
+                    if (respuesta.estado == false)
+                        return "El nombre de usuario se encuentra inactivo";
+                    else
+                        return "Es Usuario ya está registrado";
+                }
+            }
+        }
+
         public void RegistrarBitacora(string origen, string mensajeError)
         {
             using (var conexion = new ProyectoPAEntities()) /*Podríamos hacer un proc. almacenado desde la BD, o dejarlo así*/
@@ -35,7 +64,6 @@ namespace TiendaMascotas.Models
                 bitacora.fechaHora = DateTime.Now;
                 bitacora.origen= origen;
                 bitacora.mensajeError= mensajeError;
-
 
                 conexion.Bitacoras.Add(bitacora);
                 conexion.SaveChanges();

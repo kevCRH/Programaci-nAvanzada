@@ -15,13 +15,11 @@ namespace TiendaMascotas.ModeloBD
     public partial class Usuarios
     {
         public int idUsuario { get; set; }
-        public string nombre { get; set; }
-        public string apellido { get; set; }
+        public string nombreCompleto { get; set; }
         public string cedula { get; set; }
         public string nombreUsuario { get; set; }
         public string contrasenna { get; set; }
-        public int edad { get; set; }
-        public int estado { get; set; }
+        public bool estado { get; set; }
         public string idRol { get; set; }
     
         public virtual Roles Roles { get; set; }

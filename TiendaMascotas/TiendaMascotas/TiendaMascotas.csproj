@@ -197,6 +197,7 @@
     <Content Include="assets\imgs\img-2.jpg" />
     <Content Include="assets\imgs\img-3.jpg" />
     <Content Include="assets\js\creative-design.js" />
+    <Content Include="assets\js\FuncionesLogin.js" />
     <Content Include="assets\js\login.js" />
     <Content Include="assets\vendors\bootstrap\bootstrap.affix.js" />
     <Content Include="assets\vendors\bootstrap\bootstrap.bundle.js" />
@@ -219,8 +220,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="ModeloBD\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="ModeloBD\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

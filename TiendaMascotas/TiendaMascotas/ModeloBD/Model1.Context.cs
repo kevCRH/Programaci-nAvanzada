@@ -38,6 +38,27 @@ namespace TiendaMascotas.ModeloBD
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Bitacoras> Bitacoras { get; set; }
     
+        public virtual int Registrar(string nombreCompleto, string cedula, string nombreUsuario, string contrasenna)
+        {
+            var nombreCompletoParameter = nombreCompleto != null ?
+                new ObjectParameter("nombreCompleto", nombreCompleto) :
+                new ObjectParameter("nombreCompleto", typeof(string));
+    
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("cedula", cedula) :
+                new ObjectParameter("cedula", typeof(string));
+    
+            var nombreUsuarioParameter = nombreUsuario != null ?
+                new ObjectParameter("nombreUsuario", nombreUsuario) :
+                new ObjectParameter("nombreUsuario", typeof(string));
+    
+            var contrasennaParameter = contrasenna != null ?
+                new ObjectParameter("contrasenna", contrasenna) :
+                new ObjectParameter("contrasenna", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar", nombreCompletoParameter, cedulaParameter, nombreUsuarioParameter, contrasennaParameter);
+        }
+    
         public virtual ObjectResult<ValidarUsuario_Result> ValidarUsuario(string nombreUsuario, string contrasenna)
         {
             var nombreUsuarioParameter = nombreUsuario != null ?

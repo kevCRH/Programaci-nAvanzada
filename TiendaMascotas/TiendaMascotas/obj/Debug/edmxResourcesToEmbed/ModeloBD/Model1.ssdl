@@ -24,16 +24,14 @@ warning 6002: The table/view 'ProyectoPA.dbo.Bitacoras' does not have a primary 
   <EntityType Name="Bitacoras">
     <Key>
       <PropertyRef Name="idBitacora" />
-      <PropertyRef Name="consecutivoError" />
       <PropertyRef Name="fechaHora" />
       <PropertyRef Name="origen" />
       <PropertyRef Name="mensajeError" />
     </Key>
     <Property Name="idBitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="consecutivoError" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="fechaHora" Type="date" Nullable="false" />
-    <Property Name="origen" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="mensajeError" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="fechaHora" Type="datetime" Nullable="false" />
+    <Property Name="origen" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="mensajeError" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="DetalleFactura">
     <Key>
@@ -92,13 +90,11 @@ warning 6002: The table/view 'ProyectoPA.dbo.Bitacoras' does not have a primary 
       <PropertyRef Name="idUsuario" />
     </Key>
     <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="apellido" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="nombreCompleto" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="nombreUsuario" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="contrasenna" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="edad" Type="int" Nullable="false" />
-    <Property Name="estado" Type="int" Nullable="false" />
+    <Property Name="estado" Type="bit" Nullable="false" />
     <Property Name="idRol" Type="varchar" MaxLength="30" Nullable="false" />
   </EntityType>
   <Association Name="FK__Adopcione__idAni__398D8EEE">
@@ -179,6 +175,12 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="Registrar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombreCompleto" Type="varchar" Mode="In" />
+    <Parameter Name="cedula" Type="varchar" Mode="In" />
+    <Parameter Name="nombreUsuario" Type="varchar" Mode="In" />
+    <Parameter Name="contrasenna" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="nombreUsuario" Type="varchar" Mode="In" />
     <Parameter Name="contrasenna" Type="varchar" Mode="In" />
@@ -196,7 +198,6 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
     <EntitySet Name="Bitacoras" EntityType="Self.Bitacoras" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [Bitacoras].[idBitacora] AS [idBitacora], 
-    [Bitacoras].[consecutivoError] AS [consecutivoError], 
     [Bitacoras].[fechaHora] AS [fechaHora], 
     [Bitacoras].[origen] AS [origen], 
     [Bitacoras].[mensajeError] AS [mensajeError]

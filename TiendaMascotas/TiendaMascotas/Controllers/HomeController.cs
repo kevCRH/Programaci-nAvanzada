@@ -13,6 +13,8 @@ namespace TiendaMascotas.Controllers
 
         UsuariosModel model = new UsuariosModel();
         
+        //Abrir vistas
+    
         [HttpGet]
         public ActionResult Index()
         {
@@ -40,6 +42,9 @@ namespace TiendaMascotas.Controllers
                 return View("Index");
             }
         }
+
+
+        //Generar métodos
 
         [HttpPost]
         public ActionResult IniciarSesion(UsuariosEnt entidad) {
@@ -71,12 +76,27 @@ namespace TiendaMascotas.Controllers
         {
             try
             {
-                return View("Index");
+                model.Registrar(entidad);
+                return View("login");
             }
             catch (Exception ex)
             {
                 model.RegistrarBitacora("Método ActionResult Registrar", ex.Message);
                 return View("login");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ValidarRegistrar(string validar)
+        {
+            try
+            {
+                return Json(model.ValidarRegistrar(validar), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                model.RegistrarBitacora("Método ActionResult ValidarRegistrar", ex.Message);
+                return Json(null, JsonRequestBehavior.DenyGet);
             }
         }
     }
