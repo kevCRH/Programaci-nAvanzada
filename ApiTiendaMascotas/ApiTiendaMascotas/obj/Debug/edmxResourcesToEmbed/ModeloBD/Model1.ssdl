@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Adopciones">
+    <Key>
+      <PropertyRef Name="idAdopcion" />
+    </Key>
+    <Property Name="idAdopcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreUsuario" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="idAnimal" Type="int" Nullable="false" />
+    <Property Name="fechaAdopcion" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Animales">
+    <Key>
+      <PropertyRef Name="idAnimal" />
+    </Key>
+    <Property Name="idAnimal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTipoAnimal" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="estado" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ProyectoPA.dbo.Bitacoras' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Bitacoras">
+    <Key>
+      <PropertyRef Name="idBitacora" />
+      <PropertyRef Name="fechaHora" />
+      <PropertyRef Name="origen" />
+      <PropertyRef Name="mensajeError" />
+    </Key>
+    <Property Name="idBitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fechaHora" Type="datetime" Nullable="false" />
+    <Property Name="origen" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="mensajeError" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DetalleFactura">
+    <Key>
+      <PropertyRef Name="idDetalleFactura" />
+    </Key>
+    <Property Name="idDetalleFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idFactura" Type="int" Nullable="false" />
+    <Property Name="idProducto" Type="int" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="monto" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Factura">
+    <Key>
+      <PropertyRef Name="idFactura" />
+    </Key>
+    <Property Name="idFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="terminos" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="precio" Type="numeric" Precision="10" Scale="3" Nullable="false" />
+    <Property Name="descuento" Type="int" Nullable="false" />
+    <Property Name="idTipoProducto" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="idRol" />
+    </Key>
+    <Property Name="idRol" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="rol" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoAnimal">
+    <Key>
+      <PropertyRef Name="idTipoAnimal" />
+    </Key>
+    <Property Name="idTipoAnimal" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="tipoAnimal" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoProductos">
+    <Key>
+      <PropertyRef Name="idTipoProducto" />
+    </Key>
+    <Property Name="idTipoProducto" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="tipoProducto" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreCompleto" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombreUsuario" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="contrasenna" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="estado" Type="bit" Nullable="false" />
+    <Property Name="idRol" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Adopcione__idAni__398D8EEE">
+    <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
+    <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animales">
+        <PropertyRef Name="idAnimal" />
+      </Principal>
+      <Dependent Role="Adopciones">
+        <PropertyRef Name="idAnimal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__Adopcione__nombr__38996AB5' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Adopcione__nombr__38996AB5" />-->
+  <Association Name="FK__Animales__idTipo__37A5467C">
+    <End Role="TipoAnimal" Type="Self.TipoAnimal" Multiplicity="1" />
+    <End Role="Animales" Type="Self.Animales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoAnimal">
+        <PropertyRef Name="idTipoAnimal" />
+      </Principal>
+      <Dependent Role="Animales">
+        <PropertyRef Name="idTipoAnimal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleFa__idFac__3C69FB99">
+    <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
+    <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Factura">
+        <PropertyRef Name="idFactura" />
+      </Principal>
+      <Dependent Role="DetalleFactura">
+        <PropertyRef Name="idFactura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleFa__idPro__3D5E1FD2">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+    <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="DetalleFactura">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Factura__cedula__3B75D760" />-->
+  <Association Name="FK__Productos__idTip__3A81B327">
+    <End Role="TipoProductos" Type="Self.TipoProductos" Multiplicity="1" />
+    <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoProductos">
+        <PropertyRef Name="idTipoProducto" />
+      </Principal>
+      <Dependent Role="Productos">
+        <PropertyRef Name="idTipoProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuarios__idRol__36B12243">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="idRol" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="idRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Registrar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombreCompleto" Type="varchar" Mode="In" />
+    <Parameter Name="cedula" Type="varchar" Mode="In" />
+    <Parameter Name="nombreUsuario" Type="varchar" Mode="In" />
+    <Parameter Name="contrasenna" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombreUsuario" Type="varchar" Mode="In" />
+    <Parameter Name="contrasenna" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ProyectoPAModelStoreContainer">
+    <EntitySet Name="Adopciones" EntityType="Self.Adopciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Animales" EntityType="Self.Animales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Factura" EntityType="Self.Factura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoAnimal" EntityType="Self.TipoAnimal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoProductos" EntityType="Self.TipoProductos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bitacoras" EntityType="Self.Bitacoras" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Bitacoras].[idBitacora] AS [idBitacora], 
+    [Bitacoras].[fechaHora] AS [fechaHora], 
+    [Bitacoras].[origen] AS [origen], 
+    [Bitacoras].[mensajeError] AS [mensajeError]
+    FROM [dbo].[Bitacoras] AS [Bitacoras]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Adopcione__idAni__398D8EEE" Association="Self.FK__Adopcione__idAni__398D8EEE">
+      <End Role="Animales" EntitySet="Animales" />
+      <End Role="Adopciones" EntitySet="Adopciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Animales__idTipo__37A5467C" Association="Self.FK__Animales__idTipo__37A5467C">
+      <End Role="TipoAnimal" EntitySet="TipoAnimal" />
+      <End Role="Animales" EntitySet="Animales" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleFa__idFac__3C69FB99" Association="Self.FK__DetalleFa__idFac__3C69FB99">
+      <End Role="Factura" EntitySet="Factura" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleFa__idPro__3D5E1FD2" Association="Self.FK__DetalleFa__idPro__3D5E1FD2">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Productos__idTip__3A81B327" Association="Self.FK__Productos__idTip__3A81B327">
+      <End Role="TipoProductos" EntitySet="TipoProductos" />
+      <End Role="Productos" EntitySet="Productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuarios__idRol__36B12243" Association="Self.FK__Usuarios__idRol__36B12243">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

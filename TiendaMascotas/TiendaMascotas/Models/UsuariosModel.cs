@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Web;
 using TiendaMascotas.Entities;
 using TiendaMascotas.ModeloBD;
@@ -11,21 +13,20 @@ namespace TiendaMascotas.Models
     {
 
         public bool ValidarUsuario(UsuariosEnt entidad)
-        { 
-            using (var conexion = new ProyectoPAEntities()) /*Si no se usa el using, hay que cerrar la conexión al final con: "conexion.dispose()"*/
+        {
+            using (var cliente = new HttpClient())
             {
-                var respuesta = conexion.ValidarUsuario(entidad.NombreUsuario, entidad.Contrasenna).FirstOrDefault(); /*Siempre que vaya consultar algo donde espere una sola respuesta*/
+                JsonContent body = JsonContent.Create(entidad);
+                string url = "https://localhost:44331/api/ValidarUsuario";
+                HttpResponseMessage respuesta = cliente.PostAsync(url, body).GetAwaiter().GetResult();
 
-                if (respuesta != null)
+                if (respuesta.IsSuccessStatusCode)
                 {
-                    return true;
+                    return respuesta.Content.ReadFromJsonAsync<bool>().Result;
                 }
-                else 
-                {
-                    return false;
-                }
-                
+                return false;
             }
+
         }
 
         public void Registrar(UsuariosEnt entidad)
