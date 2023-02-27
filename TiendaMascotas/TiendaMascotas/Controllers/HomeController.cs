@@ -12,9 +12,9 @@ namespace TiendaMascotas.Controllers
     {
 
         UsuariosModel model = new UsuariosModel();
-        
+
         //Abrir vistas
-    
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -24,7 +24,7 @@ namespace TiendaMascotas.Controllers
             }
             catch (Exception ex)
             {
-                model.RegistrarBitacora("Método ActionResult Index", ex.Message);
+                RegistrarLog(ex);
                 return View();
             }
         }
@@ -38,14 +38,13 @@ namespace TiendaMascotas.Controllers
             }
             catch (Exception ex)
             {
-                model.RegistrarBitacora("Método ActionResult login", ex.Message);
+                RegistrarLog(ex);
                 return View("Index");
             }
         }
 
 
         //Generar métodos
-
         [HttpPost]
         public ActionResult IniciarSesion(UsuariosEnt entidad) {
 
@@ -64,7 +63,7 @@ namespace TiendaMascotas.Controllers
             }
             catch (Exception ex)
             {
-                model.RegistrarBitacora("Método IniciarSesion", ex.Message);
+                RegistrarLog(ex);
                 ViewBag.mensaje = "Creedencialas no se validaron";
                 return View("login");
             }
@@ -76,12 +75,18 @@ namespace TiendaMascotas.Controllers
         {
             try
             {
-                model.Registrar(entidad);
-                return View("login");
+                if (model.Registrar(entidad) > 0)
+                    return View("Index");
+                else
+                {
+                    ViewBag.mensaje = "Creedencialas no se validaron";
+                    return View("login");
+                }
+
             }
             catch (Exception ex)
             {
-                model.RegistrarBitacora("Método ActionResult Registrar", ex.Message);
+                RegistrarLog(ex);
                 return View("login");
             }
         }
@@ -95,9 +100,18 @@ namespace TiendaMascotas.Controllers
             }
             catch (Exception ex)
             {
-                model.RegistrarBitacora("Método ActionResult ValidarRegistrar", ex.Message);
+                RegistrarLog(ex);
                 return Json(null, JsonRequestBehavior.DenyGet);
             }
         }
+
+        public void RegistrarLog(Exception ex)
+        {
+            LogsEnt log = new LogsEnt();
+            log.origen = ControllerContext.RouteData.Values["controller"].ToString() + "-" + ControllerContext.RouteData.Values["action"].ToString();
+            log.mensajeError = ex.Message;
+            model.RegistrarBitacora(log);
+        } 
+
     }
 }

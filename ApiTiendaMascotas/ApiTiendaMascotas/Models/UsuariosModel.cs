@@ -22,5 +22,32 @@ namespace ApiTiendaMascotas.Models
             }
         }
 
+        public int Registrar(UsuariosEnt entidad)
+        {
+            using (var conexion = new ProyectoPAEntities())
+            {
+                return conexion.Registrar(entidad.Nombre, entidad.Cedula, entidad.NombreUsuario, entidad.Contrasenna);
+            }
+        }
+
+        public string ValidarRegistrar(string validar)
+        {
+            using (var conexion = new ProyectoPAEntities())
+            {
+                var respuesta = (from x in conexion.Usuarios
+                                 where x.nombreUsuario == validar
+                                 select x).FirstOrDefault();
+
+                if (respuesta == null)
+                    return string.Empty;
+                else
+                {
+                    if (respuesta.estado == false)
+                        return "El nombre de usuario se encuentra inactivo";
+                    else
+                        return "Es Usuario ya está registrado";
+                }
+            }
+        }
     }
 }

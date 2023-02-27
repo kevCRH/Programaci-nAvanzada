@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Web;
 using TiendaMascotas.Entities;
-using TiendaMascotas.ModeloBD;
 
 namespace TiendaMascotas.Models
 {
@@ -29,45 +28,44 @@ namespace TiendaMascotas.Models
 
         }
 
-        public void Registrar(UsuariosEnt entidad)
+        public int Registrar(UsuariosEnt entidad)
         {
-            using (var conexion = new ProyectoPAEntities())
+            using (var cliente = new HttpClient())
             {
-                conexion.Registrar(entidad.Nombre, entidad.Cedula, entidad.NombreUsuario, entidad.Contrasenna);
+                JsonContent body = JsonContent.Create(entidad);
+                string url = "https://localhost:44331/api/Registrar";
+                HttpResponseMessage respuesta = cliente.PostAsync(url, body).GetAwaiter().GetResult();
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    return respuesta.Content.ReadFromJsonAsync<int>().Result;
+                }
+                return 0;
             }
         }
 
         public string ValidarRegistrar(string validar)
         {
-            using (var conexion = new ProyectoPAEntities())
+            using (var cliente = new HttpClient())
             {
-                var respuesta = (from x in conexion.Usuarios
-                                 where x.nombreUsuario == validar
-                                 select x).FirstOrDefault();
-                
-                if (respuesta == null)
-                    return string.Empty;
-                else
+                string url = "https://localhost:44331/api/ValidarRegistrar?validar=" + validar;
+                HttpResponseMessage respuesta = cliente.GetAsync(url).GetAwaiter().GetResult();
+
+                if (respuesta.IsSuccessStatusCode)
                 {
-                    if (respuesta.estado == false)
-                        return "El nombre de usuario se encuentra inactivo";
-                    else
-                        return "Es Usuario ya está registrado";
+                    return respuesta.Content.ReadFromJsonAsync<string>().Result;
                 }
+                return "No se puede validar el Usuario Registrado";
             }
         }
 
-        public void RegistrarBitacora(string origen, string mensajeError)
+        public void RegistrarBitacora(LogsEnt entidad)
         {
-            using (var conexion = new ProyectoPAEntities()) /*Podríamos hacer un proc. almacenado desde la BD, o dejarlo así*/
+            using (var cliente = new HttpClient())
             {
-                Bitacoras bitacora = new Bitacoras();
-                bitacora.fechaHora = DateTime.Now;
-                bitacora.origen= origen;
-                bitacora.mensajeError= mensajeError;
-
-                conexion.Bitacoras.Add(bitacora);
-                conexion.SaveChanges();
+                JsonContent body = JsonContent.Create(entidad); 
+                string url = "https://localhost:44331/api/RegistrarBitacora";
+                HttpResponseMessage respuesta = cliente.PostAsync(url, body).GetAwaiter().GetResult();
             }
         }
     }

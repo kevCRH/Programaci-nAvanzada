@@ -12,14 +12,14 @@
         },
         success: function (res)
         {
-            if (res == "") {
-                $("#btRegistrarse").prop("disabled", false);
-            }
-            else
+            if (res != "ERROR")
             {
-                alert(res);
-                $("#NombreUsuario").val("");
-                $("#NombreUsuario").focus();
+                if (res == "") {
+                    $("#btnRegistrar").prop("disabled", false);
+                }
+                else {
+                    alert(res);
+                }
             }
         }
     });
