@@ -5,7 +5,7 @@
       <PropertyRef Name="idAdopcion" />
     </Key>
     <Property Name="idAdopcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombreUsuario" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="correoElectronico" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="idAnimal" Type="int" Nullable="false" />
     <Property Name="fechaAdopcion" Type="date" Nullable="false" />
   </EntityType>
@@ -90,13 +90,15 @@ warning 6002: The table/view 'ProyectoPA.dbo.Bitacoras' does not have a primary 
       <PropertyRef Name="idUsuario" />
     </Key>
     <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombreCompleto" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="correoElectronico" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="nombreUsuario" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="contrasenna" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="estado" Type="bit" Nullable="false" />
     <Property Name="idRol" Type="varchar" MaxLength="30" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__Adopcione__corre__38996AB5' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Adopcione__corre__38996AB5" />-->
   <Association Name="FK__Adopcione__idAni__398D8EEE">
     <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
     <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
@@ -109,9 +111,6 @@ warning 6002: The table/view 'ProyectoPA.dbo.Bitacoras' does not have a primary 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Adopcione__nombr__38996AB5' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Adopcione__nombr__38996AB5" />-->
   <Association Name="FK__Animales__idTipo__37A5467C">
     <End Role="TipoAnimal" Type="Self.TipoAnimal" Multiplicity="1" />
     <End Role="Animales" Type="Self.Animales" Multiplicity="*" />
@@ -176,13 +175,13 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
     </ReferentialConstraint>
   </Association>
   <Function Name="Registrar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="nombreCompleto" Type="varchar" Mode="In" />
+    <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
     <Parameter Name="cedula" Type="varchar" Mode="In" />
     <Parameter Name="nombreUsuario" Type="varchar" Mode="In" />
     <Parameter Name="contrasenna" Type="varchar" Mode="In" />
   </Function>
   <Function Name="ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="nombreUsuario" Type="varchar" Mode="In" />
+    <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
     <Parameter Name="contrasenna" Type="varchar" Mode="In" />
   </Function>
   <EntityContainer Name="ProyectoPAModelStoreContainer">

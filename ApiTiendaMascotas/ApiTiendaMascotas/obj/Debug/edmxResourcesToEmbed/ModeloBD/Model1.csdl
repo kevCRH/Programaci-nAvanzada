@@ -5,7 +5,7 @@
       <PropertyRef Name="idAdopcion" />
     </Key>
     <Property Name="idAdopcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nombreUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correoElectronico" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="idAnimal" Type="Int32" Nullable="false" />
     <Property Name="fechaAdopcion" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="Animales" Relationship="Self.FK__Adopcione__idAni__398D8EEE" FromRole="Adopciones" ToRole="Animales" />
@@ -87,9 +87,8 @@
       <PropertyRef Name="idUsuario" />
     </Key>
     <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nombreCompleto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correoElectronico" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="nombreUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="contrasenna" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="estado" Type="Boolean" Nullable="false" />
     <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
@@ -215,21 +214,20 @@
       <End Role="Usuarios" EntitySet="Usuarios" />
     </AssociationSet>
     <FunctionImport Name="Registrar">
-      <Parameter Name="nombreCompleto" Mode="In" Type="String" />
+      <Parameter Name="correoElectronico" Mode="In" Type="String" />
       <Parameter Name="cedula" Mode="In" Type="String" />
       <Parameter Name="nombreUsuario" Mode="In" Type="String" />
       <Parameter Name="contrasenna" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="ValidarUsuario" ReturnType="Collection(ProyectoPAModel.ValidarUsuario_Result)">
-      <Parameter Name="nombreUsuario" Mode="In" Type="String" />
+      <Parameter Name="correoElectronico" Mode="In" Type="String" />
       <Parameter Name="contrasenna" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ValidarUsuario_Result">
     <Property Type="Int32" Name="idUsuario" Nullable="false" />
-    <Property Type="String" Name="nombreCompleto" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="correoElectronico" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="cedula" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="nombreUsuario" Nullable="false" MaxLength="30" />
     <Property Type="Boolean" Name="estado" Nullable="false" />
     <Property Type="String" Name="idRol" Nullable="false" MaxLength="30" />
   </ComplexType>

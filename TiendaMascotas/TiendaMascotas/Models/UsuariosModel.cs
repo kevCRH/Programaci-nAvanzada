@@ -55,9 +55,21 @@ namespace TiendaMascotas.Models
                 {
                     return respuesta.Content.ReadFromJsonAsync<string>().Result;
                 }
-                return "No se puede validar el Usuario Registrado";
+                return "ERROR";
             }
         }
+
+        public void RecuperarContrasenna(UsuariosEnt entidad)
+        {
+            using (var cliente = new HttpClient())
+            {
+                JsonContent body = JsonContent.Create(entidad);
+                string url = "https://localhost:44331/api/RecuperarContrasenna";
+                HttpResponseMessage respuesta = cliente.PostAsync(url, body).GetAwaiter().GetResult();
+
+            }
+        }
+
 
         public void RegistrarBitacora(LogsEnt entidad)
         {
@@ -65,7 +77,7 @@ namespace TiendaMascotas.Models
             {
                 JsonContent body = JsonContent.Create(entidad); 
                 string url = "https://localhost:44331/api/RegistrarBitacora";
-                HttpResponseMessage respuesta = cliente.PostAsync(url, body).GetAwaiter().GetResult();
+                    HttpResponseMessage respuesta = cliente.PostAsync(url, body).GetAwaiter().GetResult();
             }
         }
     }

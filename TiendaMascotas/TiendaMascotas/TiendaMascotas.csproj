@@ -183,6 +183,7 @@
     <Content Include="assets\js\creative-design.js" />
     <Content Include="assets\js\FuncionesLogin.js" />
     <Content Include="assets\js\login.js" />
+    <Content Include="assets\js\RecuperarContrasenna.js" />
     <Content Include="assets\vendors\bootstrap\bootstrap.affix.js" />
     <Content Include="assets\vendors\bootstrap\bootstrap.bundle.js" />
     <Content Include="assets\vendors\bootstrap\bootstrap.bundle.min.js" />
@@ -336,6 +337,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Shared\Login.cshtml" />
+    <Content Include="Views\Home\RecuperarContrasenna.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -32,5 +32,13 @@ namespace ApiTiendaMascotas.Controllers
         {
             return model.ValidarRegistrar(validar);
         }
+
+        [HttpPost]
+        [Route("api/RecuperarContrasenna")]
+        public void RecuperarContrasenna(UsuariosEnt entidad)
+        {
+            model.RecuperarContrasenna(entidad);
+        }
+        
     }
 }

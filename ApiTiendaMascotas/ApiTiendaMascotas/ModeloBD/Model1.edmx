@@ -10,7 +10,7 @@
             <PropertyRef Name="idAdopcion" />
           </Key>
           <Property Name="idAdopcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombreUsuario" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="correoElectronico" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="idAnimal" Type="int" Nullable="false" />
           <Property Name="fechaAdopcion" Type="date" Nullable="false" />
         </EntityType>
@@ -95,13 +95,15 @@ warning 6002: The table/view 'ProyectoPA.dbo.Bitacoras' does not have a primary 
             <PropertyRef Name="idUsuario" />
           </Key>
           <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombreCompleto" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="correoElectronico" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="nombreUsuario" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="contrasenna" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="estado" Type="bit" Nullable="false" />
           <Property Name="idRol" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__Adopcione__corre__38996AB5' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Adopcione__corre__38996AB5" />-->
         <Association Name="FK__Adopcione__idAni__398D8EEE">
           <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
           <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
@@ -114,9 +116,6 @@ warning 6002: The table/view 'ProyectoPA.dbo.Bitacoras' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Adopcione__nombr__38996AB5' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Adopcione__nombr__38996AB5" />-->
         <Association Name="FK__Animales__idTipo__37A5467C">
           <End Role="TipoAnimal" Type="Self.TipoAnimal" Multiplicity="1" />
           <End Role="Animales" Type="Self.Animales" Multiplicity="*" />
@@ -181,13 +180,13 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
           </ReferentialConstraint>
         </Association>
         <Function Name="Registrar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="nombreCompleto" Type="varchar" Mode="In" />
+          <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
           <Parameter Name="cedula" Type="varchar" Mode="In" />
           <Parameter Name="nombreUsuario" Type="varchar" Mode="In" />
           <Parameter Name="contrasenna" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="nombreUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
           <Parameter Name="contrasenna" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="ProyectoPAModelStoreContainer">
@@ -243,7 +242,7 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
             <PropertyRef Name="idAdopcion" />
           </Key>
           <Property Name="idAdopcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombreUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correoElectronico" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idAnimal" Type="Int32" Nullable="false" />
           <Property Name="fechaAdopcion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Animales" Relationship="Self.FK__Adopcione__idAni__398D8EEE" FromRole="Adopciones" ToRole="Animales" />
@@ -325,9 +324,8 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
             <PropertyRef Name="idUsuario" />
           </Key>
           <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombreCompleto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correoElectronico" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nombreUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="contrasenna" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
@@ -453,21 +451,20 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
           <FunctionImport Name="Registrar">
-            <Parameter Name="nombreCompleto" Mode="In" Type="String" />
+            <Parameter Name="correoElectronico" Mode="In" Type="String" />
             <Parameter Name="cedula" Mode="In" Type="String" />
             <Parameter Name="nombreUsuario" Mode="In" Type="String" />
             <Parameter Name="contrasenna" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ValidarUsuario" ReturnType="Collection(ProyectoPAModel.ValidarUsuario_Result)">
-            <Parameter Name="nombreUsuario" Mode="In" Type="String" />
+            <Parameter Name="correoElectronico" Mode="In" Type="String" />
             <Parameter Name="contrasenna" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ValidarUsuario_Result">
           <Property Type="Int32" Name="idUsuario" Nullable="false" />
-          <Property Type="String" Name="nombreCompleto" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="correoElectronico" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="cedula" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="nombreUsuario" Nullable="false" MaxLength="30" />
           <Property Type="Boolean" Name="estado" Nullable="false" />
           <Property Type="String" Name="idRol" Nullable="false" MaxLength="30" />
         </ComplexType>
@@ -481,7 +478,7 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
             <EntityTypeMapping TypeName="ProyectoPAModel.Adopciones">
               <MappingFragment StoreEntitySet="Adopciones">
                 <ScalarProperty Name="idAdopcion" ColumnName="idAdopcion" />
-                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
                 <ScalarProperty Name="idAnimal" ColumnName="idAnimal" />
                 <ScalarProperty Name="fechaAdopcion" ColumnName="fechaAdopcion" />
               </MappingFragment>
@@ -560,9 +557,8 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
             <EntityTypeMapping TypeName="ProyectoPAModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-                <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
-                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
                 <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="idRol" ColumnName="idRol" />
@@ -584,9 +580,8 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoPAModel.ValidarUsuario_Result">
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-                <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
-                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="idRol" ColumnName="idRol" />
               </ComplexTypeMapping>

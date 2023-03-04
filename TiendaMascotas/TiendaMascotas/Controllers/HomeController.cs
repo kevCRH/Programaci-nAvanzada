@@ -105,6 +105,38 @@ namespace TiendaMascotas.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult RecuperarContrasenna()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return View("login");
+            }
+        }
+
+
+
+        [HttpPost]
+        public ActionResult RecuperarContrasenna(UsuariosEnt entidad)
+        {
+            try
+            {
+                model.RecuperarContrasenna(entidad);
+                    return View("Index");
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return View("login");
+            }
+        }
+
+
         public void RegistrarLog(Exception ex)
         {
             LogsEnt log = new LogsEnt();

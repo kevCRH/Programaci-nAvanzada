@@ -1,7 +1,7 @@
 ﻿function ValidarRegistrar() {
 
-    $("#btRegistrarse").prop("disabled",true);
-    let validar = $("#NombreUsuario").val();
+    $("#btRegistrarse").prop("disabled", true);
+    let validar = $("#CorreoElectronico").val();
 
     $.ajax({
         type: "POST",
@@ -15,7 +15,7 @@
             if (res != "ERROR")
             {
                 if (res == "") {
-                    $("#btnRegistrar").prop("disabled", false);
+                    $("#btRegistrar").prop("disabled", false);
                 }
                 else {
                     alert(res);

@@ -14,9 +14,8 @@ namespace ApiTiendaMascotas.ModeloBD
     public partial class ValidarUsuario_Result
     {
         public int idUsuario { get; set; }
-        public string nombreCompleto { get; set; }
+        public string correoElectronico { get; set; }
         public string cedula { get; set; }
-        public string nombreUsuario { get; set; }
         public bool estado { get; set; }
         public string idRol { get; set; }
     }

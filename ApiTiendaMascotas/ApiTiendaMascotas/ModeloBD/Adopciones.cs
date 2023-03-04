@@ -15,7 +15,7 @@ namespace ApiTiendaMascotas.ModeloBD
     public partial class Adopciones
     {
         public int idAdopcion { get; set; }
-        public string nombreUsuario { get; set; }
+        public string correoElectronico { get; set; }
         public int idAnimal { get; set; }
         public System.DateTime fechaAdopcion { get; set; }
     

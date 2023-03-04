@@ -38,11 +38,11 @@ namespace ApiTiendaMascotas.ModeloBD
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Bitacoras> Bitacoras { get; set; }
     
-        public virtual int Registrar(string nombreCompleto, string cedula, string nombreUsuario, string contrasenna)
+        public virtual int Registrar(string correoElectronico, string cedula, string nombreUsuario, string contrasenna)
         {
-            var nombreCompletoParameter = nombreCompleto != null ?
-                new ObjectParameter("nombreCompleto", nombreCompleto) :
-                new ObjectParameter("nombreCompleto", typeof(string));
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("correoElectronico", correoElectronico) :
+                new ObjectParameter("correoElectronico", typeof(string));
     
             var cedulaParameter = cedula != null ?
                 new ObjectParameter("cedula", cedula) :
@@ -56,20 +56,20 @@ namespace ApiTiendaMascotas.ModeloBD
                 new ObjectParameter("contrasenna", contrasenna) :
                 new ObjectParameter("contrasenna", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar", nombreCompletoParameter, cedulaParameter, nombreUsuarioParameter, contrasennaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar", correoElectronicoParameter, cedulaParameter, nombreUsuarioParameter, contrasennaParameter);
         }
     
-        public virtual ObjectResult<ValidarUsuario_Result> ValidarUsuario(string nombreUsuario, string contrasenna)
+        public virtual ObjectResult<ValidarUsuario_Result> ValidarUsuario(string correoElectronico, string contrasenna)
         {
-            var nombreUsuarioParameter = nombreUsuario != null ?
-                new ObjectParameter("nombreUsuario", nombreUsuario) :
-                new ObjectParameter("nombreUsuario", typeof(string));
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("correoElectronico", correoElectronico) :
+                new ObjectParameter("correoElectronico", typeof(string));
     
             var contrasennaParameter = contrasenna != null ?
                 new ObjectParameter("contrasenna", contrasenna) :
                 new ObjectParameter("contrasenna", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarUsuario_Result>("ValidarUsuario", nombreUsuarioParameter, contrasennaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarUsuario_Result>("ValidarUsuario", correoElectronicoParameter, contrasennaParameter);
         }
     }
 }
