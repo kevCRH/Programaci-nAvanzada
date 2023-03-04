@@ -32,7 +32,7 @@ namespace ApiTiendaMascotas.Models
         {
             using (var conexion = new ProyectoPAEntities())
             {
-                return conexion.Registrar(entidad.CorreoElectronico, entidad.Cedula, entidad.CorreoElectronico, entidad.Contrasenna);
+                return conexion.Registrar(entidad.Nombre, entidad.CorreoElectronico, entidad.Cedula, entidad.CorreoElectronico, entidad.Contrasenna);
             }
         }
 

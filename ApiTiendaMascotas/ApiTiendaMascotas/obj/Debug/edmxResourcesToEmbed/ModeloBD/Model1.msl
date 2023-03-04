@@ -84,6 +84,7 @@
       <EntityTypeMapping TypeName="ProyectoPAModel.Usuarios">
         <MappingFragment StoreEntitySet="Usuarios">
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
           <ScalarProperty Name="cedula" ColumnName="cedula" />
           <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
@@ -107,6 +108,7 @@
       <ResultMapping>
         <ComplexTypeMapping TypeName="ProyectoPAModel.ValidarUsuario_Result">
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
           <ScalarProperty Name="cedula" ColumnName="cedula" />
           <ScalarProperty Name="estado" ColumnName="estado" />

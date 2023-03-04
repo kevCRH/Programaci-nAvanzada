@@ -160,6 +160,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PerrosController.cs" />
     <Compile Include="Entities\LogsEnt.cs" />
     <Compile Include="Entities\UsuariosEnt.cs" />
     <Compile Include="Global.asax.cs">
@@ -171,15 +172,39 @@
   <ItemGroup>
     <Content Include="assets\css\creative-design.css" />
     <Content Include="assets\css\login.css" />
+    <Content Include="assets\css_adopciones\all.min.css" />
+    <Content Include="assets\css_adopciones\animate.css" />
+    <Content Include="assets\css_adopciones\bootstrap.min.css" />
+    <Content Include="assets\css_adopciones\magnific-popup.css" />
+    <Content Include="assets\css_adopciones\main.css" />
+    <Content Include="assets\css_adopciones\meanmenu.min.css" />
+    <Content Include="assets\css_adopciones\owl.carousel.css" />
+    <Content Include="assets\css_adopciones\responsive.css" />
+    <Content Include="assets\imgperros\Berry.jpg" />
+    <Content Include="assets\imgperros\Lemon.jpg" />
+    <Content Include="assets\imgperros\Ruffos.jpg" />
     <Content Include="assets\imgs\avatar1.jpg" />
     <Content Include="assets\imgs\avatar2.jpg" />
     <Content Include="assets\imgs\avatar3.jpg" />
     <Content Include="assets\imgs\bg-img-1.jpg" />
     <Content Include="assets\imgs\bg-img-2.jpg" />
+    <Content Include="assets\imgs\carshop.png" />
+    <Content Include="assets\imgs\form.png" />
     <Content Include="assets\imgs\header.jpg" />
     <Content Include="assets\imgs\img-1.jpg" />
     <Content Include="assets\imgs\img-2.jpg" />
     <Content Include="assets\imgs\img-3.jpg" />
+    <Content Include="assets\imgs\search.png" />
+    <Content Include="assets\jsadopciones\bootstrap.min.js" />
+    <Content Include="assets\jsadopciones\jquery-1.11.3.min.js" />
+    <Content Include="assets\jsadopciones\jquery.countdown.js" />
+    <Content Include="assets\jsadopciones\jquery.isotope-3.0.6.min.js" />
+    <Content Include="assets\jsadopciones\jquery.magnific-popup.min.js" />
+    <Content Include="assets\jsadopciones\jquery.meanmenu.min.js" />
+    <Content Include="assets\jsadopciones\main.js" />
+    <Content Include="assets\jsadopciones\owl.carousel.min.js" />
+    <Content Include="assets\jsadopciones\sticker.js" />
+    <Content Include="assets\jsadopciones\waypoints.js" />
     <Content Include="assets\js\creative-design.js" />
     <Content Include="assets\js\FuncionesLogin.js" />
     <Content Include="assets\js\login.js" />
@@ -338,9 +363,12 @@
     <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Home\RecuperarContrasenna.cshtml" />
+    <Content Include="Views\Perros\AdopcionPerros.cshtml" />
+    <Content Include="Views\Shared\Adopcion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\imggatos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

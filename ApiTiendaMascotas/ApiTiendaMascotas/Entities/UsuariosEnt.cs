@@ -11,7 +11,7 @@ namespace ApiTiendaMascotas.Entities
 
         public String Cedula { get; set; }
 
-        public String Nombre { get; set; } //De momento no se está usando
+        public String Nombre { get; set; }
 
         public String Contrasenna { get; set; }
 

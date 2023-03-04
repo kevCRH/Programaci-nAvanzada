@@ -90,6 +90,7 @@ warning 6002: The table/view 'ProyectoPA.dbo.Bitacoras' does not have a primary 
       <PropertyRef Name="idUsuario" />
     </Key>
     <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="correoElectronico" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="contrasenna" Type="varchar" MaxLength="30" Nullable="false" />
@@ -175,6 +176,7 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
     </ReferentialConstraint>
   </Association>
   <Function Name="Registrar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombre" Type="varchar" Mode="In" />
     <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
     <Parameter Name="cedula" Type="varchar" Mode="In" />
     <Parameter Name="nombreUsuario" Type="varchar" Mode="In" />

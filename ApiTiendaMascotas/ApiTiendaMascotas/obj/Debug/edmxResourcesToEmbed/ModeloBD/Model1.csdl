@@ -87,6 +87,7 @@
       <PropertyRef Name="idUsuario" />
     </Key>
     <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="correoElectronico" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="contrasenna" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
@@ -214,6 +215,7 @@
       <End Role="Usuarios" EntitySet="Usuarios" />
     </AssociationSet>
     <FunctionImport Name="Registrar">
+      <Parameter Name="nombre" Mode="In" Type="String" />
       <Parameter Name="correoElectronico" Mode="In" Type="String" />
       <Parameter Name="cedula" Mode="In" Type="String" />
       <Parameter Name="nombreUsuario" Mode="In" Type="String" />
@@ -226,6 +228,7 @@
   </EntityContainer>
   <ComplexType Name="ValidarUsuario_Result">
     <Property Type="Int32" Name="idUsuario" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="correoElectronico" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="cedula" Nullable="false" MaxLength="50" />
     <Property Type="Boolean" Name="estado" Nullable="false" />

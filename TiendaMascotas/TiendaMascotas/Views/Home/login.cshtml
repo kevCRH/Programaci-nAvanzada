@@ -19,28 +19,45 @@
                 <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
             </div>
             <span>o use su correo para registrarse</span>
-            @Html.TextBoxFor(Model => Model.CorreoElectronico, new {
+
+            @Html.TextBoxFor(Model => Model.Nombre, new
+            {
+                @placeholder = "Nombre",
+                @autocomplete = "Off",
+                @required = true
+            })
+
+
+            @Html.TextBoxFor(Model => Model.CorreoElectronico, new
+            {
                @placeholder = "Correo Electrónico",
                @autocomplete = "Off",
                @required = true,
-               @onblur = "ValidarRegistrar();" })
+               @onblur = "ValidarRegistrar();"
+            })
 
-            @Html.TextBoxFor(Model => Model.Cedula, new {
+            @Html.TextBoxFor(Model => Model.Cedula, new
+            {
                 @placeholder = "Cédula",
                 @autocomplete = "Off",
-                @required = true })
+                @required = true
+            })
 
-            @Html.PasswordFor(Model => Model.Contrasenna, new {
+            @Html.PasswordFor(Model => Model.Contrasenna, new
+            {
                 @placeholder = "Contraseña",
                 @autocomplete = "Off",
                 @required = true,
-                @onblur = "ValidarContrasenna();" })
+                @onblur = "ValidarContrasenna();"
+            })
 
-            @Html.PasswordFor(Model => Model.ConfirmarContrasenna, new {
+            @Html.PasswordFor(Model => Model.ConfirmarContrasenna, new
+            {
                 @placeholder = "Confirmar Contraseña",
                 @autocomplete = "Off",
                 @required = true,
-                @onblur = "ValidarContrasenna();" })
+                @onblur = "ValidarContrasenna();"
+            })
 
             <input type="Submit" id="btRegistrar" value="Registrarse">
             <!--<button>Registrarse</button>-->

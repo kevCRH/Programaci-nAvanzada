@@ -13,6 +13,7 @@ SELECT * FROM "Roles";
 *************************************************************************/
 CREATE TABLE Usuarios(/*Considero que la edad no es necesaria xq eso me lo puede dar un API de la cédula. Nombre y apellido se pueden hacer una sola*/
 	idUsuario INT NOT NULL IDENTITY(1,1),
+	nombre VARCHAR(30) NOT NULL,
 	correoElectronico VARCHAR(30) NOT NULL UNIQUE,
 	/*apellido VARCHAR(30) NOT NULL,*/ /*No es lo adecuado pero lo junte el nombre completo para que el diseño de registrar no se me viera afectado*/
 	cedula VARCHAR(50) NOT NULL UNIQUE,
@@ -121,6 +122,7 @@ CREATE PROCEDURE ValidarUsuario
 AS
 BEGIN
 	SELECT idUsuario,
+		  nombre,
 		  correoElectronico,
 		  cedula,
 		  estado,
@@ -134,12 +136,13 @@ END
 
 --Validar Usuario
 CREATE PROCEDURE Registrar 
+	@nombre VARCHAR(30),
 	@correoElectronico VARCHAR(30),
 	@cedula VARCHAR(50),
 	@nombreUsuario VARCHAR(30),
 	@contrasenna VARCHAR(30)
 AS
 BEGIN
-INSERT INTO Usuarios (correoElectronico, cedula, contrasenna, estado, idRol)
-     VALUES (@correoElectronico, @cedula, @contrasenna, 1, 1)
+INSERT INTO Usuarios (nombre, correoElectronico, cedula, contrasenna, estado, idRol)
+     VALUES (@nombre, @correoElectronico, @cedula, @contrasenna, 1, 1)
 END

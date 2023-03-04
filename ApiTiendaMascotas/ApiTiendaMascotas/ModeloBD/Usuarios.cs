@@ -15,6 +15,7 @@ namespace ApiTiendaMascotas.ModeloBD
     public partial class Usuarios
     {
         public int idUsuario { get; set; }
+        public string nombre { get; set; }
         public string correoElectronico { get; set; }
         public string cedula { get; set; }
         public string contrasenna { get; set; }

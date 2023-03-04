@@ -38,8 +38,12 @@ namespace ApiTiendaMascotas.ModeloBD
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Bitacoras> Bitacoras { get; set; }
     
-        public virtual int Registrar(string correoElectronico, string cedula, string nombreUsuario, string contrasenna)
+        public virtual int Registrar(string nombre, string correoElectronico, string cedula, string nombreUsuario, string contrasenna)
         {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
             var correoElectronicoParameter = correoElectronico != null ?
                 new ObjectParameter("correoElectronico", correoElectronico) :
                 new ObjectParameter("correoElectronico", typeof(string));
@@ -56,7 +60,7 @@ namespace ApiTiendaMascotas.ModeloBD
                 new ObjectParameter("contrasenna", contrasenna) :
                 new ObjectParameter("contrasenna", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar", correoElectronicoParameter, cedulaParameter, nombreUsuarioParameter, contrasennaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar", nombreParameter, correoElectronicoParameter, cedulaParameter, nombreUsuarioParameter, contrasennaParameter);
         }
     
         public virtual ObjectResult<ValidarUsuario_Result> ValidarUsuario(string correoElectronico, string contrasenna)
