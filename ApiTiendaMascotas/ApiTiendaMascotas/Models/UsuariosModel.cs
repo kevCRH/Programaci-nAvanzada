@@ -15,16 +15,22 @@ namespace ApiTiendaMascotas.Models
 
         LogsModel modeloLogs = new LogsModel();
 
-        public bool ValidarUsuario(UsuariosEnt entidad)
+        public UsuariosEnt ValidarUsuario(UsuariosEnt entidad)
         {
             using (var conexion = new ProyectoPAEntities()) /*Si no se usa el using, hay que cerrar la conexión al final con: "conexion.dispose()"*/
             {
-                var respuesta = conexion.ValidarUsuario(entidad.CorreoElectronico, entidad.Contrasenna).FirstOrDefault(); /*Siempre que vaya consultar algo donde espere una sola respuesta*/
+                var datosBD = conexion.ValidarUsuario(entidad.CorreoElectronico, entidad.Contrasenna).FirstOrDefault(); /*Siempre que vaya consultar algo donde espere una sola respuesta*/
 
-                if (respuesta != null)
-                    return true;
-                else
-                    return false;
+                if (datosBD == null)
+                    return null;
+
+                UsuariosEnt respuesta = new UsuariosEnt();
+                respuesta.idUsuario = datosBD.idUsuario;
+                respuesta.Nombre= datosBD.nombre;
+                respuesta.Estado = datosBD.estado;
+
+
+                return respuesta;
             }
         }
 
@@ -72,6 +78,16 @@ namespace ApiTiendaMascotas.Models
                 }
             }
         }
-        
+
+        public void Contactenos(ContactenosEnt entidad)
+        {
+            using (var conexion = new ProyectoPAEntities())
+            {
+                String nombre = entidad.Nombre;
+                String correo = entidad.CorreoElectronico;
+                String mensaje = entidad.Mensaje;
+                modeloLogs.RecibirCorreo(nombre, correo, mensaje);
+            }
+        }
     }
 }

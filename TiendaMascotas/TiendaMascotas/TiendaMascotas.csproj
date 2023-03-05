@@ -159,13 +159,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GatosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerrosController.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Entities\ContactenosEnt.cs" />
     <Compile Include="Entities\LogsEnt.cs" />
     <Compile Include="Entities\UsuariosEnt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GatosModel.cs" />
+    <Compile Include="Models\LogsModel.cs" />
+    <Compile Include="Models\PerrosModel.cs" />
+    <Compile Include="Models\ProductosModel.cs" />
     <Compile Include="Models\UsuariosModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -180,9 +187,15 @@
     <Content Include="assets\css_adopciones\meanmenu.min.css" />
     <Content Include="assets\css_adopciones\owl.carousel.css" />
     <Content Include="assets\css_adopciones\responsive.css" />
+    <Content Include="assets\imggatos\Chispa.jpg" />
+    <Content Include="assets\imggatos\Felix.jpg" />
+    <Content Include="assets\imggatos\Misifus.jpg" />
     <Content Include="assets\imgperros\Berry.jpg" />
     <Content Include="assets\imgperros\Lemon.jpg" />
     <Content Include="assets\imgperros\Ruffos.jpg" />
+    <Content Include="assets\imgproductos\ComidaPerro.jpg" />
+    <Content Include="assets\imgproductos\ComidaPerro2.jpg" />
+    <Content Include="assets\imgproductos\JugueteGato.jpg" />
     <Content Include="assets\imgs\avatar1.jpg" />
     <Content Include="assets\imgs\avatar2.jpg" />
     <Content Include="assets\imgs\avatar3.jpg" />
@@ -365,10 +378,11 @@
     <Content Include="Views\Home\RecuperarContrasenna.cshtml" />
     <Content Include="Views\Perros\AdopcionPerros.cshtml" />
     <Content Include="Views\Shared\Adopcion.cshtml" />
+    <Content Include="Views\Gatos\AdopcionGatos.cshtml" />
+    <Content Include="Views\Productos\ProductosVenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets\imggatos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

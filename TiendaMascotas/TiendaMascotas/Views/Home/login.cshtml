@@ -33,6 +33,7 @@
                @placeholder = "Correo Electrónico",
                @autocomplete = "Off",
                @required = true,
+               @type= "email",
                @onblur = "ValidarRegistrar();"
             })
 
@@ -71,8 +72,22 @@
                 <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
             </div>
             <span>o utilice su cuenta personal</span>
-            @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @placeholder = "Correo Electrónico", autocomplete = "Off", @required = true })
-            @Html.PasswordFor(Model => Model.Contrasenna, new { @placeholder = "Contraseña", autocomplete = "Off", @required = true })
+
+            @Html.TextBoxFor(Model => Model.CorreoElectronico, new
+            {
+                @placeholder = "Correo Electrónico",
+                autocomplete = "Off",
+                @type = "email",
+                @required = true
+            })
+            
+            @Html.PasswordFor(Model => Model.Contrasenna, new
+            {
+                @placeholder = "Contraseña",
+                autocomplete = "Off",
+                @required = true
+            })
+
             <a href="@Url.Action("RecuperarContrasenna", "Home")" class="nav-link btn btn-primary">¿Olvidó su contraseña?</a>
             <input type="Submit" value="Iniciar Sesión"> <!--Buscar la clase por defecto para el CSS-->
             <!--<button>Iniciar Sesión</button>-->

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model TiendaMascotas.Entities.ContactenosEnt
+    
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -23,9 +25,9 @@
                     </div>
                 </div>
             </div>
-            <!--<a href="javascript:void(0)">Ver animales en adopción...</a>--> <!--Revisar como generar el hipervinculo aqui--> 
+            <!--<a href="javascript:void(0)">Ver animales en adopción...</a>--> <!--Revisar como generar el hipervinculo aqui-->
         </div>
-    </div>  
+    </div>
 </section>
 
 <section>
@@ -54,7 +56,7 @@
                 <h6 class="title mb-3">Información sobre los Gatos</h6>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae autem rem impedit molestiae hic ducimus, consequuntur ullam dolorem quaerat beatae labore explicabo, sint laboriosam aperiam nihil inventore facilis. Quasi, facilis.</p>
                 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, amet!</p>
-                <button class="btn btn-outline-primary btn-sm">Adoptar Gatos</button>
+                <a href="@Url.Action("AdopcionGatos", "Gatos")" class="btn btn-outline-primary btn-sm">Adoptar Gatos</a>
 
             </div>
             <div class="col-md-6">
@@ -96,7 +98,7 @@
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae autem rem impedit molestiae hic ducimus, consequuntur ullam dolorem quaerat beatae labore explicabo, sint laboriosam aperiam nihil inventore facilis. Quasi, facilis.</p>
                 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, amet!</p>
-                <button class="btn btn-outline-primary btn-sm">Ver artículos</button>
+                <a href="@Url.Action("ProductosVenta", "Productos")" class="btn btn-outline-primary btn-sm">Ver artículos</a>
             </div>
         </div>
     </div>
@@ -133,7 +135,7 @@
                 <div class="testmonial-wrapper">
                     <img src="~/assets/imgs/avatar4.jpg" alt="Client Image">
                     <h6 class="title mb-3">Mario Molina</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium voluptates voluptatem eum nisi cumque veniam est id reprehenderit atque rerum, cum sit perspiciatis, harum cupiditate nostrum quibusdam perferendis accusamus, illo.</p>
+                    <p>Estudiante de ingeniería en Sistemas, actualmente está cursando el sexto cuatrimestre. Vecino de Guadalupe, San José. Entre sus pasiones está aprender nuevas cosas tecnologías, caminar en la naturaleza, hacer deportes y pasar tiempo en casa.</p>
                 </div>
             </div>
         </div>
@@ -152,21 +154,43 @@
             Le responderemos tan pronto sea posible
         </p>
 
-        <form class="contact-form col-md-11 col-lg-9 mx-auto">
+        @using (Html.BeginForm("Contactenos", "Home", FormMethod.Post, new { @class = "contact-form col-md-11 col-lg-9 mx-auto" }))
+        {
             <div class="form-row">
                 <div class="col form-group">
-                    <input type="text" class="form-control" placeholder="Nombre">
+                    @Html.TextBoxFor(Model => Model.Nombre, new
+                        {
+                            @placeholder = "Nombre",
+                            @autocomplete = "Off",
+                            @required = true,
+                            @class = "form-control"
+                        })
                 </div>
                 <div class="col form-group">
-                    <input type="email" class="form-control" placeholder="Correo">
+                    @Html.TextBoxFor(Model => Model.CorreoElectronico, new
+                    {
+                        @placeholder = "Correo",
+                        @autocomplete = "Off",
+                        @required = true,
+                        @type = "email",
+                        @class = "form-control"
+                    })
                 </div>
             </div>
             <div class="form-group">
-                <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Su mensaje"></textarea>
+                    @Html.TextAreaFor(Model => Model.Mensaje, new
+                    {
+                        @placeholder = "Su mensaje",
+                        @autocomplete = "Off",
+                        @required = true,
+                        @cols="30",
+                        @rows="5",
+                        @class = "form-control"
+                    })
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary btn-block" value="Enviar mensaje">
+                <input type="submit" class="btn btn-primary btn-block" id="btMensaje" value="Enviar mensaje">
             </div>
-        </form>
+        }
     </div>
 </section>

@@ -17,5 +17,9 @@ namespace TiendaMascotas.Entities
 
         public int ConfirmarContrasenna { get; set; }
 
+        public int idUsuario { get; set; }
+
+        public bool Estado { get; set; }
+
     }
 }

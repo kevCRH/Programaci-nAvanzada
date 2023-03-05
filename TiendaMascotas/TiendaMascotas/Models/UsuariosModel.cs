@@ -11,7 +11,7 @@ namespace TiendaMascotas.Models
     public class UsuariosModel
     {
 
-        public bool ValidarUsuario(UsuariosEnt entidad)
+        public UsuariosEnt ValidarUsuario(UsuariosEnt entidad)
         {
             using (var cliente = new HttpClient())
             {
@@ -21,9 +21,9 @@ namespace TiendaMascotas.Models
 
                 if (respuesta.IsSuccessStatusCode)
                 {
-                    return respuesta.Content.ReadFromJsonAsync<bool>().Result;
+                    return respuesta.Content.ReadFromJsonAsync<UsuariosEnt>().Result;
                 }
-                return false;
+                return null;
             }
 
         }
@@ -70,14 +70,14 @@ namespace TiendaMascotas.Models
             }
         }
 
-
-        public void RegistrarBitacora(LogsEnt entidad)
+        public void Contactenos(ContactenosEnt entidad)
         {
             using (var cliente = new HttpClient())
             {
-                JsonContent body = JsonContent.Create(entidad); 
-                string url = "https://localhost:44331/api/RegistrarBitacora";
-                    HttpResponseMessage respuesta = cliente.PostAsync(url, body).GetAwaiter().GetResult();
+                JsonContent body = JsonContent.Create(entidad);
+                string url = "https://localhost:44331/api/Contactenos";
+                HttpResponseMessage respuesta = cliente.PostAsync(url, body).GetAwaiter().GetResult();
+
             }
         }
     }

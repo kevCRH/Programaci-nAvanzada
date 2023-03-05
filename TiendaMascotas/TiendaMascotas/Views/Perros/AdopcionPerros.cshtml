@@ -15,11 +15,14 @@
                             <li class="current-list-item">
                                 <a href="@Url.Action("Index", "Home")">Home</a>
                             </li>
-                            <li style="color:#FFFFFF";>Aqui va el nombre del usuario</li>
+                            <li>
+                                @if (Session["NombreUsuario"] != null)
+                                {
+                                    <p style="color:#FFFFFF">Usuario @Session["NombreUsuario"].ToString()</p>
+                                }
+                            </li>
                             <li>
                                 <div class="header-icons">
-                                    <a href="cart.html"><img src="~/assets/imgs/carshop.png" alt=""></a>
-                                    <a class="mobile-hide search-bar-icon" href="#"><img src="~/assets/imgs/search.png" alt=""></a>
                                 </div>
                             </li>
                         </ul>
@@ -76,7 +79,14 @@
                         <a href="cart.html"><img src="~/assets/imgperros/Ruffos.jpg" alt=""></a>
                     </div>
                     <h3>Ruffos</h3>
-                    <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Llenar Formulario</a>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center berry">
@@ -85,7 +95,14 @@
                         <a href="single-product.html"><img src="~/assets/imgperros/Berry.jpg" alt=""></a>
                     </div>
                     <h3>Berry</h3>
-                    <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Llenar Formulario</a>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center lemon">
@@ -94,7 +111,14 @@
                         <a href="single-product.html"><img src="~/assets/imgperros/Lemon.jpg" alt=""></a>
                     </div>
                     <h3>Lemon</h3>
-                    <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Llenar Formulario</a>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
@@ -104,7 +128,14 @@
                     </div>
                     <h3>Avocado</h3>
                     <p class="product-price"><span>Per Kg</span> 50$ </p>
-                    <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Llenar Formulario</a>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
@@ -114,7 +145,14 @@
                     </div>
                     <h3>Green Apple</h3>
                     <p class="product-price"><span>Per Kg</span> 45$ </p>
-                    <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Llenar Formulario</a>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center strawberry">
@@ -124,7 +162,14 @@
                     </div>
                     <h3>Strawberry</h3>
                     <p class="product-price"><span>Per Kg</span> 80$ </p>
-                    <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Llenar Formulario</a>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center strawberry">
@@ -134,7 +179,14 @@
                     </div>
                     <h3>Strawberry</h3>
                     <p class="product-price"><span>Per Kg</span> 85$ </p>
-                    <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Llenar Formulario</a>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center berry">
@@ -144,7 +196,14 @@
                     </div>
                     <h3>Berry</h3>
                     <p class="product-price"><span>Per Kg</span> 70$ </p>
-                    <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Llenar Formulario</a>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center lemon">
@@ -154,7 +213,14 @@
                     </div>
                     <h3>Lemon</h3>
                     <p class="product-price"><span>Per Kg</span> 35$ </p>
-                    <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Llenar Formulario</a>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
@@ -164,7 +230,14 @@
                     </div>
                     <h3>Avocado</h3>
                     <p class="product-price"><span>Per Kg</span> 50$ </p>
-                    <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Llenar Formulario</a>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
@@ -174,7 +247,14 @@
                     </div>
                     <h3>Green Apple</h3>
                     <p class="product-price"><span>Per Kg</span> 45$ </p>
-                    <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Llenar Formulario</a>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center strawberry">
@@ -184,7 +264,14 @@
                     </div>
                     <h3>Strawberry</h3>
                     <p class="product-price"><span>Per Kg</span> 80$ </p>
-                    <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Llenar Formulario</a>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    }
                 </div>
             </div>
         </div>

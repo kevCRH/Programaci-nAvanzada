@@ -14,7 +14,7 @@ namespace ApiTiendaMascotas.Controllers
 
         [HttpPost]
         [Route("api/ValidarUsuario")]
-        public bool ValidarUsuario(UsuariosEnt entidad)
+        public UsuariosEnt ValidarUsuario(UsuariosEnt entidad)
         {
             return model.ValidarUsuario(entidad);
         }
@@ -39,6 +39,14 @@ namespace ApiTiendaMascotas.Controllers
         {
             model.RecuperarContrasenna(entidad);
         }
-        
+
+
+        [HttpPost]
+        [Route("api/Contactenos")]
+        public void Contactenos(ContactenosEnt entidad)
+        {
+            model.Contactenos(entidad);
+        }
+
     }
 }

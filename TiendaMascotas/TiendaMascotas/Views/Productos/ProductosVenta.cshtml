@@ -1,0 +1,285 @@
+﻿
+@{
+    ViewBag.Title = "ProductosVenta";
+    Layout = "~/Views/Shared/Adopcion.cshtml";
+}
+
+<div class="top-header-area" id="sticker">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- menu start -->
+                    <nav class="main-menu">
+                        <ul>
+                            <li class="current-list-item">
+                                <a href="@Url.Action("Index", "Home")">Home</a>
+                            </li>
+                            <li>
+                                @if (Session["NombreUsuario"] != null)
+                                {
+                                    <p style="color:#FFFFFF">Usuario @Session["NombreUsuario"].ToString()</p>
+                                }
+                            </li>
+                            <li>
+                                <div class="header-icons">
+                                    <a href="cart.html"><img src="~/assets/imgs/carshop.png" alt=""></a>
+                                    <a class="mobile-hide search-bar-icon" href="#"><img src="~/assets/imgs/search.png" alt=""></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                    <div class="mobile-menu"></div>
+                    <!-- menu end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+<!-- search area -->
+<div class="search-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="close-btn"><i class="fas fa-window-close"></i></span>
+                <div class="search-bar">
+                    <div class="search-bar-tablecell">
+                        <h3>Buscar:</h3>
+                        <input type="text" placeholder="Escriba palabras claves">
+                        <button type="submit">Buscar <i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end search arewa -->
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Consulte nuestro catálogo de</p>
+                    <h1>Productos</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<!-- products -->
+<div class="product-section mt-150 mb-150">
+    <div class="container">
+
+        <div class="row product-lists">
+            <div class="col-lg-4 col-md-6 text-center strawberry">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="cart.html"><img src="~/assets/imgproductos/ComidaPerro.jpg" alt=""></a>
+                    </div>
+                    <h3>Comida de Perro "Small Dog"</h3>
+                    <p class="product-price"><span>Per Kg</span> 50$ </p>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/carshop.png" alt="">  Agregar al carrito</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center berry">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="cart.html"><img src="~/assets/imgproductos/ComidaPerro2.jpg" alt=""></a>
+                    </div>
+                    <h3>Comida de Perro "Última"</h3>
+                    <p class="product-price"><span>Per Kg</span> 50$ </p>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/carshop.png" alt="">  Agregar al carrito</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center lemon">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="cart.html"><img src="~/assets/imgproductos/JugueteGato.jpg" alt=""></a>
+                    </div>
+                    <h3>Juguete de gato</h3>
+                    <p class="product-price"><span>Per Kg</span> 50$ </p>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/carshop.png" alt="">  Agregar al carrito</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
+                    </div>
+                    <h3>Avocado</h3>
+                    <p class="product-price"><span>Per Kg</span> 50$ </p>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/carshop.png" alt="">  Agregar al carrito</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
+                    </div>
+                    <h3>Green Apple</h3>
+                    <p class="product-price"><span>Per Kg</span> 45$ </p>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/carshop.png" alt="">  Agregar al carrito</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center strawberry">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
+                    </div>
+                    <h3>Strawberry</h3>
+                    <p class="product-price"><span>Per Kg</span> 80$ </p>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/carshop.png" alt="">  Agregar al carrito</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center strawberry">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+                    </div>
+                    <h3>Strawberry</h3>
+                    <p class="product-price"><span>Per Kg</span> 85$ </p>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/carshop.png" alt="">  Agregar al carrito</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center berry">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+                    </div>
+                    <h3>Berry</h3>
+                    <p class="product-price"><span>Per Kg</span> 70$ </p>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/carshop.png" alt="">  Agregar al carrito</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center lemon">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+                    </div>
+                    <h3>Lemon</h3>
+                    <p class="product-price"><span>Per Kg</span> 35$ </p>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/carshop.png" alt="">  Agregar al carrito</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
+                    </div>
+                    <h3>Avocado</h3>
+                    <p class="product-price"><span>Per Kg</span> 50$ </p>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/carshop.png" alt="">  Agregar al carrito</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
+                    </div>
+                    <h3>Green Apple</h3>
+                    <p class="product-price"><span>Per Kg</span> 45$ </p>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/carshop.png" alt="">  Agregar al carrito</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center strawberry">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
+                    </div>
+                    <h3>Strawberry</h3>
+                    <p class="product-price"><span>Per Kg</span> 80$ </p>
+                    @if (Session["NombreUsuario"] == null)
+                    {
+                        <a class="cart-btn" href="@Url.Action("Login", "Home")"><img src="~/assets/imgs/carshop.png" alt="">  Agregar al carrito</a>
+                    }
+                    else
+                    {
+                        <a href="cart.html" class="cart-btn"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

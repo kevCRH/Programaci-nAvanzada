@@ -11,7 +11,8 @@ namespace TiendaMascotas.Controllers
     public class HomeController : Controller
     {
 
-        UsuariosModel model = new UsuariosModel();
+        UsuariosModel Usuariosmodel = new UsuariosModel();
+        LogsModel LogsModel = new LogsModel();
 
         //Abrir vistas
 
@@ -48,13 +49,17 @@ namespace TiendaMascotas.Controllers
         [HttpPost]
         public ActionResult IniciarSesion(UsuariosEnt entidad) {
 
-            string mensaje = string.Empty;
+            //string mensaje = string.Empty;
             try
             {
-                model = new UsuariosModel();
-                var resultado = model.ValidarUsuario(entidad);
-                if (resultado) //Es lo mismo que decir: "resultado = true"
-                    return View("Index"); //Si es solo una línea de código, se pueden quitar las llaves y se simplifica el código
+                Usuariosmodel = new UsuariosModel();
+                var resultado = Usuariosmodel.ValidarUsuario(entidad);
+                if (resultado != null) //Es lo mismo que decir: "resultado = true"
+                {
+                    Session["NombreUsuario"] = resultado.Nombre;
+                    Session["Consecutivo"] = resultado.idUsuario;
+                    return View("Index");
+                }
                 else
                 {
                     ViewBag.mensaje = "Creedencialas no se validaron";
@@ -75,7 +80,7 @@ namespace TiendaMascotas.Controllers
         {
             try
             {
-                if (model.Registrar(entidad) > 0)
+                if (Usuariosmodel.Registrar(entidad) > 0)
                     return View("Index");
                 else
                 {
@@ -96,7 +101,7 @@ namespace TiendaMascotas.Controllers
         {
             try
             {
-                return Json(model.ValidarRegistrar(validar), JsonRequestBehavior.AllowGet);
+                return Json(Usuariosmodel.ValidarRegistrar(validar), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -126,7 +131,7 @@ namespace TiendaMascotas.Controllers
         {
             try
             {
-                model.RecuperarContrasenna(entidad);
+                Usuariosmodel.RecuperarContrasenna(entidad);
                     return View("Index");
             }
             catch (Exception ex)
@@ -135,6 +140,38 @@ namespace TiendaMascotas.Controllers
                 return View("login");
             }
         }
+        
+        [HttpPost]
+        public ActionResult Contactenos(ContactenosEnt entidad)
+        {
+            try
+            {
+                Usuariosmodel.Contactenos(entidad);
+                return View("Index");
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return View("login");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Cerrarsesion()
+        {
+            try
+            {
+                Session.Clear();
+                return View("Index");
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return View("Index");
+            }
+        }
+        
+
 
 
         public void RegistrarLog(Exception ex)
@@ -142,7 +179,7 @@ namespace TiendaMascotas.Controllers
             LogsEnt log = new LogsEnt();
             log.origen = ControllerContext.RouteData.Values["controller"].ToString() + "-" + ControllerContext.RouteData.Values["action"].ToString();
             log.mensajeError = ex.Message;
-            model.RegistrarBitacora(log);
+            LogsModel.RegistrarBitacora(log);
         } 
 
     }

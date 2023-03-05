@@ -1,0 +1,12 @@
+CARGOS A LO LARGO DEL CURSO:
+1. Quitar el lorem Ipso
+Solo parte inicial del index y footer: CHRISTIAN
+2. Adopción de perros y gatos: KEVIN
+3. Formulario adopciones: KEVIN
+4. Compra de productos(carrito y factura): CHRISTIAN y GERSON
+5. API EXTERNA Registro Civil
+Agregar datos personales: GERSON 
+6. Contactenos x correo: MARIO
+7. Iniciar Sesión: MARIO
+8. Agregar todos las plantillas: MARIO
+9. Corregir base de datos: KEVIN

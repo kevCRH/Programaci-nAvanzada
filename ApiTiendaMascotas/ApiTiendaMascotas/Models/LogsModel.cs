@@ -45,7 +45,28 @@ namespace ApiTiendaMascotas.Models
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.EnableSsl = true;
             client.Send(msg);
+        }
 
+        public void RecibirCorreo(string nombre, string correo, string mensaje)
+        {
+            string correoSMTP = ConfigurationManager.AppSettings["correoSMTP"].ToString();
+            string claveSMTP = ConfigurationManager.AppSettings["claveSMTP"].ToString();
+
+            MailMessage msg = new MailMessage();
+            msg.To.Add(new MailAddress(correoSMTP, nombre));
+            msg.From = new MailAddress(correoSMTP, "Mensaje de usuario");
+            msg.Subject = "Mensaje departe de: " + nombre;
+            msg.Body = mensaje;
+            msg.IsBodyHtml = true;
+
+            SmtpClient client = new SmtpClient();
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential(correoSMTP, claveSMTP);
+            client.Port = 587;
+            client.Host = "smtp.office365.com";
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.EnableSsl = true;
+            client.Send(msg);
         }
     }
 }
