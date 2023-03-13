@@ -139,7 +139,6 @@ CREATE PROCEDURE Registrar
 	@nombre VARCHAR(30),
 	@correoElectronico VARCHAR(30),
 	@cedula VARCHAR(50),
-	@nombreUsuario VARCHAR(30),
 	@contrasenna VARCHAR(30)
 AS
 BEGIN

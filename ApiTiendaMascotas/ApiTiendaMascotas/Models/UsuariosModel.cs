@@ -1,4 +1,5 @@
-﻿using ApiTiendaMascotas.Entities;
+﻿using ApiTiendaMascotas.App_Start;
+using ApiTiendaMascotas.Entities;
 using ApiTiendaMascotas.ModeloBD;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace ApiTiendaMascotas.Models
     {
 
         LogsModel modeloLogs = new LogsModel();
+        TokenGenerator token = new TokenGenerator();
 
         public UsuariosEnt ValidarUsuario(UsuariosEnt entidad)
         {
@@ -27,6 +29,7 @@ namespace ApiTiendaMascotas.Models
                 UsuariosEnt respuesta = new UsuariosEnt();
                 respuesta.idUsuario = datosBD.idUsuario;
                 respuesta.Nombre= datosBD.nombre;
+                //respuesta.Token = token.GenerateTokenJwt(datosBD.correoElectronico);
                 respuesta.Estado = datosBD.estado;
 
 
@@ -38,7 +41,7 @@ namespace ApiTiendaMascotas.Models
         {
             using (var conexion = new ProyectoPAEntities())
             {
-                return conexion.Registrar(entidad.Nombre, entidad.CorreoElectronico, entidad.Cedula, entidad.CorreoElectronico, entidad.Contrasenna);
+                return conexion.Registrar(entidad.Nombre, entidad.CorreoElectronico, entidad.Cedula, entidad.Contrasenna);
             }
         }
 

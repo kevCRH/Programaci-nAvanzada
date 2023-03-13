@@ -158,6 +158,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\FiltroSesion.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GatosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -377,9 +378,12 @@
     <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Home\RecuperarContrasenna.cshtml" />
     <Content Include="Views\Perros\AdopcionPerros.cshtml" />
-    <Content Include="Views\Shared\Adopcion.cshtml" />
+    <Content Include="Views\Shared\LayoutProducts.cshtml" />
     <Content Include="Views\Gatos\AdopcionGatos.cshtml" />
     <Content Include="Views\Productos\ProductosVenta.cshtml" />
+    <Content Include="Views\Productos\ProductoCarrito.cshtml" />
+    <Content Include="Views\Gatos\FormGato.cshtml" />
+    <Content Include="Views\Perros\FormPerro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

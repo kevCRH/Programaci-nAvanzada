@@ -15,7 +15,7 @@
             if (res != "ERROR")
             {
                 if (res == "") {
-                    $("#btRegistrar").prop("disabled", false);
+                    $("#btRegistrarse").prop("disabled", false);
                 }
                 else {
                     alert(res);

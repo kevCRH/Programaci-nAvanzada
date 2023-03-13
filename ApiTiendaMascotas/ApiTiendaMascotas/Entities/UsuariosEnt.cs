@@ -21,5 +21,7 @@ namespace ApiTiendaMascotas.Entities
         public int ConfirmarContrasenna { get; set; }
 
         public bool Estado { get; set; }
+
+        public string Token { get; set; }
     }
 }

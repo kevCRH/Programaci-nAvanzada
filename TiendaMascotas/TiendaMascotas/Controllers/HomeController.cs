@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TiendaMascotas.App_Start;
 using TiendaMascotas.Entities;
 using TiendaMascotas.Models;
 
@@ -35,6 +36,7 @@ namespace TiendaMascotas.Controllers
         {
             try
             {
+                Session.Clear();
                 return View();
             }
             catch (Exception ex)
@@ -157,6 +159,7 @@ namespace TiendaMascotas.Controllers
         }
 
         [HttpGet]
+        [FiltroSesion]
         public ActionResult Cerrarsesion()
         {
             try
