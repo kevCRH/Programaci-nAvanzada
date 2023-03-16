@@ -8,6 +8,9 @@ namespace ApiTiendaMascotas.Controllers
 {
     public class HomeController : Controller
     {
+
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";

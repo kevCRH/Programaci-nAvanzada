@@ -47,9 +47,10 @@
                     </li>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <li class="nav-item">
-                        @if (Session["NombreUsuario"] != null)
+                        @if (Session["NombreUsuario"] != null) //Hay que arreglar esta vista
                         {
-                            <h5 class="nav-link">Bienvenido @Session["NombreUsuario"].ToString()</h5>
+                            <p class="nav-link">Bienvenido:</p>
+                            <p class="nav-link">@Session["NombreUsuario"].ToString()</p>
                         }
                     </li>
                 </ul>

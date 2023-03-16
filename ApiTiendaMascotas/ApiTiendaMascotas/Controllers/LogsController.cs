@@ -15,6 +15,7 @@ namespace ApiTiendaMascotas.Controllers
         LogsModel model = new LogsModel();
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("api/RegistrarBitacora")]
         public void RegistrarBitacora(LogsEnt entidad)
         {

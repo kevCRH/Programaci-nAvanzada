@@ -58,8 +58,9 @@ namespace TiendaMascotas.Controllers
                 var resultado = Usuariosmodel.ValidarUsuario(entidad);
                 if (resultado != null) //Es lo mismo que decir: "resultado = true"
                 {
+                    Session["Consecutivo"] = resultado.idUsuario; 
                     Session["NombreUsuario"] = resultado.Nombre;
-                    Session["Consecutivo"] = resultado.idUsuario;
+                    Session["Token"] = resultado.Token;
                     return View("Index");
                 }
                 else
@@ -83,7 +84,7 @@ namespace TiendaMascotas.Controllers
             try
             {
                 if (Usuariosmodel.Registrar(entidad) > 0)
-                    return View("Index");
+                    return View("login");
                 else
                 {
                     ViewBag.mensaje = "Creedencialas no se validaron";
@@ -94,7 +95,7 @@ namespace TiendaMascotas.Controllers
             catch (Exception ex)
             {
                 RegistrarLog(ex);
-                return View("login");
+                return View("index");
             }
         }
 

@@ -1,3 +1,5 @@
+CREATE DATABASE [ProyectoPA]
+
 use ProyectoPA
 
 /************************************************************************
@@ -13,12 +15,10 @@ SELECT * FROM "Roles";
 *************************************************************************/
 CREATE TABLE Usuarios(/*Considero que la edad no es necesaria xq eso me lo puede dar un API de la cédula. Nombre y apellido se pueden hacer una sola*/
 	idUsuario INT NOT NULL IDENTITY(1,1),
+	cedula VARCHAR(50) NOT NULL UNIQUE,
 	nombre VARCHAR(30) NOT NULL,
 	correoElectronico VARCHAR(30) NOT NULL UNIQUE,
-	/*apellido VARCHAR(30) NOT NULL,*/ /*No es lo adecuado pero lo junte el nombre completo para que el diseño de registrar no se me viera afectado*/
-	cedula VARCHAR(50) NOT NULL UNIQUE,
 	contrasenna VARCHAR(30) NOT NULL,
-	/*edad INT NOT NULL,*/ /*La edad y nombre la podemos sacar con la cédula utilizando un API*/
 	estado BIT NOT NULL,
 	idRol VARCHAR(30) NOT NULL
 	PRIMARY KEY(idUsuario)
@@ -136,12 +136,25 @@ END
 
 --Validar Usuario
 CREATE PROCEDURE Registrar 
+	@cedula VARCHAR(50),
 	@nombre VARCHAR(30),
 	@correoElectronico VARCHAR(30),
-	@cedula VARCHAR(50),
 	@contrasenna VARCHAR(30)
 AS
 BEGIN
-INSERT INTO Usuarios (nombre, correoElectronico, cedula, contrasenna, estado, idRol)
-     VALUES (@nombre, @correoElectronico, @cedula, @contrasenna, 1, 1)
+INSERT INTO Usuarios (cedula, nombre, correoElectronico, contrasenna, estado, idRol)
+     VALUES (@cedula, @nombre, @correoElectronico, @contrasenna, 1, 1)
 END
+
+--Agregar datos a tabla de Roll
+CREATE PROCEDURE AgregarRoll 
+	@idRol VARCHAR(30),
+	@rol VARCHAR(30)
+AS
+BEGIN
+INSERT INTO Roles (idRol, rol)
+     VALUES (@idRol, @rol)
+END
+
+EXEC AgregarRoll '1', 'Usuario'
+EXEC AgregarRoll '2', 'Administrador'

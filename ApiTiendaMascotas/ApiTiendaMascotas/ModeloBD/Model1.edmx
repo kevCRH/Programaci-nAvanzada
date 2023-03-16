@@ -95,9 +95,9 @@ warning 6002: The table/view 'ProyectoPA.dbo.Bitacoras' does not have a primary 
             <PropertyRef Name="idUsuario" />
           </Key>
           <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="correoElectronico" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="contrasenna" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="estado" Type="bit" Nullable="false" />
           <Property Name="idRol" Type="varchar" MaxLength="30" Nullable="false" />
@@ -180,11 +180,14 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AgregarRoll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idRol" Type="varchar" Mode="In" />
+          <Parameter Name="rol" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="Registrar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cedula" Type="varchar" Mode="In" />
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
-          <Parameter Name="cedula" Type="varchar" Mode="In" />
-          <Parameter Name="nombreUsuario" Type="varchar" Mode="In" />
           <Parameter Name="contrasenna" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -325,9 +328,9 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
             <PropertyRef Name="idUsuario" />
           </Key>
           <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="correoElectronico" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="contrasenna" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
@@ -452,11 +455,14 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
+          <FunctionImport Name="AgregarRoll">
+            <Parameter Name="idRol" Mode="In" Type="String" />
+            <Parameter Name="rol" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="Registrar">
+            <Parameter Name="cedula" Mode="In" Type="String" />
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="correoElectronico" Mode="In" Type="String" />
-            <Parameter Name="cedula" Mode="In" Type="String" />
-            <Parameter Name="nombreUsuario" Mode="In" Type="String" />
             <Parameter Name="contrasenna" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ValidarUsuario" ReturnType="Collection(ProyectoPAModel.ValidarUsuario_Result)">
@@ -561,9 +567,9 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
             <EntityTypeMapping TypeName="ProyectoPAModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
-                <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="idRol" ColumnName="idRol" />
@@ -580,6 +586,7 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AgregarRoll" FunctionName="ProyectoPAModel.Store.AgregarRoll" />
           <FunctionImportMapping FunctionImportName="Registrar" FunctionName="ProyectoPAModel.Store.Registrar" />
           <FunctionImportMapping FunctionImportName="ValidarUsuario" FunctionName="ProyectoPAModel.Store.ValidarUsuario">
             <ResultMapping>

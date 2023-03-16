@@ -13,13 +13,16 @@ namespace ApiTiendaMascotas.Controllers
         UsuariosModel model = new UsuariosModel();
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("api/ValidarUsuario")]
         public UsuariosEnt ValidarUsuario(UsuariosEnt entidad)
         {
+            var usuario = User.Identity.Name;
             return model.ValidarUsuario(entidad);
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("api/Registrar")]
         public int Registrar(UsuariosEnt entidad)
         {
@@ -27,6 +30,7 @@ namespace ApiTiendaMascotas.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("api/ValidarRegistrar")]
         public string ValidarRegistrar(string validar)
         {
@@ -34,6 +38,7 @@ namespace ApiTiendaMascotas.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("api/RecuperarContrasenna")]
         public void RecuperarContrasenna(UsuariosEnt entidad)
         {
@@ -42,6 +47,7 @@ namespace ApiTiendaMascotas.Controllers
 
 
         [HttpPost]
+        [Authorize]
         [Route("api/Contactenos")]
         public void Contactenos(ContactenosEnt entidad)
         {

@@ -29,7 +29,7 @@ namespace ApiTiendaMascotas.Models
                 UsuariosEnt respuesta = new UsuariosEnt();
                 respuesta.idUsuario = datosBD.idUsuario;
                 respuesta.Nombre= datosBD.nombre;
-                //respuesta.Token = token.GenerateTokenJwt(datosBD.correoElectronico);
+                respuesta.Token = token.GenerateTokenJwt(datosBD.correoElectronico);
                 respuesta.Estado = datosBD.estado;
 
 
@@ -41,7 +41,7 @@ namespace ApiTiendaMascotas.Models
         {
             using (var conexion = new ProyectoPAEntities())
             {
-                return conexion.Registrar(entidad.Nombre, entidad.CorreoElectronico, entidad.Cedula, entidad.Contrasenna);
+                return conexion.Registrar(entidad.Cedula, entidad.Nombre, entidad.CorreoElectronico, entidad.Contrasenna);
             }
         }
 

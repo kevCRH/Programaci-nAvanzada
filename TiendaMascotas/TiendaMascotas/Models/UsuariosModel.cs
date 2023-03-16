@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Web;
 using TiendaMascotas.Entities;
@@ -49,6 +50,7 @@ namespace TiendaMascotas.Models
             using (var cliente = new HttpClient())
             {
                 string url = "https://localhost:44331/api/ValidarRegistrar?validar=" + validar;
+
                 HttpResponseMessage respuesta = cliente.GetAsync(url).GetAwaiter().GetResult();
 
                 if (respuesta.IsSuccessStatusCode)
@@ -76,8 +78,8 @@ namespace TiendaMascotas.Models
             {
                 JsonContent body = JsonContent.Create(entidad);
                 string url = "https://localhost:44331/api/Contactenos";
+                cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["Token"].ToString());
                 HttpResponseMessage respuesta = cliente.PostAsync(url, body).GetAwaiter().GetResult();
-
             }
         }
     }

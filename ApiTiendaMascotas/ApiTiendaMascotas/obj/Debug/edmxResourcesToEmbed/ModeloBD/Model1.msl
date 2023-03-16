@@ -84,9 +84,9 @@
       <EntityTypeMapping TypeName="ProyectoPAModel.Usuarios">
         <MappingFragment StoreEntitySet="Usuarios">
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
-          <ScalarProperty Name="cedula" ColumnName="cedula" />
           <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
           <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="idRol" ColumnName="idRol" />
@@ -103,6 +103,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AgregarRoll" FunctionName="ProyectoPAModel.Store.AgregarRoll" />
     <FunctionImportMapping FunctionImportName="Registrar" FunctionName="ProyectoPAModel.Store.Registrar" />
     <FunctionImportMapping FunctionImportName="ValidarUsuario" FunctionName="ProyectoPAModel.Store.ValidarUsuario">
       <ResultMapping>

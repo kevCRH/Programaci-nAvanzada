@@ -219,6 +219,7 @@
     <Content Include="assets\jsadopciones\owl.carousel.min.js" />
     <Content Include="assets\jsadopciones\sticker.js" />
     <Content Include="assets\jsadopciones\waypoints.js" />
+    <Content Include="assets\js\BuscarID.js" />
     <Content Include="assets\js\creative-design.js" />
     <Content Include="assets\js\FuncionesLogin.js" />
     <Content Include="assets\js\login.js" />
