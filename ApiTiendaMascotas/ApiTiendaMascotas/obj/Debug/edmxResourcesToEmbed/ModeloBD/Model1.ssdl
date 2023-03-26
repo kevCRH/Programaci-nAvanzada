@@ -17,16 +17,11 @@
     <Property Name="idTipoAnimal" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="estado" Type="int" Nullable="false" />
+    <Property Name="estado" Type="bit" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ProyectoPA.dbo.Bitacoras' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Bitacoras">
     <Key>
       <PropertyRef Name="idBitacora" />
-      <PropertyRef Name="fechaHora" />
-      <PropertyRef Name="origen" />
-      <PropertyRef Name="mensajeError" />
     </Key>
     <Property Name="idBitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="fechaHora" Type="datetime" Nullable="false" />
@@ -98,9 +93,9 @@ warning 6002: The table/view 'ProyectoPA.dbo.Bitacoras' does not have a primary 
     <Property Name="idRol" Type="varchar" MaxLength="30" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Adopcione__corre__38996AB5' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Adopcione__corre__38996AB5" />-->
-  <Association Name="FK__Adopcione__idAni__398D8EEE">
+warning 6035: The relationship 'FK__Adopcione__corre__4AB81AF0' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Adopcione__corre__4AB81AF0" />-->
+  <Association Name="FK__Adopcione__idAni__4BAC3F29">
     <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
     <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
     <ReferentialConstraint>
@@ -112,7 +107,7 @@ warning 6035: The relationship 'FK__Adopcione__corre__38996AB5' has columns that
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Animales__idTipo__37A5467C">
+  <Association Name="FK__Animales__idTipo__49C3F6B7">
     <End Role="TipoAnimal" Type="Self.TipoAnimal" Multiplicity="1" />
     <End Role="Animales" Type="Self.Animales" Multiplicity="*" />
     <ReferentialConstraint>
@@ -124,7 +119,7 @@ warning 6035: The relationship 'FK__Adopcione__corre__38996AB5' has columns that
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DetalleFa__idFac__3C69FB99">
+  <Association Name="FK__DetalleFa__idFac__4E88ABD4">
     <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
     <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -136,7 +131,7 @@ warning 6035: The relationship 'FK__Adopcione__corre__38996AB5' has columns that
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DetalleFa__idPro__3D5E1FD2">
+  <Association Name="FK__DetalleFa__idPro__4F7CD00D">
     <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
     <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -149,9 +144,9 @@ warning 6035: The relationship 'FK__Adopcione__corre__38996AB5' has columns that
     </ReferentialConstraint>
   </Association>
   <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Factura__cedula__3B75D760" />-->
-  <Association Name="FK__Productos__idTip__3A81B327">
+warning 6035: The relationship 'FK__Factura__cedula__4D94879B' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Factura__cedula__4D94879B" />-->
+  <Association Name="FK__Productos__idTip__4CA06362">
     <End Role="TipoProductos" Type="Self.TipoProductos" Multiplicity="1" />
     <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
     <ReferentialConstraint>
@@ -163,7 +158,7 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Usuarios__idRol__36B12243">
+  <Association Name="FK__Usuarios__idRol__48CFD27E">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
     <ReferentialConstraint>
@@ -175,15 +170,17 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="AgregarRoll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="idRol" Type="varchar" Mode="In" />
-    <Parameter Name="rol" Type="varchar" Mode="In" />
-  </Function>
+  <Function Name="MostrarAnimales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Registrar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cedula" Type="varchar" Mode="In" />
     <Parameter Name="nombre" Type="varchar" Mode="In" />
     <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
     <Parameter Name="contrasenna" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="RegistrarAnimal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idTipoAnimal" Type="varchar" Mode="In" />
+    <Parameter Name="nombre" Type="varchar" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
   </Function>
   <Function Name="ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
@@ -192,6 +189,7 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
   <EntityContainer Name="ProyectoPAModelStoreContainer">
     <EntitySet Name="Adopciones" EntityType="Self.Adopciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Animales" EntityType="Self.Animales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bitacoras" EntityType="Self.Bitacoras" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Factura" EntityType="Self.Factura" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
@@ -199,35 +197,27 @@ warning 6035: The relationship 'FK__Factura__cedula__3B75D760' has columns that 
     <EntitySet Name="TipoAnimal" EntityType="Self.TipoAnimal" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoProductos" EntityType="Self.TipoProductos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Bitacoras" EntityType="Self.Bitacoras" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Bitacoras].[idBitacora] AS [idBitacora], 
-    [Bitacoras].[fechaHora] AS [fechaHora], 
-    [Bitacoras].[origen] AS [origen], 
-    [Bitacoras].[mensajeError] AS [mensajeError]
-    FROM [dbo].[Bitacoras] AS [Bitacoras]</DefiningQuery>
-    </EntitySet>
-    <AssociationSet Name="FK__Adopcione__idAni__398D8EEE" Association="Self.FK__Adopcione__idAni__398D8EEE">
+    <AssociationSet Name="FK__Adopcione__idAni__4BAC3F29" Association="Self.FK__Adopcione__idAni__4BAC3F29">
       <End Role="Animales" EntitySet="Animales" />
       <End Role="Adopciones" EntitySet="Adopciones" />
     </AssociationSet>
-    <AssociationSet Name="FK__Animales__idTipo__37A5467C" Association="Self.FK__Animales__idTipo__37A5467C">
+    <AssociationSet Name="FK__Animales__idTipo__49C3F6B7" Association="Self.FK__Animales__idTipo__49C3F6B7">
       <End Role="TipoAnimal" EntitySet="TipoAnimal" />
       <End Role="Animales" EntitySet="Animales" />
     </AssociationSet>
-    <AssociationSet Name="FK__DetalleFa__idFac__3C69FB99" Association="Self.FK__DetalleFa__idFac__3C69FB99">
+    <AssociationSet Name="FK__DetalleFa__idFac__4E88ABD4" Association="Self.FK__DetalleFa__idFac__4E88ABD4">
       <End Role="Factura" EntitySet="Factura" />
       <End Role="DetalleFactura" EntitySet="DetalleFactura" />
     </AssociationSet>
-    <AssociationSet Name="FK__DetalleFa__idPro__3D5E1FD2" Association="Self.FK__DetalleFa__idPro__3D5E1FD2">
+    <AssociationSet Name="FK__DetalleFa__idPro__4F7CD00D" Association="Self.FK__DetalleFa__idPro__4F7CD00D">
       <End Role="Productos" EntitySet="Productos" />
       <End Role="DetalleFactura" EntitySet="DetalleFactura" />
     </AssociationSet>
-    <AssociationSet Name="FK__Productos__idTip__3A81B327" Association="Self.FK__Productos__idTip__3A81B327">
+    <AssociationSet Name="FK__Productos__idTip__4CA06362" Association="Self.FK__Productos__idTip__4CA06362">
       <End Role="TipoProductos" EntitySet="TipoProductos" />
       <End Role="Productos" EntitySet="Productos" />
     </AssociationSet>
-    <AssociationSet Name="FK__Usuarios__idRol__36B12243" Association="Self.FK__Usuarios__idRol__36B12243">
+    <AssociationSet Name="FK__Usuarios__idRol__48CFD27E" Association="Self.FK__Usuarios__idRol__48CFD27E">
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Usuarios" EntitySet="Usuarios" />
     </AssociationSet>

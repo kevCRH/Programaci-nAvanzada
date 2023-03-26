@@ -29,6 +29,7 @@ namespace ApiTiendaMascotas.ModeloBD
     
         public virtual DbSet<Adopciones> Adopciones { get; set; }
         public virtual DbSet<Animales> Animales { get; set; }
+        public virtual DbSet<Bitacoras> Bitacoras { get; set; }
         public virtual DbSet<DetalleFactura> DetalleFactura { get; set; }
         public virtual DbSet<Factura> Factura { get; set; }
         public virtual DbSet<Productos> Productos { get; set; }
@@ -36,19 +37,10 @@ namespace ApiTiendaMascotas.ModeloBD
         public virtual DbSet<TipoAnimal> TipoAnimal { get; set; }
         public virtual DbSet<TipoProductos> TipoProductos { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
-        public virtual DbSet<Bitacoras> Bitacoras { get; set; }
     
-        public virtual int AgregarRoll(string idRol, string rol)
+        public virtual ObjectResult<MostrarAnimales_Result> MostrarAnimales()
         {
-            var idRolParameter = idRol != null ?
-                new ObjectParameter("idRol", idRol) :
-                new ObjectParameter("idRol", typeof(string));
-    
-            var rolParameter = rol != null ?
-                new ObjectParameter("rol", rol) :
-                new ObjectParameter("rol", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregarRoll", idRolParameter, rolParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarAnimales_Result>("MostrarAnimales");
         }
     
         public virtual int Registrar(string cedula, string nombre, string correoElectronico, string contrasenna)
@@ -83,6 +75,23 @@ namespace ApiTiendaMascotas.ModeloBD
                 new ObjectParameter("contrasenna", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarUsuario_Result>("ValidarUsuario", correoElectronicoParameter, contrasennaParameter);
+        }
+    
+        public virtual int RegistrarAnimal(string idTipoAnimal, string nombre, string descripcion)
+        {
+            var idTipoAnimalParameter = idTipoAnimal != null ?
+                new ObjectParameter("idTipoAnimal", idTipoAnimal) :
+                new ObjectParameter("idTipoAnimal", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("descripcion", descripcion) :
+                new ObjectParameter("descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarAnimal", idTipoAnimalParameter, nombreParameter, descripcionParameter);
         }
     }
 }

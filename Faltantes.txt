@@ -1,7 +1,6 @@
 CARGOS A LO LARGO DEL CURSO:
 1. Quitar el lorem Ipso
 Solo parte inicial del index y footer: CHRISTIAN
-2. Adopción de perros y gatos: KEVIN
 3. Formulario adopciones: KEVIN
 4. Compra de productos(carrito y factura): CHRISTIAN y GERSON
 5. Corregir base de datos: KEVIN

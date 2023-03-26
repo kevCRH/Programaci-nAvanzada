@@ -7,5 +7,6 @@ namespace ApiTiendaMascotas.Models
 {
     public class PerrosModel
     {
+
     }
 }

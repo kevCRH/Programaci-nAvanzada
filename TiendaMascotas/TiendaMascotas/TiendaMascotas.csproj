@@ -164,15 +164,16 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerrosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Entities\AnimalesEnt.cs" />
     <Compile Include="Entities\ContactenosEnt.cs" />
     <Compile Include="Entities\LogsEnt.cs" />
+    <Compile Include="Entities\TiposAnimalesEnt.cs" />
     <Compile Include="Entities\UsuariosEnt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\GatosModel.cs" />
+    <Compile Include="Models\AnimalesModel.cs" />
     <Compile Include="Models\LogsModel.cs" />
-    <Compile Include="Models\PerrosModel.cs" />
     <Compile Include="Models\ProductosModel.cs" />
     <Compile Include="Models\UsuariosModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -385,6 +386,8 @@
     <Content Include="Views\Productos\ProductoCarrito.cshtml" />
     <Content Include="Views\Gatos\FormGato.cshtml" />
     <Content Include="Views\Perros\FormPerro.cshtml" />
+    <Content Include="Views\Perros\RegistrarAnimal.cshtml" />
+    <Content Include="Views\Gatos\RegistrarAnimal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

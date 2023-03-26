@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<TiendaMascotas.Entities.AnimalesEnt>
 @{
     ViewBag.Title = "AdopcionGatos";
     Layout = "~/Views/Shared/LayoutProducts.cshtml";
@@ -69,127 +69,65 @@
 </div>
 <!-- end breadcrumb section -->
 <!-- products -->
-<div class="product-section mt-150 mb-150">
+<div class="product-section mt-100 mb-150">
+    <li class="col-lg-12 col-md-6 text-center strawberry">
+        <h3>Registre un animal</h3>
+        <a href="@Url.Action("RegistrarAnimal", "Gatos")">¡Haz click aquí!</a>
+    </li>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="col-lg-12 col-md-6 text-center strawberry">
+        Lista de gatitos en adopcion
+    </h1>
+    <br>
+    <br>
+    <br>
     <div class="container">
-
         <div class="row product-lists">
-            <div class="col-lg-4 col-md-6 text-center strawberry">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="cart.html"><img src="~/assets/imggatos/Chispa.jpg" alt=""></a>
+
+            @foreach (var item in Model)
+            {
+                if (item.tipoAnimal == "gato")
+                {
+                    <div class="col-lg-4 col-md-6 text-center strawberry">
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <a href="cart.html"><img src="~/assets/imggatos/Chispa.jpg" alt=""></a>
+                            </div>
+                            <h1>@item.Nombre</h1>
+                            <h5>Tipo de animal: @item.tipoAnimal</h5>
+                            <h5>Descripcion: @item.Descripcion</h5>
+                            @if (item.Estado)
+                            {
+                                <h5>Estado: Sin adoptar </h5>
+                            }
+                            else
+                            {
+                                <h5>Estado: Adoptado </h5>
+                            }
+
+                            <a class="cart-btn" href="@Url.Action("FormPerro", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                        </div>
                     </div>
-                    <h3>Chispa</h3>
-                    <a class="cart-btn" href="@Url.Action("FormGato", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center berry">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="cart.html"><img src="~/assets/imggatos/Felix.jpg" alt=""></a>
+
+                }
+            }
+
+
+            @* Dejo esto comentado por si lo llegamos a necesitar *@
+            @*<div class="col-lg-4 col-md-6 text-center strawberry">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
+                        </div>
+                        <h3>Strawberry</h3>
+                        <p class="product-price"><span>Per Kg</span> 80$ </p>
+                        <a class="cart-btn" href="@Url.Action("FormPerro", "Perros")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
                     </div>
-                    <h3>Felix</h3>
-                    <a class="cart-btn" href="@Url.Action("FormGato", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center lemon">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="cart.html"><img src="~/assets/imggatos/Misifus.jpg" alt=""></a>
-                    </div>
-                    <h3>Misifus</h3>
-                    <a class="cart-btn" href="@Url.Action("FormGato", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
-                    </div>
-                    <h3>Avocado</h3>
-                    <p class="product-price"><span>Per Kg</span> 50$ </p>
-                    <a class="cart-btn" href="@Url.Action("FormGato", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
-                    </div>
-                    <h3>Green Apple</h3>
-                    <p class="product-price"><span>Per Kg</span> 45$ </p>
-                    <a class="cart-btn" href="@Url.Action("FormGato", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center strawberry">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
-                    </div>
-                    <h3>Strawberry</h3>
-                    <p class="product-price"><span>Per Kg</span> 80$ </p>
-                    <a class="cart-btn" href="@Url.Action("FormGato", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center strawberry">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
-                    </div>
-                    <h3>Strawberry</h3>
-                    <p class="product-price"><span>Per Kg</span> 85$ </p>
-                    <a class="cart-btn" href="@Url.Action("FormGato", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center berry">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-                    </div>
-                    <h3>Berry</h3>
-                    <p class="product-price"><span>Per Kg</span> 70$ </p>
-                    <a class="cart-btn" href="@Url.Action("FormGato", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center lemon">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-                    </div>
-                    <h3>Lemon</h3>
-                    <p class="product-price"><span>Per Kg</span> 35$ </p>
-                    <a class="cart-btn" href="@Url.Action("FormGato", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
-                    </div>
-                    <h3>Avocado</h3>
-                    <p class="product-price"><span>Per Kg</span> 50$ </p>
-                    <a class="cart-btn" href="@Url.Action("FormGato", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
-                    </div>
-                    <h3>Green Apple</h3>
-                    <p class="product-price"><span>Per Kg</span> 45$ </p>
-                    <a class="cart-btn" href="@Url.Action("FormGato", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center strawberry">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
-                    </div>
-                    <h3>Strawberry</h3>
-                    <p class="product-price"><span>Per Kg</span> 80$ </p>
-                    <a class="cart-btn" href="@Url.Action("FormGato", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-                </div>
-            </div>
+                </div>*@
+
         </div>
     </div>
 </div>
