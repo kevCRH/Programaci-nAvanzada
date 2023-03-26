@@ -38,6 +38,19 @@ namespace ApiTiendaMascotas.ModeloBD
         public virtual DbSet<TipoProductos> TipoProductos { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
     
+        public virtual int AgregarRoll(string idRol, string rol)
+        {
+            var idRolParameter = idRol != null ?
+                new ObjectParameter("idRol", idRol) :
+                new ObjectParameter("idRol", typeof(string));
+    
+            var rolParameter = rol != null ?
+                new ObjectParameter("rol", rol) :
+                new ObjectParameter("rol", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregarRoll", idRolParameter, rolParameter);
+        }
+    
         public virtual ObjectResult<MostrarAnimales_Result> MostrarAnimales()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarAnimales_Result>("MostrarAnimales");
@@ -64,19 +77,6 @@ namespace ApiTiendaMascotas.ModeloBD
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar", cedulaParameter, nombreParameter, correoElectronicoParameter, contrasennaParameter);
         }
     
-        public virtual ObjectResult<ValidarUsuario_Result> ValidarUsuario(string correoElectronico, string contrasenna)
-        {
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("correoElectronico", correoElectronico) :
-                new ObjectParameter("correoElectronico", typeof(string));
-    
-            var contrasennaParameter = contrasenna != null ?
-                new ObjectParameter("contrasenna", contrasenna) :
-                new ObjectParameter("contrasenna", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarUsuario_Result>("ValidarUsuario", correoElectronicoParameter, contrasennaParameter);
-        }
-    
         public virtual int RegistrarAnimal(string idTipoAnimal, string nombre, string descripcion)
         {
             var idTipoAnimalParameter = idTipoAnimal != null ?
@@ -92,6 +92,19 @@ namespace ApiTiendaMascotas.ModeloBD
                 new ObjectParameter("descripcion", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarAnimal", idTipoAnimalParameter, nombreParameter, descripcionParameter);
+        }
+    
+        public virtual ObjectResult<ValidarUsuario_Result> ValidarUsuario(string correoElectronico, string contrasenna)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("correoElectronico", correoElectronico) :
+                new ObjectParameter("correoElectronico", typeof(string));
+    
+            var contrasennaParameter = contrasenna != null ?
+                new ObjectParameter("contrasenna", contrasenna) :
+                new ObjectParameter("contrasenna", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarUsuario_Result>("ValidarUsuario", correoElectronicoParameter, contrasennaParameter);
         }
     }
 }

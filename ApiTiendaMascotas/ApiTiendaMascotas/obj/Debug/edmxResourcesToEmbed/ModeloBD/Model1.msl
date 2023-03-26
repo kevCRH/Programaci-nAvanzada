@@ -63,6 +63,7 @@
           <ScalarProperty Name="precio" ColumnName="precio" />
           <ScalarProperty Name="descuento" ColumnName="descuento" />
           <ScalarProperty Name="idTipoProducto" ColumnName="idTipoProducto" />
+          <ScalarProperty Name="imagen" ColumnName="imagen" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -103,6 +104,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AgregarRoll" FunctionName="ProyectoPAModel.Store.AgregarRoll" />
     <FunctionImportMapping FunctionImportName="MostrarAnimales" FunctionName="ProyectoPAModel.Store.MostrarAnimales">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarAnimales_Result">
@@ -115,6 +117,7 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Registrar" FunctionName="ProyectoPAModel.Store.Registrar" />
+    <FunctionImportMapping FunctionImportName="RegistrarAnimal" FunctionName="ProyectoPAModel.Store.RegistrarAnimal" />
     <FunctionImportMapping FunctionImportName="ValidarUsuario" FunctionName="ProyectoPAModel.Store.ValidarUsuario">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ProyectoPAModel.ValidarUsuario_Result">
@@ -127,6 +130,5 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="RegistrarAnimal" FunctionName="ProyectoPAModel.Store.RegistrarAnimal" />
   </EntityContainerMapping>
 </Mapping>
