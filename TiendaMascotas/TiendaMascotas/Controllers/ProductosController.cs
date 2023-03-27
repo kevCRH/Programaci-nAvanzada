@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TiendaMascotas.App_Start;
+using TiendaMascotas.Entities;
 using TiendaMascotas.Models;
 
 namespace TiendaMascotas.Controllers
@@ -12,14 +13,56 @@ namespace TiendaMascotas.Controllers
     {
 
         ProductosModel model = new ProductosModel();
+        LogsModel LogsModel = new LogsModel();
 
         [HttpGet]
-        public ActionResult AgregarProducto()
+        public ActionResult ProductosVenta()
         {
             try
             {
-                //var resultado = model.MostrarAnimales();
+
+                var resultado = model.MostrarProductos();
+                return View(resultado);
+            }
+            catch (Exception ex)
+            {
+               // RegistrarLog(ex);
                 return View();
+            }
+
+        }
+        [HttpGet]
+        //[FiltroSesion]
+        public ActionResult RegistrarProducto()
+        {
+            try
+            {
+                ViewBag.ListadoProductos = model.ConsultarProducto();
+                return View();
+            }
+            catch (Exception ex)
+            {
+               // RegistrarLog(ex);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        //[FiltroSesion]
+        public ActionResult RegistrarProducto(ProductoEnt entidad)
+        {
+            try
+            {
+                if (model.RegistrarProducto(entidad) > 0)
+                {
+                    var resultado = model.MostrarProductos();
+                    return View("ProductosVenta", resultado);
+                }
+                else
+                {
+                    ViewBag.mensaje = "Los datos no se validaron";
+                    return View();
+                }
             }
             catch (Exception ex)
             {
@@ -29,17 +72,30 @@ namespace TiendaMascotas.Controllers
         }
 
         [HttpGet]
-        public ActionResult ProductosVenta()
+        [FiltroSesion]
+        public ActionResult FormProductos()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                //RegistrarLog(ex);
+                return View();
+            }
         }
 
-        [HttpGet]
-        [FiltroSesion]
-        public ActionResult ProductoCarrito()
+        //Metodo registrar bitacora
+        public void RegistrarLog(Exception ex)
         {
-            return View();
+            LogsEnt log = new LogsEnt();
+            log.origen = ControllerContext.RouteData.Values["controller"].ToString()
+                + "-" + ControllerContext.RouteData.Values["action"].ToString();
+            log.mensajeError = ex.Message;
+            LogsModel.RegistrarBitacora(log);
         }
-        
+
+
     }
 }

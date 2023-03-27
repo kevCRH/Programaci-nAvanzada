@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<TiendaMascotas.Entities.ProductoEnt>
+@{
     ViewBag.Title = "ProductosVenta";
     Layout = "~/Views/Shared/LayoutProducts.cshtml";
 }
@@ -22,8 +23,7 @@
                             </li>
                             <li>
                                 <div class="header-icons">
-                                    <a href="cart.html"><img src="~/assets/imgs/carshop.png" alt=""></a>
-                                    <a class="mobile-hide search-bar-icon" href="#"><img src="~/assets/imgs/search.png" alt=""></a>
+
                                 </div>
                             </li>
                         </ul>
@@ -61,157 +61,169 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
-                    <p>Consulte nuestro catálogo de</p>
+                    <p>Bienvenido/a a nuestra gran variedad de</p>
                     <h1>Productos</h1>
-                    <a href="@Url.Action("Productos", "AgregarProducto")" class="btn btn-outline-secondary btn-sm">Agregar Producto</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <!-- end breadcrumb section -->
 <!-- products -->
+<div style="text-align: center;"><a href="@Url.Action("RegistrarProducto", "Productos")" class="btn btn-outline-primary btn-sm">Agregar Producto</a></div>
+
+
 <div class="product-section mt-150 mb-150">
     <div class="container">
 
         <div class="row product-lists">
-            @foreach (var producto in Model.Productos)
-            {
-                <div class="col-lg-4 col-md-6 text-center strawberry">
-                    <div class="single-product-item">
-                        <div class="product-image">
-                            <a href="cart.html"><img src="@producto.ImagenUrl" alt=""></a>
-                        </div>
-                        <h3>@producto.Nombre</h3>
-                        <p class="product-price"><span>Per Kg</span> @producto.Precio$ </p>
-                        <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
-                    </div>
-                </div>
-            }
 
-            <!--<div class="col-lg-4 col-md-6 text-center strawberry">
-        <div class="single-product-item">
-            <div class="product-image">
-                <a href="cart.html"><img src="~/assets/imgproductos/ComidaPerro.jpg" alt=""></a>
+
+            @foreach (var item in Model)
+            {
+               
+                    <div class="col-lg-4 col-md-6 text-center strawberry">
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <a href="cart.html"><img src="~/assets/imgperros/Ruffos.jpg" alt=""></a>
+                            </div>
+                            <h1>@item.nombre</h1>
+                            <h5>Descripcion: @item.descripcion</h5>
+                            <h5>Cantidad: @item.cantidad</h5>
+                            <h5>Precio: @item.precio</h5>
+                            <h5>Descuento: @item.descuento</h5>
+                        
+
+                            <a class="cart-btn" href="@Url.Action("FormProductos", "Productos")"><img src="~/assets/imgs/form.png" alt=""> Agregar a Carrito</a>
+                        </div>
+                    </div>
+
+                
+            }
+            @*<div class="col-lg-4 col-md-6 text-center strawberry">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="cart.html"><img src="~/assets/imgproductos/ComidaPerro.jpg" alt=""></a>
+                </div>
+                <h3>Comida de Perro "Small Dog"</h3>
+                <p class="product-price"><span>Per Kg</span> 50$ </p>
+                <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
             </div>
-            <h3>Comida de Perro "Small Dog"</h3>
-            <p class="product-price"><span>Per Kg</span> 50$ </p>
-            <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
         </div>
-    </div>-->
-            <!--
-    <div class="col-lg-4 col-md-6 text-center berry">
-        <div class="single-product-item">
-            <div class="product-image">
-                <a href="cart.html"><img src="~/assets/imgproductos/ComidaPerro2.jpg" alt=""></a>
+
+        <div class="col-lg-4 col-md-6 text-center berry">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="cart.html"><img src="~/assets/imgproductos/ComidaPerro2.jpg" alt=""></a>
+                </div>
+                <h3>Comida de Perro "Última"</h3>
+                <p class="product-price"><span>Per Kg</span> 50$ </p>
+                <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
             </div>
-            <h3>Comida de Perro "Última"</h3>
-            <p class="product-price"><span>Per Kg</span> 50$ </p>
-            <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
         </div>
-    </div>
-    <div class="col-lg-4 col-md-6 text-center lemon">
-        <div class="single-product-item">
-            <div class="product-image">
-                <a href="cart.html"><img src="~/assets/imgproductos/JugueteGato.jpg" alt=""></a>
+        <div class="col-lg-4 col-md-6 text-center lemon">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="cart.html"><img src="~/assets/imgproductos/JugueteGato.jpg" alt=""></a>
+                </div>
+                <h3>Juguete de gato</h3>
+                <p class="product-price"><span>Per Kg</span> 50$ </p>
+                <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
             </div>
-            <h3>Juguete de gato</h3>
-            <p class="product-price"><span>Per Kg</span> 50$ </p>
-            <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
         </div>
-    </div>
-    <div class="col-lg-4 col-md-6 text-center">
-        <div class="single-product-item">
-            <div class="product-image">
-                <a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
+        <div class="col-lg-4 col-md-6 text-center">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
+                </div>
+                <h3>Avocado</h3>
+                <p class="product-price"><span>Per Kg</span> 50$ </p>
+                <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
             </div>
-            <h3>Avocado</h3>
-            <p class="product-price"><span>Per Kg</span> 50$ </p>
-            <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
         </div>
-    </div>
-    <div class="col-lg-4 col-md-6 text-center">
-        <div class="single-product-item">
-            <div class="product-image">
-                <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
+        <div class="col-lg-4 col-md-6 text-center">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
+                </div>
+                <h3>Green Apple</h3>
+                <p class="product-price"><span>Per Kg</span> 45$ </p>
+                <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
             </div>
-            <h3>Green Apple</h3>
-            <p class="product-price"><span>Per Kg</span> 45$ </p>
-            <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
         </div>
-    </div>
-    <div class="col-lg-4 col-md-6 text-center strawberry">
-        <div class="single-product-item">
-            <div class="product-image">
-                <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
+        <div class="col-lg-4 col-md-6 text-center strawberry">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
+                </div>
+                <h3>Strawberry</h3>
+                <p class="product-price"><span>Per Kg</span> 80$ </p>
+                <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
             </div>
-            <h3>Strawberry</h3>
-            <p class="product-price"><span>Per Kg</span> 80$ </p>
-            <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
         </div>
-    </div>
-    <div class="col-lg-4 col-md-6 text-center strawberry">
-        <div class="single-product-item">
-            <div class="product-image">
-                <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+        <div class="col-lg-4 col-md-6 text-center strawberry">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+                </div>
+                <h3>Strawberry</h3>
+                <p class="product-price"><span>Per Kg</span> 85$ </p>
+                <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
             </div>
-            <h3>Strawberry</h3>
-            <p class="product-price"><span>Per Kg</span> 85$ </p>
-            <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
         </div>
-    </div>
-    <div class="col-lg-4 col-md-6 text-center berry">
-        <div class="single-product-item">
-            <div class="product-image">
-                <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+        <div class="col-lg-4 col-md-6 text-center berry">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+                </div>
+                <h3>Berry</h3>
+                <p class="product-price"><span>Per Kg</span> 70$ </p>
+                <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
             </div>
-            <h3>Berry</h3>
-            <p class="product-price"><span>Per Kg</span> 70$ </p>
-            <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
         </div>
-    </div>
-    <div class="col-lg-4 col-md-6 text-center lemon">
-        <div class="single-product-item">
-            <div class="product-image">
-                <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+        <div class="col-lg-4 col-md-6 text-center lemon">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+                </div>
+                <h3>Lemon</h3>
+                <p class="product-price"><span>Per Kg</span> 35$ </p>
+                <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
             </div>
-            <h3>Lemon</h3>
-            <p class="product-price"><span>Per Kg</span> 35$ </p>
-            <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
         </div>
-    </div>
-    <div class="col-lg-4 col-md-6 text-center">
-        <div class="single-product-item">
-            <div class="product-image">
-                <a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
+        <div class="col-lg-4 col-md-6 text-center">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
+                </div>
+                <h3>Avocado</h3>
+                <p class="product-price"><span>Per Kg</span> 50$ </p>
+                <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
             </div>
-            <h3>Avocado</h3>
-            <p class="product-price"><span>Per Kg</span> 50$ </p>
-            <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
         </div>
-    </div>
-    <div class="col-lg-4 col-md-6 text-center">
-        <div class="single-product-item">
-            <div class="product-image">
-                <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
+        <div class="col-lg-4 col-md-6 text-center">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
+                </div>
+                <h3>Green Apple</h3>
+                <p class="product-price"><span>Per Kg</span> 45$ </p>
+                <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
             </div>
-            <h3>Green Apple</h3>
-            <p class="product-price"><span>Per Kg</span> 45$ </p>
-            <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
         </div>
-    </div>
-    <div class="col-lg-4 col-md-6 text-center strawberry">
-        <div class="single-product-item">
-            <div class="product-image">
-                <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
+        <div class="col-lg-4 col-md-6 text-center strawberry">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
+                </div>
+                <h3>Strawberry</h3>
+                <p class="product-price"><span>Per Kg</span> 80$ </p>
+                <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
             </div>
-            <h3>Strawberry</h3>
-            <p class="product-price"><span>Per Kg</span> 80$ </p>
-            <a class="cart-btn" href="@Url.Action("ProductoCarrito", "Productos")"><img src="~/assets/imgs/form.png" alt="">  Agregar al carrito</a>
-        </div>
-    </div>
-        -->
+        </div>*@
+
         </div>
     </div>
 </div>
-

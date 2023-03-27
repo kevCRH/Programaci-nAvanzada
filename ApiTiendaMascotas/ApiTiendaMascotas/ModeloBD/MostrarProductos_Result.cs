@@ -10,20 +10,16 @@
 namespace ApiTiendaMascotas.ModeloBD
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TipoProductos
+    public partial class MostrarProductos_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TipoProductos()
-        {
-            this.Productos = new HashSet<Productos>();
-        }
-    
-        public string idTipoProducto { get; set; }
+        public int idProducto { get; set; }
+        public string nombre { get; set; }
         public string tipoProducto { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Productos> Productos { get; set; }
+        public string descripcion { get; set; }
+        public int cantidad { get; set; }
+        public decimal precio { get; set; }
+        public int descuento { get; set; }
+        public byte[] imagen { get; set; }
     }
 }

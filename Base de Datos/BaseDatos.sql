@@ -60,8 +60,9 @@ CREATE TABLE Productos(
 	cantidad INT NOT NULL,
 	precio NUMERIC(10,3) NOT NULL,
 	descuento INT NOT NULL,
+	imagen varbinary(MAX),
 	idTipoProducto VARCHAR(30) NOT NULL
-	PRIMARY KEY (idProducto)
+	PRIMARY KEY (idProducto)
 );
 
 CREATE TABLE TipoProductos(
@@ -158,3 +159,37 @@ END
 
 EXEC AgregarRoll '1', 'Usuario'
 EXEC AgregarRoll '2', 'Administrador'
+
+CREATE PROCEDURE MostrarAnimales
+	AS
+	BEGIN
+
+		SELECT idAnimal,		
+			  tipoAnimal.tipoAnimal,
+			  nombre,
+			  descripcion,
+			  estado
+		  FROM Animales 
+		  INNER JOIN tipoAnimal
+		  ON  Animales.idTipoAnimal = tipoAnimal.idTipoAnimal
+	END
+
+
+
+	CREATE PROCEDURE RegistrarAnimal
+	@idTipoAnimal varchar(30),
+	@nombre varchar(30),
+	@descripcion varchar(100)
+AS
+BEGIN
+INSERT INTO Animales
+           (idTipoAnimal,
+           nombre,
+           descripcion,
+          estado)
+     VALUES
+           (@idTipoAnimal,
+			@nombre,
+			@descripcion,
+			1)
+END

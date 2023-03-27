@@ -62,8 +62,8 @@
           <Property Name="cantidad" Type="int" Nullable="false" />
           <Property Name="precio" Type="numeric" Precision="10" Scale="3" Nullable="false" />
           <Property Name="descuento" Type="int" Nullable="false" />
+          <Property Name="imagen" Type="varbinary(max)" />
           <Property Name="idTipoProducto" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="imagen" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -98,9 +98,9 @@
           <Property Name="estado" Type="bit" Nullable="false" />
           <Property Name="idRol" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Adopcione__corre__49C3F6B7' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Adopcione__corre__49C3F6B7" />-->
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK__Adopcione__corre__5DCAEF64' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK__Adopcione__corre__5DCAEF64" />-->
         <Association Name="FK__Adopcione__idAni__4BAC3F29">
           <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
           <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
@@ -125,7 +125,7 @@ warning 6035: The relationship 'FK__Adopcione__corre__49C3F6B7' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleFa__idFac__4CA06362">
+        <Association Name="FK__DetalleFa__idFac__60A75C0F">
           <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
           <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -137,7 +137,7 @@ warning 6035: The relationship 'FK__Adopcione__corre__49C3F6B7' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleFa__idPro__4D94879B">
+        <Association Name="FK__DetalleFa__idPro__619B8048">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -149,10 +149,10 @@ warning 6035: The relationship 'FK__Adopcione__corre__49C3F6B7' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Factura__cedula__4E88ABD4" />-->
-        <Association Name="FK__Productos__idTip__4F7CD00D">
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK__Factura__cedula__628FA481' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK__Factura__cedula__628FA481" />-->
+        <Association Name="FK__Productos__idTip__6383C8BA">
           <End Role="TipoProductos" Type="Self.TipoProductos" Multiplicity="1" />
           <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -164,7 +164,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__idRol__5070F446">
+        <Association Name="FK__Usuarios__idRol__6477ECF3">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -176,11 +176,8 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="AgregarRoll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="idRol" Type="varchar" Mode="In" />
-          <Parameter Name="rol" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="MostrarAnimales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MostrarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Registrar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cedula" Type="varchar" Mode="In" />
           <Parameter Name="nombre" Type="varchar" Mode="In" />
@@ -191,6 +188,15 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
           <Parameter Name="idTipoAnimal" Type="varchar" Mode="In" />
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="descripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="RegistrarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+          <Parameter Name="precio" Type="numeric" Mode="In" />
+          <Parameter Name="descuento" Type="int" Mode="In" />
+          <Parameter Name="imagen" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="idTipoProducto" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
@@ -215,19 +221,19 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             <End Role="TipoAnimal" EntitySet="TipoAnimal" />
             <End Role="Animales" EntitySet="Animales" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__idFac__4CA06362" Association="Self.FK__DetalleFa__idFac__4CA06362">
+          <AssociationSet Name="FK__DetalleFa__idFac__60A75C0F" Association="Self.FK__DetalleFa__idFac__60A75C0F">
             <End Role="Factura" EntitySet="Factura" />
             <End Role="DetalleFactura" EntitySet="DetalleFactura" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__idPro__4D94879B" Association="Self.FK__DetalleFa__idPro__4D94879B">
+          <AssociationSet Name="FK__DetalleFa__idPro__619B8048" Association="Self.FK__DetalleFa__idPro__619B8048">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="DetalleFactura" EntitySet="DetalleFactura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Productos__idTip__4F7CD00D" Association="Self.FK__Productos__idTip__4F7CD00D">
+          <AssociationSet Name="FK__Productos__idTip__6383C8BA" Association="Self.FK__Productos__idTip__6383C8BA">
             <End Role="TipoProductos" EntitySet="TipoProductos" />
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__idRol__5070F446" Association="Self.FK__Usuarios__idRol__5070F446">
+          <AssociationSet Name="FK__Usuarios__idRol__6477ECF3" Association="Self.FK__Usuarios__idRol__6477ECF3">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -277,8 +283,8 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
           <Property Name="idProducto" Type="Int32" Nullable="false" />
           <Property Name="cantidad" Type="Int32" Nullable="false" />
           <Property Name="monto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Factura" Relationship="Self.FK__DetalleFa__idFac__4CA06362" FromRole="DetalleFactura" ToRole="Factura" />
-          <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleFa__idPro__4D94879B" FromRole="DetalleFactura" ToRole="Productos" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK__DetalleFa__idFac__60A75C0F" FromRole="DetalleFactura" ToRole="Factura" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleFa__idPro__619B8048" FromRole="DetalleFactura" ToRole="Productos" />
         </EntityType>
         <EntityType Name="Factura">
           <Key>
@@ -288,7 +294,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
           <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="terminos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idFac__4CA06362" FromRole="Factura" ToRole="DetalleFactura" />
+          <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idFac__60A75C0F" FromRole="Factura" ToRole="DetalleFactura" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
@@ -300,10 +306,10 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
           <Property Name="cantidad" Type="Int32" Nullable="false" />
           <Property Name="precio" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
           <Property Name="descuento" Type="Int32" Nullable="false" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="idTipoProducto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idPro__4D94879B" FromRole="Productos" ToRole="DetalleFactura" />
-          <NavigationProperty Name="TipoProductos" Relationship="Self.FK__Productos__idTip__4F7CD00D" FromRole="Productos" ToRole="TipoProductos" />
+          <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idPro__619B8048" FromRole="Productos" ToRole="DetalleFactura" />
+          <NavigationProperty Name="TipoProductos" Relationship="Self.FK__Productos__idTip__6383C8BA" FromRole="Productos" ToRole="TipoProductos" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -311,7 +317,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
           </Key>
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__5070F446" FromRole="Roles" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__6477ECF3" FromRole="Roles" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="TipoAnimal">
           <Key>
@@ -327,7 +333,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
           </Key>
           <Property Name="idTipoProducto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tipoProducto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Productos" Relationship="Self.FK__Productos__idTip__4F7CD00D" FromRole="TipoProductos" ToRole="Productos" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__Productos__idTip__6383C8BA" FromRole="TipoProductos" ToRole="Productos" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -340,7 +346,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
           <Property Name="contrasenna" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__5070F446" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__6477ECF3" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
         <Association Name="FK__Adopcione__idAni__4BAC3F29">
           <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
@@ -366,7 +372,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleFa__idFac__4CA06362">
+        <Association Name="FK__DetalleFa__idFac__60A75C0F">
           <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
           <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -378,7 +384,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleFa__idPro__4D94879B">
+        <Association Name="FK__DetalleFa__idPro__619B8048">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -390,7 +396,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Productos__idTip__4F7CD00D">
+        <Association Name="FK__Productos__idTip__6383C8BA">
           <End Role="TipoProductos" Type="Self.TipoProductos" Multiplicity="1" />
           <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -402,7 +408,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__idRol__5070F446">
+        <Association Name="FK__Usuarios__idRol__6477ECF3">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -433,27 +439,24 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             <End Role="TipoAnimal" EntitySet="TipoAnimal" />
             <End Role="Animales" EntitySet="Animales" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__idFac__4CA06362" Association="Self.FK__DetalleFa__idFac__4CA06362">
+          <AssociationSet Name="FK__DetalleFa__idFac__60A75C0F" Association="Self.FK__DetalleFa__idFac__60A75C0F">
             <End Role="Factura" EntitySet="Factura" />
             <End Role="DetalleFactura" EntitySet="DetalleFactura" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__idPro__4D94879B" Association="Self.FK__DetalleFa__idPro__4D94879B">
+          <AssociationSet Name="FK__DetalleFa__idPro__619B8048" Association="Self.FK__DetalleFa__idPro__619B8048">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="DetalleFactura" EntitySet="DetalleFactura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Productos__idTip__4F7CD00D" Association="Self.FK__Productos__idTip__4F7CD00D">
+          <AssociationSet Name="FK__Productos__idTip__6383C8BA" Association="Self.FK__Productos__idTip__6383C8BA">
             <End Role="TipoProductos" EntitySet="TipoProductos" />
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__idRol__5070F446" Association="Self.FK__Usuarios__idRol__5070F446">
+          <AssociationSet Name="FK__Usuarios__idRol__6477ECF3" Association="Self.FK__Usuarios__idRol__6477ECF3">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <FunctionImport Name="AgregarRoll">
-            <Parameter Name="idRol" Mode="In" Type="String" />
-            <Parameter Name="rol" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="MostrarAnimales" ReturnType="Collection(ProyectoPAModel.MostrarAnimales_Result)" />
+          <FunctionImport Name="MostrarProductos" ReturnType="Collection(ProyectoPAModel.MostrarProductos_Result)" />
           <FunctionImport Name="Registrar">
             <Parameter Name="cedula" Mode="In" Type="String" />
             <Parameter Name="nombre" Mode="In" Type="String" />
@@ -464,6 +467,15 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             <Parameter Name="idTipoAnimal" Mode="In" Type="String" />
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RegistrarProducto">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="precio" Mode="In" Type="Decimal" />
+            <Parameter Name="descuento" Mode="In" Type="Int32" />
+            <Parameter Name="imagen" Mode="In" Type="Binary" />
+            <Parameter Name="idTipoProducto" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ValidarUsuario" ReturnType="Collection(ProyectoPAModel.ValidarUsuario_Result)">
             <Parameter Name="correoElectronico" Mode="In" Type="String" />
@@ -476,6 +488,16 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
           <Property Type="Boolean" Name="estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="MostrarProductos_Result">
+          <Property Type="Int32" Name="idProducto" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="tipoProducto" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="cantidad" Nullable="false" />
+          <Property Type="Decimal" Name="precio" Nullable="false" Precision="10" Scale="3" />
+          <Property Type="Int32" Name="descuento" Nullable="false" />
+          <Property Type="Binary" Name="imagen" Nullable="true" />
         </ComplexType>
         <ComplexType Name="ValidarUsuario_Result">
           <Property Type="Int32" Name="idUsuario" Nullable="false" />
@@ -552,8 +574,8 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="descuento" ColumnName="descuento" />
-                <ScalarProperty Name="idTipoProducto" ColumnName="idTipoProducto" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="idTipoProducto" ColumnName="idTipoProducto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -594,7 +616,6 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="AgregarRoll" FunctionName="ProyectoPAModel.Store.AgregarRoll" />
           <FunctionImportMapping FunctionImportName="MostrarAnimales" FunctionName="ProyectoPAModel.Store.MostrarAnimales">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarAnimales_Result">
@@ -606,8 +627,23 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MostrarProductos" FunctionName="ProyectoPAModel.Store.MostrarProductos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarProductos_Result">
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tipoProducto" ColumnName="tipoProducto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Registrar" FunctionName="ProyectoPAModel.Store.Registrar" />
           <FunctionImportMapping FunctionImportName="RegistrarAnimal" FunctionName="ProyectoPAModel.Store.RegistrarAnimal" />
+          <FunctionImportMapping FunctionImportName="RegistrarProducto" FunctionName="ProyectoPAModel.Store.RegistrarProducto" />
           <FunctionImportMapping FunctionImportName="ValidarUsuario" FunctionName="ProyectoPAModel.Store.ValidarUsuario">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoPAModel.ValidarUsuario_Result">
@@ -637,7 +673,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

@@ -168,6 +168,7 @@
     <Compile Include="Entities\ContactenosEnt.cs" />
     <Compile Include="Entities\LogsEnt.cs" />
     <Compile Include="Entities\ProductoEnt.cs" />
+    <Compile Include="Entities\TipoProductoEnt.cs" />
     <Compile Include="Entities\TiposAnimalesEnt.cs" />
     <Compile Include="Entities\UsuariosEnt.cs" />
     <Compile Include="Global.asax.cs">
@@ -389,6 +390,7 @@
     <Content Include="Views\Perros\FormPerro.cshtml" />
     <Content Include="Views\Perros\RegistrarAnimal.cshtml" />
     <Content Include="Views\Gatos\RegistrarAnimal.cshtml" />
+    <Content Include="Views\Productos\RegistrarProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
