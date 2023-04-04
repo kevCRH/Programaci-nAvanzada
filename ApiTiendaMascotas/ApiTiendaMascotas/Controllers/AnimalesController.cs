@@ -30,6 +30,14 @@ namespace ApiTiendaMascotas.Controllers
             return model.ConsultarAnimales();
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("api/ConsultarAnimal")]
+        public AnimalesEnt ConsultarAnimal(long q)
+        {
+            return model.ConsultarAnimal(q);
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [Route("api/RegistrarAnimal")]
@@ -38,5 +46,20 @@ namespace ApiTiendaMascotas.Controllers
             return model.RegistrarAnimal(entidad);
         }
 
+        [HttpPut]
+        [AllowAnonymous]
+        [Route("api/ActualizarAnimales")]
+        public void ActualizarAnimales(AnimalesEnt entidad) 
+        {
+            model.ActualizarAnimales(entidad);
+        }
+
+        [HttpDelete]
+        [AllowAnonymous]
+        [Route("api/CambiarEstadoAnimal")]
+        public void CambiarEstadoAnimal(long q)
+        {
+            model.CambiarEstadoAnimal(q);
+        }
     }
 }

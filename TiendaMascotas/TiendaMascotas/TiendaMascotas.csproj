@@ -222,6 +222,7 @@
     <Content Include="assets\jsadopciones\owl.carousel.min.js" />
     <Content Include="assets\jsadopciones\sticker.js" />
     <Content Include="assets\jsadopciones\waypoints.js" />
+    <Content Include="assets\js\Animales.js" />
     <Content Include="assets\js\BuscarID.js" />
     <Content Include="assets\js\creative-design.js" />
     <Content Include="assets\js\FuncionesLogin.js" />
@@ -391,6 +392,8 @@
     <Content Include="Views\Perros\RegistrarAnimal.cshtml" />
     <Content Include="Views\Gatos\RegistrarAnimal.cshtml" />
     <Content Include="Views\Productos\RegistrarProducto.cshtml" />
+    <Content Include="Views\Perros\ActualizarAnimales.cshtml" />
+    <Content Include="Views\Gatos\ActualizarAnimales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

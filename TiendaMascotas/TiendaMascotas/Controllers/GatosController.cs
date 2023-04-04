@@ -30,7 +30,7 @@ namespace TiendaMascotas.Controllers
         }
 
         [HttpGet]
-        [FiltroSesion]
+        //[FiltroSesion]
         public ActionResult FormGato()
         {
             try
@@ -84,6 +84,46 @@ namespace TiendaMascotas.Controllers
             }
         }
 
+        [HttpGet]
+        //[FiltroSesion]
+        public ActionResult ActualizarAnimales(long q)
+        {
+            try
+            {
+                var resultado = model.ConsultarAnimal(q);
+                ViewBag.ListadoAnimales = model.ConsultarAnimales();
+                return View(resultado);
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        //[FiltroSesion]
+        public ActionResult ActualizarAnimales(AnimalesEnt entidad)
+        {
+            try
+            {
+                model.ActualizarAnimales(entidad);
+                return RedirectToAction("AdopcionGatos", "Gatos");
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        //[FiltroSesion]
+        public ActionResult CambiarEstado(long id)
+        {
+            model.CambiarEstadoAnimal(id);
+            return Json("Ok", JsonRequestBehavior.AllowGet);
+        }
 
 
         //Metodo registrar bitacora

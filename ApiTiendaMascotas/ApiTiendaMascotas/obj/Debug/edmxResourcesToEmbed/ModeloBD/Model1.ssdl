@@ -93,9 +93,9 @@
     <Property Name="estado" Type="bit" Nullable="false" />
     <Property Name="idRol" Type="varchar" MaxLength="30" Nullable="false" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6035: La relación 'FK__Adopcione__corre__5DCAEF64' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
-        <Association Name="FK__Adopcione__corre__5DCAEF64" />-->
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__Adopcione__corre__49C3F6B7' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Adopcione__corre__49C3F6B7" />-->
   <Association Name="FK__Adopcione__idAni__4BAC3F29">
     <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
     <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
@@ -120,7 +120,7 @@ advertencia 6035: La relación 'FK__Adopcione__corre__5DCAEF64' tiene columnas q
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DetalleFa__idFac__60A75C0F">
+  <Association Name="FK__DetalleFa__idFac__4CA06362">
     <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
     <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -132,7 +132,7 @@ advertencia 6035: La relación 'FK__Adopcione__corre__5DCAEF64' tiene columnas q
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DetalleFa__idPro__619B8048">
+  <Association Name="FK__DetalleFa__idPro__4D94879B">
     <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
     <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -144,10 +144,10 @@ advertencia 6035: La relación 'FK__Adopcione__corre__5DCAEF64' tiene columnas q
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--Errores durante la generación:
-advertencia 6035: La relación 'FK__Factura__cedula__628FA481' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
-        <Association Name="FK__Factura__cedula__628FA481" />-->
-  <Association Name="FK__Productos__idTip__6383C8BA">
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Factura__cedula__4E88ABD4" />-->
+  <Association Name="FK__Productos__idTip__4F7CD00D">
     <End Role="TipoProductos" Type="Self.TipoProductos" Multiplicity="1" />
     <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
     <ReferentialConstraint>
@@ -159,7 +159,7 @@ advertencia 6035: La relación 'FK__Factura__cedula__628FA481' tiene columnas qu
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Usuarios__idRol__6477ECF3">
+  <Association Name="FK__Usuarios__idRol__5070F446">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
     <ReferentialConstraint>
@@ -171,6 +171,10 @@ advertencia 6035: La relación 'FK__Factura__cedula__628FA481' tiene columnas qu
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="AgregarRoll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idRol" Type="varchar" Mode="In" />
+    <Parameter Name="rol" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="MostrarAnimales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="MostrarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Registrar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -216,19 +220,19 @@ advertencia 6035: La relación 'FK__Factura__cedula__628FA481' tiene columnas qu
       <End Role="TipoAnimal" EntitySet="TipoAnimal" />
       <End Role="Animales" EntitySet="Animales" />
     </AssociationSet>
-    <AssociationSet Name="FK__DetalleFa__idFac__60A75C0F" Association="Self.FK__DetalleFa__idFac__60A75C0F">
+    <AssociationSet Name="FK__DetalleFa__idFac__4CA06362" Association="Self.FK__DetalleFa__idFac__4CA06362">
       <End Role="Factura" EntitySet="Factura" />
       <End Role="DetalleFactura" EntitySet="DetalleFactura" />
     </AssociationSet>
-    <AssociationSet Name="FK__DetalleFa__idPro__619B8048" Association="Self.FK__DetalleFa__idPro__619B8048">
+    <AssociationSet Name="FK__DetalleFa__idPro__4D94879B" Association="Self.FK__DetalleFa__idPro__4D94879B">
       <End Role="Productos" EntitySet="Productos" />
       <End Role="DetalleFactura" EntitySet="DetalleFactura" />
     </AssociationSet>
-    <AssociationSet Name="FK__Productos__idTip__6383C8BA" Association="Self.FK__Productos__idTip__6383C8BA">
+    <AssociationSet Name="FK__Productos__idTip__4F7CD00D" Association="Self.FK__Productos__idTip__4F7CD00D">
       <End Role="TipoProductos" EntitySet="TipoProductos" />
       <End Role="Productos" EntitySet="Productos" />
     </AssociationSet>
-    <AssociationSet Name="FK__Usuarios__idRol__6477ECF3" Association="Self.FK__Usuarios__idRol__6477ECF3">
+    <AssociationSet Name="FK__Usuarios__idRol__5070F446" Association="Self.FK__Usuarios__idRol__5070F446">
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Usuarios" EntitySet="Usuarios" />
     </AssociationSet>

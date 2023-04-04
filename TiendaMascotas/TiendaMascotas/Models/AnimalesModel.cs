@@ -57,6 +57,21 @@ namespace TiendaMascotas.Models
             }
         }
 
+        public AnimalesEnt ConsultarAnimal(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = "https://localhost:44331/api/ConsultarAnimal?q="+q;
+                
+                HttpResponseMessage respuesta = client.GetAsync(url).GetAwaiter().GetResult();
+                
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<AnimalesEnt>().Result;
+
+                return new AnimalesEnt();
+            }
+        }
+
         public int RegistrarAnimal(AnimalesEnt entidad)
         {
             using (var client = new HttpClient())
@@ -72,7 +87,24 @@ namespace TiendaMascotas.Models
             }
         }
 
+        public void ActualizarAnimales(AnimalesEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                JsonContent body = JsonContent.Create(entidad);
+                string url = "https://localhost:44331/api/ActualizarAnimales";
+                HttpResponseMessage respuesta = client.PutAsync(url, body).GetAwaiter().GetResult();
+            }
+        }
 
+        public void CambiarEstadoAnimal(long id) 
+        {
+            using (var client = new HttpClient())
+            {
+                string url = "https://localhost:44331/api/CambiarEstadoAnimal?q=" + id;
+                HttpResponseMessage respuesta = client.DeleteAsync(url).GetAwaiter().GetResult();
+            }
+        }
 
     }
 }

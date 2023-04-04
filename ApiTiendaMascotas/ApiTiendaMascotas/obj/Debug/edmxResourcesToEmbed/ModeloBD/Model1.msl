@@ -104,6 +104,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AgregarRoll" FunctionName="ProyectoPAModel.Store.AgregarRoll" />
     <FunctionImportMapping FunctionImportName="MostrarAnimales" FunctionName="ProyectoPAModel.Store.MostrarAnimales">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarAnimales_Result">

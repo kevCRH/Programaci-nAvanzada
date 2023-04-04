@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c272e3212ea04bf69dc32df7c5a6cfe7" Name="Diagram1" ZoomLevel="74">
+      <Diagram DiagramId="e5c3f4b4378f423cb6e6497b1529da86" Name="Diagram1">
         <EntityTypeShape EntityType="ProyectoPAModel.Adopciones" Width="1.5" PointX="10.25" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoPAModel.Animales" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoPAModel.Bitacoras" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
@@ -17,10 +17,10 @@
         <EntityTypeShape EntityType="ProyectoPAModel.Usuarios" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="ProyectoPAModel.FK__Adopcione__idAni__4BAC3F29" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoPAModel.FK__Animales__idTipo__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idFac__60A75C0F" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idPro__619B8048" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoPAModel.FK__Productos__idTip__6383C8BA" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoPAModel.FK__Usuarios__idRol__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idFac__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idPro__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__Productos__idTip__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__Usuarios__idRol__5070F446" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
