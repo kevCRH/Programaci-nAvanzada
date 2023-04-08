@@ -60,7 +60,9 @@ namespace TiendaMascotas.Controllers
                 {
                     Session["Consecutivo"] = resultado.idUsuario; 
                     Session["NombreUsuario"] = resultado.Nombre;
+                    Session["Cedula"] = resultado.Cedula;
                     Session["Token"] = resultado.Token;
+                    //Session["rol"] = resultado.rol;
                     return View("Index");
                 }
                 else

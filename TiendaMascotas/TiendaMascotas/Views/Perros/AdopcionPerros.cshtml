@@ -1,4 +1,4 @@
-﻿@model IEnumerable <TiendaMascotas.Entities.AnimalesEnt>
+﻿@model IEnumerable<TiendaMascotas.Entities.AnimalesEnt>
 @{
     ViewBag.Title = "AdopcionPerros";
     Layout = "~/Views/Shared/LayoutProducts.cshtml";
@@ -110,7 +110,19 @@
                                 <h5>Estado: Adoptado </h5>
                             }
 
-                            <a class="cart-btn" href="@Url.Action("FormPerro", "Perros")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                            <br />
+                            <a class="cart-btn" data-idanimal="@item.idAnimal" data-cedula="@Session["Cedula"].ToString()" id="btnSolicitudAdopcion">
+                                <img src="~/assets/imgs/form.png" alt="">
+                                Llenar Formulario
+                            </a>
+                            <br>
+                            <br />
+                            <a class="cart-btn" href="@Url.Action("ActualizarAnimales", "Perros", new { q = item.idAnimal})"><img src="~/assets/imgs/form.png" alt="">Actualizar animal</a>
+                            <br>
+                            <br />
+                            <a href="#" class="cart-btn openModal" data-toggle="modal" data-target="#exampleModalCenter"
+                               data-backdrop="static" data-keyboard="false" data-id=@item.idAnimal>Eliminar de la lista</a>
+
                         </div>
                     </div>
 
@@ -120,16 +132,41 @@
 
             @* Dejo esto comentado por si lo llegamos a necesitar *@
             @*<div class="col-lg-4 col-md-6 text-center strawberry">
-            <div class="single-product-item">
-                <div class="product-image">
-                    <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
-                </div>
-                <h3>Strawberry</h3>
-                <p class="product-price"><span>Per Kg</span> 80$ </p>
-                <a class="cart-btn" href="@Url.Action("FormPerro", "Perros")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-            </div>
-        </div>*@
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
+                        </div>
+                        <h3>Strawberry</h3>
+                        <p class="product-price"><span>Per Kg</span> 80$ </p>
+                        <a class="cart-btn" href="@Url.Action("FormPerro", "Perros")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                    </div>
+                </div>*@
 
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Cambiar estado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="color: black">
+                ¿Seguro qué desea cambiar el estado actual del animal?
+                <input type="hidden" id="idModalHidden" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="CambiarEstadoAnimal();">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="~/assets/js/Animales.js"></script>

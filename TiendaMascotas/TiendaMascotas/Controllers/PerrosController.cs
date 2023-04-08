@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TiendaMascotas.App_Start;
 using TiendaMascotas.Entities;
 using TiendaMascotas.Models;
 
@@ -12,7 +9,9 @@ namespace TiendaMascotas.Controllers
     public class PerrosController : Controller
     {
         AnimalesModel model = new AnimalesModel();
+        UsuariosModel usuariosModel = new UsuariosModel();
         LogsModel LogsModel = new LogsModel();
+        AdopcionesModel adopcionesModel = new AdopcionesModel();
 
         [HttpGet]
         public ActionResult AdopcionPerros()
@@ -30,7 +29,7 @@ namespace TiendaMascotas.Controllers
         }
 
         [HttpGet]
-        [FiltroSesion]
+        //[FiltroSesion]
         public ActionResult FormPerro()
         {
             try
@@ -84,6 +83,72 @@ namespace TiendaMascotas.Controllers
             }
         }
 
+        [HttpGet]
+        //[FiltroSesion]
+        public ActionResult ActualizarAnimales(long q)
+        {
+            try
+            {
+                var resultado = model.ConsultarAnimal(q);
+                ViewBag.ListadoAnimales = model.ConsultarAnimales();
+                return View(resultado);
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        //[FiltroSesion]
+        public ActionResult ActualizarAnimales(AnimalesEnt entidad)
+        {
+            try
+            {
+                model.ActualizarAnimales(entidad);
+                return RedirectToAction("AdopcionPerros", "Perros");
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        //[FiltroSesion]
+        public ActionResult CambiarEstado(long id)
+        {
+            model.CambiarEstadoAnimal(id);
+            return Json("Ok",JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult SolicitarAdopcion(int idAnimal, string Cedula)
+        {
+            AdopcionesEnt adopcion = new AdopcionesEnt();
+            adopcion.idAnimal = idAnimal;
+            adopcion.cedula = Cedula;
+            adopcionesModel.RegistrarAdopciones(adopcion);
+            return Json("Ok", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        //[FiltroSesion]
+        public ActionResult SolicitudesAdopcion()
+        {
+            try
+            {
+                var resultado = adopcionesModel.MostrarAnimales();
+                return View(resultado);
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return View();
+            }
+        }
 
         //Metodo registrar bitacora
         public void RegistrarLog(Exception ex)

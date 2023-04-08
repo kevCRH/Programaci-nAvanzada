@@ -109,6 +109,13 @@
                             }
 
                             <a class="cart-btn" href="@Url.Action("FormPerro", "Gatos")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+                            <br>
+                            <br />
+                            <a class="cart-btn" href="@Url.Action("ActualizarAnimales", "Gatos", new { q = item.idAnimal})"><img src="~/assets/imgs/form.png" alt="">Actualizar animal</a>
+                            <br>
+                            <br />
+                            <a href="#" class="cart-btn openModal" data-toggle="modal" data-target="#exampleModalCenter"
+                               data-backdrop="static" data-keyboard="false" data-id=@item.idAnimal>Eliminar de la lista</a>
                         </div>
                     </div>
 
@@ -131,3 +138,27 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Cambiar estado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="color: black">
+                ¿Seguro qué desea cambiar el estado actual del animal?
+                <input type="hidden" id="idModalHidden" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="CambiarEstadoAnimal2();">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="~/assets/js/Animales.js"></script>
