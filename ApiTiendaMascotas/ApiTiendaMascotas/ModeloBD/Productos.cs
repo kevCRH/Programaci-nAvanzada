@@ -27,10 +27,8 @@ namespace ApiTiendaMascotas.ModeloBD
         public decimal precio { get; set; }
         public int descuento { get; set; }
         public byte[] imagen { get; set; }
-        public string idTipoProducto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleFactura> DetalleFactura { get; set; }
-        public virtual TipoProductos TipoProductos { get; set; }
     }
 }

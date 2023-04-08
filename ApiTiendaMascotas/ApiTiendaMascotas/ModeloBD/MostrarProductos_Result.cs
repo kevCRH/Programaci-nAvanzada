@@ -15,7 +15,6 @@ namespace ApiTiendaMascotas.ModeloBD
     {
         public int idProducto { get; set; }
         public string nombre { get; set; }
-        public string tipoProducto { get; set; }
         public string descripcion { get; set; }
         public int cantidad { get; set; }
         public decimal precio { get; set; }

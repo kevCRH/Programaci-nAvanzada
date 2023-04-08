@@ -58,7 +58,6 @@
     <Property Name="precio" Type="numeric" Precision="10" Scale="3" Nullable="false" />
     <Property Name="descuento" Type="int" Nullable="false" />
     <Property Name="imagen" Type="varbinary(max)" />
-    <Property Name="idTipoProducto" Type="varchar" MaxLength="30" Nullable="false" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>
@@ -74,13 +73,6 @@
     <Property Name="idTipoAnimal" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="tipoAnimal" Type="varchar" MaxLength="30" Nullable="false" />
   </EntityType>
-  <EntityType Name="TipoProductos">
-    <Key>
-      <PropertyRef Name="idTipoProducto" />
-    </Key>
-    <Property Name="idTipoProducto" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="tipoProducto" Type="varchar" MaxLength="30" Nullable="false" />
-  </EntityType>
   <EntityType Name="Usuarios">
     <Key>
       <PropertyRef Name="idUsuario" />
@@ -93,6 +85,12 @@
     <Property Name="estado" Type="bit" Nullable="false" />
     <Property Name="idRol" Type="varchar" MaxLength="30" Nullable="false" />
   </EntityType>
+<<<<<<< Updated upstream
+=======
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__Adopcione__corre__49C3F6B7' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Adopcione__corre__49C3F6B7" />-->
+>>>>>>> Stashed changes
   <Association Name="FK__Adopcione__idAni__4BAC3F29">
     <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
     <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
@@ -117,7 +115,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+<<<<<<< Updated upstream
+  <Association Name="FK__DetalleFa__idFac__4AB81AF0">
+=======
   <Association Name="FK__DetalleFa__idFac__4CA06362">
+>>>>>>> Stashed changes
     <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
     <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -129,7 +131,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+<<<<<<< Updated upstream
+  <Association Name="FK__DetalleFa__idPro__4BAC3F29">
+=======
   <Association Name="FK__DetalleFa__idPro__4D94879B">
+>>>>>>> Stashed changes
     <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
     <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -142,6 +148,11 @@
     </ReferentialConstraint>
   </Association>
   <!--Errors Found During Generation:
+<<<<<<< Updated upstream
+warning 6035: The relationship 'FK__Factura__cedula__4CA06362' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Factura__cedula__4CA06362" />-->
+  <Association Name="FK__Usuarios__idRol__4D94879B">
+=======
 warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK__Factura__cedula__4E88ABD4" />-->
   <Association Name="FK__Productos__idTip__4F7CD00D">
@@ -157,6 +168,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Usuarios__idRol__5070F446">
+>>>>>>> Stashed changes
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
     <ReferentialConstraint>
@@ -201,7 +213,6 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
     <Parameter Name="precio" Type="numeric" Mode="In" />
     <Parameter Name="descuento" Type="int" Mode="In" />
     <Parameter Name="imagen" Type="varbinary(max)" Mode="In" />
-    <Parameter Name="idTipoProducto" Type="varchar" Mode="In" />
   </Function>
   <Function Name="ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
@@ -216,7 +227,6 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
     <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoAnimal" EntityType="Self.TipoAnimal" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TipoProductos" EntityType="Self.TipoProductos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Adopcione__idAni__4BAC3F29" Association="Self.FK__Adopcione__idAni__4BAC3F29">
       <End Role="Animales" EntitySet="Animales" />
@@ -226,6 +236,17 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
       <End Role="TipoAnimal" EntitySet="TipoAnimal" />
       <End Role="Animales" EntitySet="Animales" />
     </AssociationSet>
+<<<<<<< Updated upstream
+    <AssociationSet Name="FK__DetalleFa__idFac__4AB81AF0" Association="Self.FK__DetalleFa__idFac__4AB81AF0">
+      <End Role="Factura" EntitySet="Factura" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleFa__idPro__4BAC3F29" Association="Self.FK__DetalleFa__idPro__4BAC3F29">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuarios__idRol__4D94879B" Association="Self.FK__Usuarios__idRol__4D94879B">
+=======
     <AssociationSet Name="FK__DetalleFa__idFac__4CA06362" Association="Self.FK__DetalleFa__idFac__4CA06362">
       <End Role="Factura" EntitySet="Factura" />
       <End Role="DetalleFactura" EntitySet="DetalleFactura" />
@@ -239,6 +260,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
       <End Role="Productos" EntitySet="Productos" />
     </AssociationSet>
     <AssociationSet Name="FK__Usuarios__idRol__5070F446" Association="Self.FK__Usuarios__idRol__5070F446">
+>>>>>>> Stashed changes
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Usuarios" EntitySet="Usuarios" />
     </AssociationSet>

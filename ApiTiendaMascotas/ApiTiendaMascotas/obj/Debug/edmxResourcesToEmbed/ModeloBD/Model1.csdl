@@ -40,8 +40,13 @@
     <Property Name="idProducto" Type="Int32" Nullable="false" />
     <Property Name="cantidad" Type="Int32" Nullable="false" />
     <Property Name="monto" Type="Int32" Nullable="false" />
+<<<<<<< Updated upstream
+    <NavigationProperty Name="Factura" Relationship="Self.FK__DetalleFa__idFac__4AB81AF0" FromRole="DetalleFactura" ToRole="Factura" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleFa__idPro__4BAC3F29" FromRole="DetalleFactura" ToRole="Productos" />
+=======
     <NavigationProperty Name="Factura" Relationship="Self.FK__DetalleFa__idFac__4CA06362" FromRole="DetalleFactura" ToRole="Factura" />
     <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleFa__idPro__4D94879B" FromRole="DetalleFactura" ToRole="Productos" />
+>>>>>>> Stashed changes
   </EntityType>
   <EntityType Name="Factura">
     <Key>
@@ -51,7 +56,11 @@
     <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="terminos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+<<<<<<< Updated upstream
+    <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idFac__4AB81AF0" FromRole="Factura" ToRole="DetalleFactura" />
+=======
     <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idFac__4CA06362" FromRole="Factura" ToRole="DetalleFactura" />
+>>>>>>> Stashed changes
   </EntityType>
   <EntityType Name="Productos">
     <Key>
@@ -64,9 +73,13 @@
     <Property Name="precio" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
     <Property Name="descuento" Type="Int32" Nullable="false" />
     <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+<<<<<<< Updated upstream
+    <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idPro__4BAC3F29" FromRole="Productos" ToRole="DetalleFactura" />
+=======
     <Property Name="idTipoProducto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idPro__4D94879B" FromRole="Productos" ToRole="DetalleFactura" />
     <NavigationProperty Name="TipoProductos" Relationship="Self.FK__Productos__idTip__4F7CD00D" FromRole="Productos" ToRole="TipoProductos" />
+>>>>>>> Stashed changes
   </EntityType>
   <EntityType Name="Roles">
     <Key>
@@ -74,7 +87,11 @@
     </Key>
     <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+<<<<<<< Updated upstream
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__4D94879B" FromRole="Roles" ToRole="Usuarios" />
+=======
     <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__5070F446" FromRole="Roles" ToRole="Usuarios" />
+>>>>>>> Stashed changes
   </EntityType>
   <EntityType Name="TipoAnimal">
     <Key>
@@ -84,6 +101,8 @@
     <Property Name="tipoAnimal1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Animales" Relationship="Self.FK__Animales__idTipo__49C3F6B7" FromRole="TipoAnimal" ToRole="Animales" />
   </EntityType>
+<<<<<<< Updated upstream
+=======
   <EntityType Name="TipoProductos">
     <Key>
       <PropertyRef Name="idTipoProducto" />
@@ -92,6 +111,7 @@
     <Property Name="tipoProducto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Productos" Relationship="Self.FK__Productos__idTip__4F7CD00D" FromRole="TipoProductos" ToRole="Productos" />
   </EntityType>
+>>>>>>> Stashed changes
   <EntityType Name="Usuarios">
     <Key>
       <PropertyRef Name="idUsuario" />
@@ -103,7 +123,11 @@
     <Property Name="contrasenna" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="estado" Type="Boolean" Nullable="false" />
     <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+<<<<<<< Updated upstream
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__4D94879B" FromRole="Usuarios" ToRole="Roles" />
+=======
     <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__5070F446" FromRole="Usuarios" ToRole="Roles" />
+>>>>>>> Stashed changes
   </EntityType>
   <Association Name="FK__Adopcione__idAni__4BAC3F29">
     <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
@@ -129,7 +153,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+<<<<<<< Updated upstream
+  <Association Name="FK__DetalleFa__idFac__4AB81AF0">
+=======
   <Association Name="FK__DetalleFa__idFac__4CA06362">
+>>>>>>> Stashed changes
     <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
     <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -141,7 +169,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+<<<<<<< Updated upstream
+  <Association Name="FK__DetalleFa__idPro__4BAC3F29">
+=======
   <Association Name="FK__DetalleFa__idPro__4D94879B">
+>>>>>>> Stashed changes
     <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
     <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -153,6 +185,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+<<<<<<< Updated upstream
+  <Association Name="FK__Usuarios__idRol__4D94879B">
+=======
   <Association Name="FK__Productos__idTip__4F7CD00D">
     <End Role="TipoProductos" Type="Self.TipoProductos" Multiplicity="1" />
     <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
@@ -166,6 +201,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Usuarios__idRol__5070F446">
+>>>>>>> Stashed changes
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
     <ReferentialConstraint>
@@ -186,7 +222,6 @@
     <EntitySet Name="Productos" EntityType="Self.Productos" />
     <EntitySet Name="Roles" EntityType="Self.Roles" />
     <EntitySet Name="TipoAnimal" EntityType="Self.TipoAnimal" />
-    <EntitySet Name="TipoProductos" EntityType="Self.TipoProductos" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
     <AssociationSet Name="FK__Adopcione__idAni__4BAC3F29" Association="Self.FK__Adopcione__idAni__4BAC3F29">
       <End Role="Animales" EntitySet="Animales" />
@@ -196,6 +231,17 @@
       <End Role="TipoAnimal" EntitySet="TipoAnimal" />
       <End Role="Animales" EntitySet="Animales" />
     </AssociationSet>
+<<<<<<< Updated upstream
+    <AssociationSet Name="FK__DetalleFa__idFac__4AB81AF0" Association="Self.FK__DetalleFa__idFac__4AB81AF0">
+      <End Role="Factura" EntitySet="Factura" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleFa__idPro__4BAC3F29" Association="Self.FK__DetalleFa__idPro__4BAC3F29">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuarios__idRol__4D94879B" Association="Self.FK__Usuarios__idRol__4D94879B">
+=======
     <AssociationSet Name="FK__DetalleFa__idFac__4CA06362" Association="Self.FK__DetalleFa__idFac__4CA06362">
       <End Role="Factura" EntitySet="Factura" />
       <End Role="DetalleFactura" EntitySet="DetalleFactura" />
@@ -209,6 +255,7 @@
       <End Role="Productos" EntitySet="Productos" />
     </AssociationSet>
     <AssociationSet Name="FK__Usuarios__idRol__5070F446" Association="Self.FK__Usuarios__idRol__5070F446">
+>>>>>>> Stashed changes
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Usuarios" EntitySet="Usuarios" />
     </AssociationSet>
@@ -242,7 +289,6 @@
       <Parameter Name="precio" Mode="In" Type="Decimal" />
       <Parameter Name="descuento" Mode="In" Type="Int32" />
       <Parameter Name="imagen" Mode="In" Type="Binary" />
-      <Parameter Name="idTipoProducto" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="ValidarUsuario" ReturnType="Collection(ProyectoPAModel.ValidarUsuario_Result)">
       <Parameter Name="correoElectronico" Mode="In" Type="String" />
@@ -271,7 +317,6 @@
   <ComplexType Name="MostrarProductos_Result">
     <Property Type="Int32" Name="idProducto" Nullable="false" />
     <Property Type="String" Name="nombre" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="tipoProducto" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
     <Property Type="Int32" Name="cantidad" Nullable="false" />
     <Property Type="Decimal" Name="precio" Nullable="false" Precision="10" Scale="3" />

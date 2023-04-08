@@ -37,7 +37,7 @@ namespace TiendaMascotas.Controllers
         {
             try
             {
-                ViewBag.ListadoProductos = model.ConsultarProducto();
+                ViewBag.ListadoProductos = model.MostrarProductos();// antes era: ViewBag.ListadoProductos = model.ConsultarProducto();
                 return View();
             }
             catch (Exception ex)

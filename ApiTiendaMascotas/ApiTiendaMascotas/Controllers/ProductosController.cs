@@ -18,17 +18,17 @@ namespace ApiTiendaMascotas.Controllers
         [Route("api/MostrarProductos")]
         public List<ProductoEnt> MostrarProductos()
         {
-            var Productos = User.Identity.Name;
+            //var Productos = User.Identity.Name; //no se usa hasta el momento
             return model.MostrarProductos();
         }
-
+        /* //TIPO PRODUCTO (ELIMINADO)
         [HttpGet]
         [AllowAnonymous]
         [Route("api/ConsultarProductos")]
         public List<TipoProductoEnt> ConsultarProductos()
         {
             return model.ConsultarProductos();
-        }
+        }*/
 
         [HttpPost]
         [AllowAnonymous]

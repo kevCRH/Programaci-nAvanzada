@@ -25,7 +25,7 @@ namespace ApiTiendaMascotas.Models
                         {
                             idProducto = item.idProducto,
                             nombre = item.nombre,
-                            idTipoProducto = item.tipoProducto,
+                            //idTipoProducto = item.tipoProducto,
                             descripcion = item.descripcion,
                             cantidad = item.cantidad,
                             precio = item.precio,
@@ -38,6 +38,7 @@ namespace ApiTiendaMascotas.Models
             }
         }
 
+        /*//TIPO PRODUCTO (ELIMINADO)
         public List<TipoProductoEnt> ConsultarProductos()
         {
             using (var conexion = new ProyectoPAEntities())
@@ -59,14 +60,14 @@ namespace ApiTiendaMascotas.Models
                 }
                 return respuesta;
             }
-        }
+        }*/
 
 
         public int RegistrarProducto(ProductoEnt entidad)
         {
             using (var conexion = new ProyectoPAEntities())
             {
-                return conexion.RegistrarProducto(entidad.nombre, entidad.descripcion, entidad.cantidad, entidad.precio, entidad.descuento, entidad.imagen, entidad.idTipoProducto );
+                return conexion.RegistrarProducto(entidad.nombre, entidad.descripcion, entidad.cantidad, entidad.precio, entidad.descuento, entidad.imagen );
             }
         }
 

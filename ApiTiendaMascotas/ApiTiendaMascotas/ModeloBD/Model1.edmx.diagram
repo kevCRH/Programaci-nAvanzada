@@ -4,23 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b0e546aff6c14ba9b56af042b0b3fcce" Name="Diagram1">
+<<<<<<< Updated upstream
+      <Diagram DiagramId="859ad78b0d4a434bb90c69d1153493c4" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoPAModel.Adopciones" Width="1.5" PointX="7.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Animales" Width="1.5" PointX="5" PointY="5" IsExpanded="true" />
+=======
+      <Diagram DiagramId="29a40195652444068f889fb9452218ad" Name="Diagram1">
         <EntityTypeShape EntityType="ProyectoPAModel.Adopciones" Width="1.5" PointX="10.25" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoPAModel.Animales" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
+>>>>>>> Stashed changes
         <EntityTypeShape EntityType="ProyectoPAModel.Bitacoras" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.DetalleFactura" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Factura" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Productos" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Roles" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.TipoAnimal" Width="1.5" PointX="5.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.TipoProductos" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Usuarios" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.DetalleFactura" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Factura" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Productos" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Roles" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.TipoAnimal" Width="1.5" PointX="2.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Usuarios" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="ProyectoPAModel.FK__Adopcione__idAni__4BAC3F29" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoPAModel.FK__Animales__idTipo__49C3F6B7" ManuallyRouted="false" />
+<<<<<<< Updated upstream
+        <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idFac__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idPro__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__Usuarios__idRol__4D94879B" ManuallyRouted="false" />
+=======
         <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idFac__4CA06362" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idPro__4D94879B" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoPAModel.FK__Productos__idTip__4F7CD00D" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoPAModel.FK__Usuarios__idRol__5070F446" ManuallyRouted="false" />
+>>>>>>> Stashed changes
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

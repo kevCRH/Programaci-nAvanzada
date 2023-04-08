@@ -35,7 +35,6 @@ namespace ApiTiendaMascotas.ModeloBD
         public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<TipoAnimal> TipoAnimal { get; set; }
-        public virtual DbSet<TipoProductos> TipoProductos { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
     
         public virtual int AgregarRoll(string idRol, string rol)
@@ -121,7 +120,7 @@ namespace ApiTiendaMascotas.ModeloBD
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarAnimal", idTipoAnimalParameter, nombreParameter, descripcionParameter);
         }
     
-        public virtual int RegistrarProducto(string nombre, string descripcion, Nullable<int> cantidad, Nullable<decimal> precio, Nullable<int> descuento, byte[] imagen, string idTipoProducto)
+        public virtual int RegistrarProducto(string nombre, string descripcion, Nullable<int> cantidad, Nullable<decimal> precio, Nullable<int> descuento, byte[] imagen)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("nombre", nombre) :
@@ -147,11 +146,7 @@ namespace ApiTiendaMascotas.ModeloBD
                 new ObjectParameter("imagen", imagen) :
                 new ObjectParameter("imagen", typeof(byte[]));
     
-            var idTipoProductoParameter = idTipoProducto != null ?
-                new ObjectParameter("idTipoProducto", idTipoProducto) :
-                new ObjectParameter("idTipoProducto", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarProducto", nombreParameter, descripcionParameter, cantidadParameter, precioParameter, descuentoParameter, imagenParameter, idTipoProductoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarProducto", nombreParameter, descripcionParameter, cantidadParameter, precioParameter, descuentoParameter, imagenParameter);
         }
     
         public virtual ObjectResult<ValidarUsuario_Result> ValidarUsuario(string correoElectronico, string contrasenna)

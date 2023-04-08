@@ -28,6 +28,7 @@ namespace TiendaMascotas.Models
             }
         }
 
+        /*//TIPO PRODUCTO (ELIMINADO)
         public List<SelectListItem> ConsultarProducto()
         {
             using (var client = new HttpClient())
@@ -56,7 +57,7 @@ namespace TiendaMascotas.Models
 
                 return new List<SelectListItem>();
             }
-        }
+        }*/
 
         public int RegistrarProducto( ProductoEnt entidad)
         {
