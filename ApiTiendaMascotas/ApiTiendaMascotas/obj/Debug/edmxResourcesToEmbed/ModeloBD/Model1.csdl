@@ -5,7 +5,7 @@
       <PropertyRef Name="idAdopcion" />
     </Key>
     <Property Name="idAdopcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="correoElectronico" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="idAnimal" Type="Int32" Nullable="false" />
     <Property Name="fechaAdopcion" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="Animales" Relationship="Self.FK__Adopcione__idAni__4BAC3F29" FromRole="Adopciones" ToRole="Animales" />
@@ -216,6 +216,7 @@
       <Parameter Name="idRol" Mode="In" Type="String" />
       <Parameter Name="rol" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="MostrarAdopciones" ReturnType="Collection(ProyectoPAModel.MostrarAdopciones_Result)" />
     <FunctionImport Name="MostrarAnimales" ReturnType="Collection(ProyectoPAModel.MostrarAnimales_Result)" />
     <FunctionImport Name="MostrarProductos" ReturnType="Collection(ProyectoPAModel.MostrarProductos_Result)" />
     <FunctionImport Name="Registrar">
@@ -223,6 +224,11 @@
       <Parameter Name="nombre" Mode="In" Type="String" />
       <Parameter Name="correoElectronico" Mode="In" Type="String" />
       <Parameter Name="contrasenna" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="RegistrarAdopcion">
+      <Parameter Name="idAnimal" Mode="In" Type="Int32" />
+      <Parameter Name="cedula" Mode="In" Type="String" />
+      <Parameter Name="fechaAdopcion" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="RegistrarAnimal">
       <Parameter Name="idTipoAnimal" Mode="In" Type="String" />
@@ -243,6 +249,18 @@
       <Parameter Name="contrasenna" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="MostrarAdopciones_Result">
+    <Property Type="Int32" Name="idAdopcion" Nullable="false" />
+    <Property Type="String" Name="cedula" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="idAnimal" Nullable="false" />
+    <Property Type="DateTime" Name="fechaAdopcion" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="correoElectronico" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="rol" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="nombre_animal" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="tipoAnimal" Nullable="false" MaxLength="30" />
+  </ComplexType>
   <ComplexType Name="MostrarAnimales_Result">
     <Property Type="Int32" Name="idAnimal" Nullable="false" />
     <Property Type="String" Name="tipoAnimal" Nullable="false" MaxLength="30" />

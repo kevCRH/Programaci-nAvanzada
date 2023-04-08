@@ -207,6 +207,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AdopcionesController.cs" />
     <Compile Include="Controllers\AnimalesController.cs" />
     <Compile Include="Controllers\GatosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Controllers\PerrosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Entities\AdopcionEnt.cs" />
     <Compile Include="Entities\AnimalesEnt.cs" />
     <Compile Include="Entities\ContactenosEnt.cs" />
     <Compile Include="Entities\LogsEnt.cs" />
@@ -254,6 +256,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ModeloBD\MostrarAdopciones_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModeloBD\MostrarAnimales_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -278,6 +283,7 @@
     <Compile Include="ModeloBD\ValidarUsuario_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdopcionesModel.cs" />
     <Compile Include="Models\AnimalesModel.cs" />
     <Compile Include="Models\GatosModel.cs" />
     <Compile Include="Models\LogsModel.cs" />

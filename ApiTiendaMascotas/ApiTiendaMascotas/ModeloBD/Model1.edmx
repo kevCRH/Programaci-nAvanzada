@@ -10,7 +10,7 @@
             <PropertyRef Name="idAdopcion" />
           </Key>
           <Property Name="idAdopcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="correoElectronico" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="idAnimal" Type="int" Nullable="false" />
           <Property Name="fechaAdopcion" Type="date" Nullable="false" />
         </EntityType>
@@ -98,9 +98,6 @@
           <Property Name="estado" Type="bit" Nullable="false" />
           <Property Name="idRol" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Adopcione__corre__49C3F6B7' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Adopcione__corre__49C3F6B7" />-->
         <Association Name="FK__Adopcione__idAni__4BAC3F29">
           <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
           <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
@@ -176,10 +173,14 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Adopciones_Usuarios" />-->
         <Function Name="AgregarRoll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idRol" Type="varchar" Mode="In" />
           <Parameter Name="rol" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="MostrarAdopciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MostrarAnimales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MostrarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Registrar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -187,6 +188,11 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
           <Parameter Name="contrasenna" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="RegistrarAdopcion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idAnimal" Type="int" Mode="In" />
+          <Parameter Name="cedula" Type="varchar" Mode="In" />
+          <Parameter Name="fechaAdopcion" Type="date" Mode="In" />
         </Function>
         <Function Name="RegistrarAnimal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idTipoAnimal" Type="varchar" Mode="In" />
@@ -252,7 +258,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             <PropertyRef Name="idAdopcion" />
           </Key>
           <Property Name="idAdopcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="correoElectronico" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idAnimal" Type="Int32" Nullable="false" />
           <Property Name="fechaAdopcion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Animales" Relationship="Self.FK__Adopcione__idAni__4BAC3F29" FromRole="Adopciones" ToRole="Animales" />
@@ -463,6 +469,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             <Parameter Name="idRol" Mode="In" Type="String" />
             <Parameter Name="rol" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="MostrarAdopciones" ReturnType="Collection(ProyectoPAModel.MostrarAdopciones_Result)" />
           <FunctionImport Name="MostrarAnimales" ReturnType="Collection(ProyectoPAModel.MostrarAnimales_Result)" />
           <FunctionImport Name="MostrarProductos" ReturnType="Collection(ProyectoPAModel.MostrarProductos_Result)" />
           <FunctionImport Name="Registrar">
@@ -470,6 +477,11 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="correoElectronico" Mode="In" Type="String" />
             <Parameter Name="contrasenna" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RegistrarAdopcion">
+            <Parameter Name="idAnimal" Mode="In" Type="Int32" />
+            <Parameter Name="cedula" Mode="In" Type="String" />
+            <Parameter Name="fechaAdopcion" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="RegistrarAnimal">
             <Parameter Name="idTipoAnimal" Mode="In" Type="String" />
@@ -490,6 +502,18 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             <Parameter Name="contrasenna" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="MostrarAdopciones_Result">
+          <Property Type="Int32" Name="idAdopcion" Nullable="false" />
+          <Property Type="String" Name="cedula" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="idAnimal" Nullable="false" />
+          <Property Type="DateTime" Name="fechaAdopcion" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="correoElectronico" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="rol" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="nombre_animal" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="tipoAnimal" Nullable="false" MaxLength="30" />
+        </ComplexType>
         <ComplexType Name="MostrarAnimales_Result">
           <Property Type="Int32" Name="idAnimal" Nullable="false" />
           <Property Type="String" Name="tipoAnimal" Nullable="false" MaxLength="30" />
@@ -525,7 +549,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             <EntityTypeMapping TypeName="ProyectoPAModel.Adopciones">
               <MappingFragment StoreEntitySet="Adopciones">
                 <ScalarProperty Name="idAdopcion" ColumnName="idAdopcion" />
-                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="idAnimal" ColumnName="idAnimal" />
                 <ScalarProperty Name="fechaAdopcion" ColumnName="fechaAdopcion" />
               </MappingFragment>
@@ -625,6 +649,22 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="AgregarRoll" FunctionName="ProyectoPAModel.Store.AgregarRoll" />
+          <FunctionImportMapping FunctionImportName="MostrarAdopciones" FunctionName="ProyectoPAModel.Store.MostrarAdopciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarAdopciones_Result">
+                <ScalarProperty Name="idAdopcion" ColumnName="idAdopcion" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="idAnimal" ColumnName="idAnimal" />
+                <ScalarProperty Name="fechaAdopcion" ColumnName="fechaAdopcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="nombre_animal" ColumnName="nombre_animal" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="tipoAnimal" ColumnName="tipoAnimal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="MostrarAnimales" FunctionName="ProyectoPAModel.Store.MostrarAnimales">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarAnimales_Result">
@@ -651,6 +691,7 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Registrar" FunctionName="ProyectoPAModel.Store.Registrar" />
+          <FunctionImportMapping FunctionImportName="RegistrarAdopcion" FunctionName="ProyectoPAModel.Store.RegistrarAdopcion" />
           <FunctionImportMapping FunctionImportName="RegistrarAnimal" FunctionName="ProyectoPAModel.Store.RegistrarAnimal" />
           <FunctionImportMapping FunctionImportName="RegistrarProducto" FunctionName="ProyectoPAModel.Store.RegistrarProducto" />
           <FunctionImportMapping FunctionImportName="ValidarUsuario" FunctionName="ProyectoPAModel.Store.ValidarUsuario">

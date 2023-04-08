@@ -5,7 +5,7 @@
       <EntityTypeMapping TypeName="ProyectoPAModel.Adopciones">
         <MappingFragment StoreEntitySet="Adopciones">
           <ScalarProperty Name="idAdopcion" ColumnName="idAdopcion" />
-          <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
           <ScalarProperty Name="idAnimal" ColumnName="idAnimal" />
           <ScalarProperty Name="fechaAdopcion" ColumnName="fechaAdopcion" />
         </MappingFragment>
@@ -105,6 +105,22 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="AgregarRoll" FunctionName="ProyectoPAModel.Store.AgregarRoll" />
+    <FunctionImportMapping FunctionImportName="MostrarAdopciones" FunctionName="ProyectoPAModel.Store.MostrarAdopciones">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarAdopciones_Result">
+          <ScalarProperty Name="idAdopcion" ColumnName="idAdopcion" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="idAnimal" ColumnName="idAnimal" />
+          <ScalarProperty Name="fechaAdopcion" ColumnName="fechaAdopcion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+          <ScalarProperty Name="rol" ColumnName="rol" />
+          <ScalarProperty Name="nombre_animal" ColumnName="nombre_animal" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="tipoAnimal" ColumnName="tipoAnimal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="MostrarAnimales" FunctionName="ProyectoPAModel.Store.MostrarAnimales">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarAnimales_Result">
@@ -131,6 +147,7 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Registrar" FunctionName="ProyectoPAModel.Store.Registrar" />
+    <FunctionImportMapping FunctionImportName="RegistrarAdopcion" FunctionName="ProyectoPAModel.Store.RegistrarAdopcion" />
     <FunctionImportMapping FunctionImportName="RegistrarAnimal" FunctionName="ProyectoPAModel.Store.RegistrarAnimal" />
     <FunctionImportMapping FunctionImportName="RegistrarProducto" FunctionName="ProyectoPAModel.Store.RegistrarProducto" />
     <FunctionImportMapping FunctionImportName="ValidarUsuario" FunctionName="ProyectoPAModel.Store.ValidarUsuario">

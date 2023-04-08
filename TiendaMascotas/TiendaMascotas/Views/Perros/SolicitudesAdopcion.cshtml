@@ -1,0 +1,136 @@
+﻿@model IEnumerable<TiendaMascotas.Entities.AdopcionesEnt>
+
+@{
+    ViewBag.Title = "SolicitudesAdopcion";
+    Layout = "~/Views/Shared/LayoutProducts.cshtml";
+}
+
+<div class="top-header-area" id="sticker">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- menu start -->
+                    <nav class="main-menu">
+                        <ul>
+                            <li class="current-list-item">
+                                <a href="@Url.Action("Index", "Home")">Home</a>
+                            </li>
+                            <li>
+                                @if (Session["NombreUsuario"] != null)
+                                {
+                                    <p style="color:#FFFFFF">Usuario: @Session["NombreUsuario"].ToString()</p>
+                                }
+                            </li>
+                            <li>
+                                <div class="header-icons">
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                    <div class="mobile-menu"></div>
+                    <!-- menu end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+<!-- search area -->
+<div class="search-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="close-btn"><i class="fas fa-window-close"></i></span>
+                <div class="search-bar">
+                    <div class="search-bar-tablecell">
+                        <h3>Buscar:</h3>
+                        <input type="text" placeholder="Escriba palabras claves">
+                        <button type="submit">Buscar <i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end search arewa -->
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Adopte un lindo</p>
+                    <h1>Perrito</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- end breadcrumb section -->
+<!-- products -->
+<div class="product-section mt-100 mb-150">
+    <li class="col-lg-12 col-md-6 text-center strawberry">
+        <h3>Registre un animal</h3>
+        <a href="@Url.Action("RegistrarAnimal", "Perros")">¡Haz click aquí!</a>
+    </li>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="col-lg-12 col-md-6 text-center strawberry">
+        Lista de perritos en adopcion
+    </h1>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row product-lists">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 text-center strawberry">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="cart.html"><img src="~/assets/imgperros/Ruffos.jpg" alt=""></a>
+                        </div>
+                        <h1>Adoptado</h1>
+                        <h5>@item.nombreAnimal</h5>
+                        <h5>Tipo de animal: @item.tipoAnimal</h5>
+                        <h5>Descripcion: @item.descripcion</h5>
+                        <br />
+                        <h1>Usuario</h1>
+                        <h5>@item.nombre</h5>
+                        <h5>Cedula: @item.cedula </h5>
+                        <h5>Correo: @item.correo</h5>
+                        <h5>Rol: @item.rol</h5>
+                        <h2>Fecha adopcion</h2>
+                        <h5>Fecha: @item.fecha</h5>
+                        <br />
+                        <a href="#" class="cart-btn openModal" data-toggle="modal" data-target="#exampleModalCenter"
+                           data-backdrop="static" data-keyboard="false" data-id=@*@item.idAnimal*@>Aceptar adopcion</a>
+
+                    </div>
+                </div>
+            }
+
+
+            @* Dejo esto comentado por si lo llegamos a necesitar *@
+            @*<div class="col-lg-4 col-md-6 text-center strawberry">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
+                </div>
+                <h3>Strawberry</h3>
+                <p class="product-price"><span>Per Kg</span> 80$ </p>
+                <a class="cart-btn" href="@Url.Action("FormPerro", "Perros")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
+            </div>
+        </div>*@
+
+        </div>
+    </div>
+</div>
+

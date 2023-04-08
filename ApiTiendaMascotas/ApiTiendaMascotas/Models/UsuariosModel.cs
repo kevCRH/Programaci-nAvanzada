@@ -29,10 +29,10 @@ namespace ApiTiendaMascotas.Models
                 UsuariosEnt respuesta = new UsuariosEnt();
                 respuesta.idUsuario = datosBD.idUsuario;
                 respuesta.Nombre= datosBD.nombre;
+                respuesta.Cedula = datosBD.cedula;
                 respuesta.Token = token.GenerateTokenJwt(datosBD.correoElectronico);
                 respuesta.Estado = datosBD.estado;
-
-
+               
                 return respuesta;
             }
         }

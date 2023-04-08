@@ -164,6 +164,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerrosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Entities\AdopcionesEnt.cs" />
     <Compile Include="Entities\AnimalesEnt.cs" />
     <Compile Include="Entities\ContactenosEnt.cs" />
     <Compile Include="Entities\LogsEnt.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdopcionesModel.cs" />
     <Compile Include="Models\AnimalesModel.cs" />
     <Compile Include="Models\LogsModel.cs" />
     <Compile Include="Models\ProductosModel.cs" />
@@ -382,7 +384,6 @@
     <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Home\RecuperarContrasenna.cshtml" />
-    <Content Include="Views\Perros\AdopcionPerros.cshtml" />
     <Content Include="Views\Shared\LayoutProducts.cshtml" />
     <Content Include="Views\Gatos\AdopcionGatos.cshtml" />
     <Content Include="Views\Productos\ProductosVenta.cshtml" />
@@ -394,9 +395,12 @@
     <Content Include="Views\Productos\RegistrarProducto.cshtml" />
     <Content Include="Views\Perros\ActualizarAnimales.cshtml" />
     <Content Include="Views\Gatos\ActualizarAnimales.cshtml" />
+    <Content Include="Views\Perros\AdopcionPerros.cshtml" />
+    <Content Include="Views\Perros\SolicitudesAdopcion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Adopciones\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

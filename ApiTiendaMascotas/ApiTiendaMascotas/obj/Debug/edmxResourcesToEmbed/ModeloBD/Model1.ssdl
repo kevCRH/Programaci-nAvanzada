@@ -5,7 +5,7 @@
       <PropertyRef Name="idAdopcion" />
     </Key>
     <Property Name="idAdopcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="correoElectronico" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="idAnimal" Type="int" Nullable="false" />
     <Property Name="fechaAdopcion" Type="date" Nullable="false" />
   </EntityType>
@@ -93,9 +93,6 @@
     <Property Name="estado" Type="bit" Nullable="false" />
     <Property Name="idRol" Type="varchar" MaxLength="30" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Adopcione__corre__49C3F6B7' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Adopcione__corre__49C3F6B7" />-->
   <Association Name="FK__Adopcione__idAni__4BAC3F29">
     <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
     <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
@@ -171,10 +168,14 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Adopciones_Usuarios" />-->
   <Function Name="AgregarRoll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idRol" Type="varchar" Mode="In" />
     <Parameter Name="rol" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="MostrarAdopciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="MostrarAnimales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="MostrarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Registrar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -182,6 +183,11 @@ warning 6035: The relationship 'FK__Factura__cedula__4E88ABD4' has columns that 
     <Parameter Name="nombre" Type="varchar" Mode="In" />
     <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
     <Parameter Name="contrasenna" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="RegistrarAdopcion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idAnimal" Type="int" Mode="In" />
+    <Parameter Name="cedula" Type="varchar" Mode="In" />
+    <Parameter Name="fechaAdopcion" Type="date" Mode="In" />
   </Function>
   <Function Name="RegistrarAnimal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idTipoAnimal" Type="varchar" Mode="In" />

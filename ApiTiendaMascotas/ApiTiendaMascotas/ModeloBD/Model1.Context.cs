@@ -51,6 +51,11 @@ namespace ApiTiendaMascotas.ModeloBD
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregarRoll", idRolParameter, rolParameter);
         }
     
+        public virtual ObjectResult<MostrarAdopciones_Result> MostrarAdopciones()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarAdopciones_Result>("MostrarAdopciones");
+        }
+    
         public virtual ObjectResult<MostrarAnimales_Result> MostrarAnimales()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarAnimales_Result>("MostrarAnimales");
@@ -80,6 +85,23 @@ namespace ApiTiendaMascotas.ModeloBD
                 new ObjectParameter("contrasenna", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Registrar", cedulaParameter, nombreParameter, correoElectronicoParameter, contrasennaParameter);
+        }
+    
+        public virtual int RegistrarAdopcion(Nullable<int> idAnimal, string cedula, Nullable<System.DateTime> fechaAdopcion)
+        {
+            var idAnimalParameter = idAnimal.HasValue ?
+                new ObjectParameter("idAnimal", idAnimal) :
+                new ObjectParameter("idAnimal", typeof(int));
+    
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("cedula", cedula) :
+                new ObjectParameter("cedula", typeof(string));
+    
+            var fechaAdopcionParameter = fechaAdopcion.HasValue ?
+                new ObjectParameter("fechaAdopcion", fechaAdopcion) :
+                new ObjectParameter("fechaAdopcion", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarAdopcion", idAnimalParameter, cedulaParameter, fechaAdopcionParameter);
         }
     
         public virtual int RegistrarAnimal(string idTipoAnimal, string nombre, string descripcion)
