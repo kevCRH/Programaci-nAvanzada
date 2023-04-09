@@ -38,5 +38,23 @@ namespace ApiTiendaMascotas.Controllers
             return model.RegistrarProducto(entidad);
         }
 
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("api/ConsultarProducto")]
+        public ProductoEnt ConsultarProducto(long q)
+        {
+            return model.ConsultarProducto(q);
+        }
+
+        [HttpPut]
+        [AllowAnonymous]
+        [Route("api/ActualizarProducto")]
+        public void ActualizarProducto(ProductoEnt entidad)
+        {
+            model.ActualizarProducto(entidad);
+        }
+
+
     }
 }

@@ -74,6 +74,31 @@ namespace TiendaMascotas.Models
             }
         }
 
+        public ProductoEnt ConsultarProducto(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = "https://localhost:44331/api/ConsultarProducto?q=" + q;
+
+                HttpResponseMessage respuesta = client.GetAsync(url).GetAwaiter().GetResult();
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<ProductoEnt>().Result;
+
+                return new ProductoEnt();
+            }
+        }
+
+        public void ActualizarProducto(ProductoEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                JsonContent body = JsonContent.Create(entidad);
+                string url = "https://localhost:44331/api/ActualizarProducto";
+                HttpResponseMessage respuesta = client.PutAsync(url, body).GetAwaiter().GetResult();
+            }
+        }
+
 
 
     }

@@ -89,6 +89,41 @@ namespace TiendaMascotas.Controllers
             }
         }
 
+  
+        [HttpGet]
+        //[FiltroSesion]
+        public ActionResult ActualizarProducto(long q)
+        {
+            try
+            {
+                var resultado = model.ConsultarProducto(q);
+                ViewBag.ListadoAnimales = model.MostrarProductos();
+                return View(resultado);
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        //[FiltroSesion]
+        public ActionResult ActualizarProducto(ProductoEnt entidad)
+        {
+            try
+            {
+                model.ActualizarProducto(entidad);
+                return RedirectToAction("ProductosVenta", "Productos");
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return View();
+            }
+        }
+
+
         //Metodo registrar bitacora
         public void RegistrarLog(Exception ex)
         {
@@ -98,7 +133,6 @@ namespace TiendaMascotas.Controllers
             log.mensajeError = ex.Message;
             LogsModel.RegistrarBitacora(log);
         }
-
 
     }
 }

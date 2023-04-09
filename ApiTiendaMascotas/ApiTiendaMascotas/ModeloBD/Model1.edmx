@@ -58,11 +58,11 @@
           </Key>
           <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
           <Property Name="cantidad" Type="int" Nullable="false" />
-          <Property Name="precio" Type="numeric" Precision="10" Scale="3" Nullable="false" />
-          <Property Name="descuento" Type="int" Nullable="false" />
-          <Property Name="imagen" Type="varbinary(max)" Nullable="false" />
+          <Property Name="precio" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="descuento" Type="int" />
+          <Property Name="imagen" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -114,7 +114,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleFa__idFac__4AB81AF0">
+        <Association Name="FK__DetalleFa__idFac__5DCAEF64">
           <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
           <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -126,7 +126,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleFa__idPro__4BAC3F29">
+        <Association Name="FK__DetalleFa__idPro__5EBF139D">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -138,10 +138,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Factura__cedula__4CA06362' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Factura__cedula__4CA06362" />-->
-        <Association Name="FK__Usuarios__idRol__4D94879B">
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK__Factura__cedula__5FB337D6' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK__Factura__cedula__5FB337D6" />-->
+        <Association Name="FK__Usuarios__idRol__60A75C0F">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -153,8 +153,8 @@ warning 6035: The relationship 'FK__Factura__cedula__4CA06362' has columns that 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
         <Association Name="FK_Adopciones_Usuarios" />-->
         <Function Name="AgregarRoll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idRol" Type="varchar" Mode="In" />
@@ -209,15 +209,15 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             <End Role="TipoAnimal" EntitySet="TipoAnimal" />
             <End Role="Animales" EntitySet="Animales" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__idFac__4AB81AF0" Association="Self.FK__DetalleFa__idFac__4AB81AF0">
+          <AssociationSet Name="FK__DetalleFa__idFac__5DCAEF64" Association="Self.FK__DetalleFa__idFac__5DCAEF64">
             <End Role="Factura" EntitySet="Factura" />
             <End Role="DetalleFactura" EntitySet="DetalleFactura" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__idPro__4BAC3F29" Association="Self.FK__DetalleFa__idPro__4BAC3F29">
+          <AssociationSet Name="FK__DetalleFa__idPro__5EBF139D" Association="Self.FK__DetalleFa__idPro__5EBF139D">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="DetalleFactura" EntitySet="DetalleFactura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__idRol__4D94879B" Association="Self.FK__Usuarios__idRol__4D94879B">
+          <AssociationSet Name="FK__Usuarios__idRol__60A75C0F" Association="Self.FK__Usuarios__idRol__60A75C0F">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -267,8 +267,8 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Property Name="idProducto" Type="Int32" Nullable="false" />
           <Property Name="cantidad" Type="Int32" Nullable="false" />
           <Property Name="monto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Factura" Relationship="Self.FK__DetalleFa__idFac__4AB81AF0" FromRole="DetalleFactura" ToRole="Factura" />
-          <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleFa__idPro__4BAC3F29" FromRole="DetalleFactura" ToRole="Productos" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK__DetalleFa__idFac__5DCAEF64" FromRole="DetalleFactura" ToRole="Factura" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleFa__idPro__5EBF139D" FromRole="DetalleFactura" ToRole="Productos" />
         </EntityType>
         <EntityType Name="Factura">
           <Key>
@@ -278,7 +278,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="terminos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idFac__4AB81AF0" FromRole="Factura" ToRole="DetalleFactura" />
+          <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idFac__5DCAEF64" FromRole="Factura" ToRole="DetalleFactura" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
@@ -286,12 +286,12 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           </Key>
           <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="cantidad" Type="Int32" Nullable="false" />
-          <Property Name="precio" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
-          <Property Name="descuento" Type="Int32" Nullable="false" />
-          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idPro__4BAC3F29" FromRole="Productos" ToRole="DetalleFactura" />
+          <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="descuento" Type="Int32" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idPro__5EBF139D" FromRole="Productos" ToRole="DetalleFactura" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -299,7 +299,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           </Key>
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__4D94879B" FromRole="Roles" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__60A75C0F" FromRole="Roles" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="TipoAnimal">
           <Key>
@@ -320,7 +320,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Property Name="contrasenna" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__4D94879B" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__60A75C0F" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
         <Association Name="FK__Adopcione__idAni__4BAC3F29">
           <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
@@ -346,7 +346,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleFa__idFac__4AB81AF0">
+        <Association Name="FK__DetalleFa__idFac__5DCAEF64">
           <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
           <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -358,7 +358,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleFa__idPro__4BAC3F29">
+        <Association Name="FK__DetalleFa__idPro__5EBF139D">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -370,7 +370,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__idRol__4D94879B">
+        <Association Name="FK__Usuarios__idRol__60A75C0F">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -400,15 +400,15 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             <End Role="TipoAnimal" EntitySet="TipoAnimal" />
             <End Role="Animales" EntitySet="Animales" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__idFac__4AB81AF0" Association="Self.FK__DetalleFa__idFac__4AB81AF0">
+          <AssociationSet Name="FK__DetalleFa__idFac__5DCAEF64" Association="Self.FK__DetalleFa__idFac__5DCAEF64">
             <End Role="Factura" EntitySet="Factura" />
             <End Role="DetalleFactura" EntitySet="DetalleFactura" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__idPro__4BAC3F29" Association="Self.FK__DetalleFa__idPro__4BAC3F29">
+          <AssociationSet Name="FK__DetalleFa__idPro__5EBF139D" Association="Self.FK__DetalleFa__idPro__5EBF139D">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="DetalleFactura" EntitySet="DetalleFactura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__idRol__4D94879B" Association="Self.FK__Usuarios__idRol__4D94879B">
+          <AssociationSet Name="FK__Usuarios__idRol__60A75C0F" Association="Self.FK__Usuarios__idRol__60A75C0F">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -470,11 +470,11 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
         <ComplexType Name="MostrarProductos_Result">
           <Property Type="Int32" Name="idProducto" Nullable="false" />
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="cantidad" Nullable="false" />
-          <Property Type="Decimal" Name="precio" Nullable="false" Precision="10" Scale="3" />
-          <Property Type="Int32" Name="descuento" Nullable="false" />
-          <Property Type="Binary" Name="imagen" Nullable="false" />
+          <Property Type="Decimal" Name="precio" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="descuento" Nullable="true" />
+          <Property Type="Binary" Name="imagen" Nullable="true" />
         </ComplexType>
         <ComplexType Name="ValidarUsuario_Result">
           <Property Type="Int32" Name="idUsuario" Nullable="false" />
@@ -658,7 +658,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

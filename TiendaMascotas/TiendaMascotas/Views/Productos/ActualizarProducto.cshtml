@@ -1,8 +1,9 @@
-﻿@model TiendaMascotas.Entities.AnimalesEnt
+﻿@model TiendaMascotas.Entities.ProductoEnt
 @{
-    ViewBag.Title = "ActualizarAnimales";
+    ViewBag.Title = "ActualizarProducto";
     Layout = "~/Views/Shared/LayoutProducts.cshtml";
 }
+
 
 <div class="top-header-area" id="sticker">
     <div class="container">
@@ -35,8 +36,8 @@
         </div>
     </div>
 </div>
-<!-- end header -->
-<!-- search area -->
+
+
 <div class="search-area">
     <div class="container">
         <div class="row">
@@ -53,74 +54,107 @@
         </div>
     </div>
 </div>
-<!-- end search arewa -->
-<!-- breadcrumb-section -->
+
+
 <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
                     <p>Actualizar</p>
-                    <h1>perritos</h1>
+                    <h1>productos</h1>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- end breadcrumb section -->
-<!-- products -->
+
+
 <div class="product-section mt-100 mb-150">
     <div class="container">
 
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
 
-                <h2>Ingrese los datos nuevos del perro que desea actualizar</h2>
+                <h2>Ingrese los datos nuevos que desea actualizar</h2>
                 <br>
                 <br>
 
-                @using (Html.BeginForm("ActualizarAnimales", "Perros", FormMethod.Post, new { @class = "pt-3" }))
+                @using (Html.BeginForm("ActualizarProducto", "Productos", FormMethod.Post, new { @class = "pt-3" }))
                 {
 
-                    @Html.HiddenFor(Model => Model.idAnimal)
+                    @Html.HiddenFor(Model => Model.idProducto)
 
                     <!-- corregir diseño inputs, seguir trabajando en crud-->
                     <div class="form-group col-lg-8 offset-lg-2 text-center">
-                        @Html.TextBoxFor(Model => Model.Nombre, new
-                        {
-                           @class = "form-control form-control-lg",
-                           @placeholder = "Nombre del animal",
-                           @autocomplete = "Off",
-                           @required = true
-                        })
+                        @Html.TextBoxFor(Model => Model.nombre, new
+                   {
+                       @class = "form-control form-control-lg",
+                       @placeholder = "Nombre del producto",
+                       @autocomplete = "Off",
+                       @required = true
+                   })
                     </div>
+
                     <br>
                     <div class="form-group col-lg-8 offset-lg-2 text-center">
-                        @Html.DropDownListFor(Model => Model.tipoAnimal, ViewBag.ListadoAnimales as List<SelectListItem>, new
-                        {
-                            @class = "form-control form-control-lg",
-                            @placeholder = "Selecciona el tipo de animal",
-                            required = true
-                        })
-
-                        @Html.TextBoxFor(Model => Model.tipoAnimal, new
-                            {
-                                @placeholder = "Ingrese el tipo de animal",
-                                @autocomplete = "Off",
-                                @required = true
-                            })
-
+                        @Html.TextBoxFor(Model => Model.descripcion, new
+                   {
+                       @class = "form-control form-control-lg",
+                       @placeholder = "Descripcion",
+                       @autocomplete = "Off",
+                       @required = true
+                   })
                     </div>
+
                     <br>
                     <div class="form-group col-lg-8 offset-lg-2 text-center">
-                        @Html.TextBoxFor(Model => Model.Descripcion, new
-                        {
-                           @class = "form-control form-control-lg",
-                           @placeholder = "Descripcion",
-                           @autocomplete = "Off",
-                           @required = true
-                        })
+                        @Html.TextBoxFor(Model => Model.cantidad, new
+                   {
+                       @class = "form-control form-control-lg",
+                       @placeholder = "Cantidad",
+                       @autocomplete = "Off",
+                       @required = true
+                   })
                     </div>
+
+                    <br>
+                    <div class="form-group col-lg-8 offset-lg-2 text-center">
+                        @Html.TextBoxFor(Model => Model.precio, new
+                   {
+                       @class = "form-control form-control-lg",
+                       @placeholder = "Precio",
+                       @autocomplete = "Off",
+                       @required = true
+                   })
+                    </div>
+
+                    <br>
+                    /*<div class="form-group col-lg-8 offset-lg-2 text-center">
+                        @Html.LabelFor(Model => Model.imagen, new
+                        {
+                           @class = "control-label",
+                           @placeholder = "Imagen del producto"
+                        })
+                        <div>
+                            <input type="file" id="imagen1" name="imagen1" class="form-control form-control-lg" accept=".jpg,.jpeg,.png,.gif">
+                        </div>
+                    </div>*/
+                    <br>
+
+                    <br>
+                    <div class="form-group col-lg-8 offset-lg-2 text-center">
+                        @Html.TextBoxFor(Model => Model.descuento, new
+                   {
+                       @class = "form-control form-control-lg",
+                       @placeholder = "Descuento",
+                       @autocomplete = "Off",
+                       @required = true
+                   })
+                    </div>
+
+
+
                     <br>
                     <div class="mt-3">
 
@@ -140,4 +174,5 @@
 
     </div>
 </div>
+
 
