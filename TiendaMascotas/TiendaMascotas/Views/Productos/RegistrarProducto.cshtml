@@ -85,8 +85,8 @@
                     <h2>Ingrese los datos del producto que desea registrar</h2>
                     <br>
                     <br>
-
-                    @using (Html.BeginForm("RegistrarProducto", "Productos", FormMethod.Post, new { @class = "pt-3" }))
+                    @*new { @class = "pt-3" }*@
+                    @using (Html.BeginForm("RegistrarProducto", "Productos", FormMethod.Post, new { enctype="multipart/form-data"} ))
                     {
 
                         <div class="form-group col-lg-8 offset-lg-2 text-center">
@@ -129,15 +129,16 @@
                             })
                         </div>
                         <br>
-                        @*<div class="form-group col-lg-8 offset-lg-2 text-center">
-                            @Html.TextBoxFor(Model => Model.idTipoProducto, new
+                        <div class="form-group col-lg-8 offset-lg-2 text-center">
+                            @Html.LabelFor(Model => Model.imagen, new
                             {
-                               @class = "form-control form-control-lg",
-                               @placeholder = "Tipo de producto",
-                               @autocomplete = "Off",
-                               @required = true
+                               @class = "control-label",
+                               @placeholder = "Imagen del producto"
                             })
-                        </div>*@
+                            <div>
+                                <input type="file" id="imagen1" name="imagen1" class="form-control form-control-lg" accept=".jpg,.jpeg,.png,.gif">
+                            </div>
+                        </div>
                         <br>
                         <div class="form-group col-lg-8 offset-lg-2 text-center">
                             @Html.TextBoxFor(Model => Model.descuento, new
@@ -147,21 +148,21 @@
                                @autocomplete = "Off",
                                @required = true
                             })
-                            </div>
-                            
-                            <div class="mt-3">
+                        </div>
 
-                                <br>
-                                <br>
-                                <div class="row">
-                                    <div class="col-lg-8 offset-lg-2 text-center">
-                                        <input type="submit" id="btnRegistrar" value="Registrar" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
-                                    </div>
+                        <div class="mt-3">
+
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-8 offset-lg-2 text-center">
+                                    <input type="submit" id="btnRegistrar" value="Registrar" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
                                 </div>
-
                             </div>
 
-                        }
+                        </div>
+
+                    }
                 </div>
             </div>
 

@@ -49,10 +49,13 @@ namespace TiendaMascotas.Controllers
 
         [HttpPost]
         //[FiltroSesion]
-        public ActionResult RegistrarProducto(ProductoEnt entidad)
+        public ActionResult RegistrarProducto([Bind(Include = "nombre, descripcion,cantidad,precio,descuento")] ProductoEnt entidad, HttpPostedFileBase imagen1)
         {
             try
             {
+                entidad.imagen = new byte[imagen1.ContentLength];
+                imagen1.InputStream.Read(entidad.imagen, 0 , imagen1.ContentLength);
+
                 if (model.RegistrarProducto(entidad) > 0)
                 {
                     var resultado = model.MostrarProductos();

@@ -91,11 +91,11 @@ GO
 CREATE TABLE [dbo].[Productos](
 	[idProducto] [int] IDENTITY(1,1) NOT NULL,
 	[nombre] [varchar](30) NOT NULL,
-	[descripcion] [varchar](100) NOT NULL,
+	[descripcion] [varchar](100) NULL,
 	[cantidad] [int] NOT NULL,
 	[precio] [numeric](10, 2) NOT NULL,
-	[descuento] [int] NOT NULL,
-	[imagen] [varbinary](max) NULL,
+	[descuento] [int] NULL,
+	[imagen] varbinary (MAX) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[idProducto] ASC

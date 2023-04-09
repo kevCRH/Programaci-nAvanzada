@@ -67,7 +67,7 @@ namespace ApiTiendaMascotas.Models
         {
             using (var conexion = new ProyectoPAEntities())
             {
-                return conexion.RegistrarProducto(entidad.nombre, entidad.descripcion, entidad.cantidad, entidad.precio, entidad.descuento, entidad.imagen );
+                return conexion.RegistrarProducto(entidad.nombre, entidad.descripcion, entidad.cantidad, entidad.precio, entidad.descuento, entidad.imagen);
             }
         }
 

@@ -83,11 +83,16 @@
 
             @foreach (var item in Model)
             {
-               
+
                     <div class="col-lg-4 col-md-6 text-center strawberry">
                         <div class="single-product-item">
                             <div class="product-image">
-                                <a href="cart.html"><img src="~/assets/imgperros/Ruffos.jpg" alt=""></a>
+                                @{ 
+                                    var base64 = Convert.ToBase64String(item.imagen);
+                                    var imagensrc = string.Format("data:image/gif;base64,{0}", base64);
+                                }
+                                @*<a href="cart.html"><img src="~/assets/imgperros/Ruffos.jpg" alt=""></a>*@
+                                <img src="@imagensrc" style="max-height: 1200px; max-width: 900px"/>
                             </div>
                             <h1>@item.nombre</h1>
                             <h5>Descripcion: @item.descripcion</h5>
