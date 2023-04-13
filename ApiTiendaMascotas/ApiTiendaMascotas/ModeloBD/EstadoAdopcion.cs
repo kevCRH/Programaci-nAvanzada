@@ -12,12 +12,9 @@ namespace ApiTiendaMascotas.ModeloBD
     using System;
     using System.Collections.Generic;
     
-    public partial class Adopciones
+    public partial class EstadoAdopcion
     {
-        public int idAdopcion { get; set; }
-        public string cedula { get; set; }
-        public int idAnimal { get; set; }
-        public System.DateTime fechaAdopcion { get; set; }
-        public int estadoAdopcion { get; set; }
+        public int idEstadoAdopcion { get; set; }
+        public string estadoAdopcion1 { get; set; }
     }
 }

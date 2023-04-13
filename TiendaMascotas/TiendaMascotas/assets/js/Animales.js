@@ -15,7 +15,14 @@ function CambiarEstadoAnimal() {
             "id": id
         },
         success: function (res) {
-            window.location.href = "/Perros/AdopcionPerros"
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: '¡El cambio de estado ha sido efectuado!',
+                showConfirmButton: false
+            }).then(function () {
+                window.location.href = "/Perros/AdopcionPerros";
+            });
         }
     });
 }
@@ -37,13 +44,17 @@ function CambiarEstadoAnimal2() {
     });
 }
 
-$(document).on("click", "#btnSolicitudAdopcion", function () {
+$(document).on("click", ".openModal2", function () {
     var idAnimal = $(this).data('idanimal');
     var cedula = $(this).data('cedula');
-    SolicitudAdopcion(idAnimal, cedula);
+    $("#idModalHidden2").val(idAnimal);
+    $("#idModalHidden3").val(cedula);
 });
 
-function SolicitudAdopcion(IdAnimal, Cedula) {
+function SolicitudAdopcion() {
+
+    let IdAnimal = $("#idModalHidden2").val();
+    let Cedula = $("#idModalHidden3").val();
 
     $.ajax({
         type: "POST",
@@ -59,14 +70,19 @@ function SolicitudAdopcion(IdAnimal, Cedula) {
                 position: 'top-center',
                 icon: 'success',
                 title: '¡Su solicitud de adopción, ha sido enviada!',
-                //body: Se le enviara un correo si su adopcion ha sido aceptada.
                 showConfirmButton: false,
-                timer: 25000,
-                //onClose: RecargarPantalla()
+                willClose: function () {
+                    RecargarPantalla();
+                    },
             });
-            //window.location.href = "/Home/IniciarSesion";
+            
         }
     });
+
+    function RecargarPantalla()
+    {
+        window.location.href = "/Perros/AdopcionPerros";
+    }
 
 }
 

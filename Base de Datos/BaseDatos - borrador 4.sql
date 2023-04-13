@@ -384,3 +384,5 @@ END
 GO
 
 
+EXEC AgregarRoll '1', 'Usuario'
+EXEC AgregarRoll '2', 'Administrador'

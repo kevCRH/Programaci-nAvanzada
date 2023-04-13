@@ -237,6 +237,9 @@
     <Compile Include="ModeloBD\DetalleFactura.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModeloBD\EstadoAdopcion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModeloBD\Factura.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

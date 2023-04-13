@@ -16,7 +16,7 @@ namespace ApiTiendaMascotas.Models
         {
             using (var conexion = new ProyectoPAEntities())
             {   
-                return conexion.RegistrarAdopcion(entidad.idAnimal,entidad.cedula, DateTime.Now);
+                return conexion.RegistrarAdopcion(entidad.idAnimal,entidad.cedula, DateTime.Now,3);
             }
         }
 
@@ -33,6 +33,7 @@ namespace ApiTiendaMascotas.Models
                     {
                         respuesta.Add(new AdopcionesEnt()
                         {
+                           idAdopcion = item.idAdopcion,
                            cedula = item.cedula,
                            nombre = item.nombre,
                            correo = item.correoElectronico,
@@ -40,11 +41,31 @@ namespace ApiTiendaMascotas.Models
                            rol = item.rol,
                            nombreAnimal = item.nombre_animal,
                            descripcion = item.descripcion,
-                           tipoAnimal = item.tipoAnimal
+                           tipoAnimal = item.tipoAnimal,
+                           estadoAdopcion = item.estadoAdopcion,
                         });
                     }
                 }
                 return respuesta;
+            }
+        }
+
+        public void CambiarEstadoAdopcion(int q, int e)
+        {
+            using (var conexion = new ProyectoPAEntities())
+            {
+
+                if (e == 1)
+                {
+                    //metodo enviar correo si fue aceptada la donacion
+                    conexion.CambiarEstadoAdopcion(q, e);
+                }
+                else if (e == 2) 
+                {
+                    //metodo enviar correo si fue denegada la donacion
+                    conexion.CambiarEstadoAdopcion(q, e);
+                }
+
             }
         }
 

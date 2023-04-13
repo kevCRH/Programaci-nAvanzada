@@ -150,6 +150,16 @@ namespace TiendaMascotas.Controllers
             }
         }
 
+        [HttpPost]
+        //[FiltroSesion]
+        public ActionResult CambiarEstadoAdopcion(int idAdopcion, int id)
+        {
+
+            adopcionesModel.CambiarEstadoAdopcion(idAdopcion,id);
+            return Json("Ok", JsonRequestBehavior.AllowGet);
+        }
+
+
         //Metodo registrar bitacora
         public void RegistrarLog(Exception ex)
         {

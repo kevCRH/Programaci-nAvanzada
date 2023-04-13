@@ -8,6 +8,7 @@
           <ScalarProperty Name="cedula" ColumnName="cedula" />
           <ScalarProperty Name="idAnimal" ColumnName="idAnimal" />
           <ScalarProperty Name="fechaAdopcion" ColumnName="fechaAdopcion" />
+          <ScalarProperty Name="estadoAdopcion" ColumnName="estadoAdopcion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -40,6 +41,14 @@
           <ScalarProperty Name="idProducto" ColumnName="idProducto" />
           <ScalarProperty Name="cantidad" ColumnName="cantidad" />
           <ScalarProperty Name="monto" ColumnName="monto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstadoAdopcion">
+      <EntityTypeMapping TypeName="ProyectoPAModel.EstadoAdopcion">
+        <MappingFragment StoreEntitySet="EstadoAdopcion">
+          <ScalarProperty Name="idEstadoAdopcion" ColumnName="idEstadoAdopcion" />
+          <ScalarProperty Name="estadoAdopcion1" ColumnName="estadoAdopcion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -96,6 +105,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="AgregarRoll" FunctionName="ProyectoPAModel.Store.AgregarRoll" />
+    <FunctionImportMapping FunctionImportName="CambiarEstadoAdopcion" FunctionName="ProyectoPAModel.Store.CambiarEstadoAdopcion" />
     <FunctionImportMapping FunctionImportName="MostrarAdopciones" FunctionName="ProyectoPAModel.Store.MostrarAdopciones">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarAdopciones_Result">
@@ -109,6 +119,7 @@
           <ScalarProperty Name="nombre_animal" ColumnName="nombre_animal" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="tipoAnimal" ColumnName="tipoAnimal" />
+          <ScalarProperty Name="estadoAdopcion" ColumnName="estadoAdopcion" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

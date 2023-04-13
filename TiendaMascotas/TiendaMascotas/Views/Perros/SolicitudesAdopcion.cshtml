@@ -97,6 +97,7 @@
                         <div class="product-image">
                             <a href="cart.html"><img src="~/assets/imgperros/Ruffos.jpg" alt=""></a>
                         </div>
+
                         <h1>Adoptado</h1>
                         <h5>@item.nombreAnimal</h5>
                         <h5>Tipo de animal: @item.tipoAnimal</h5>
@@ -109,28 +110,64 @@
                         <h5>Rol: @item.rol</h5>
                         <h2>Fecha adopcion</h2>
                         <h5>Fecha: @item.fecha</h5>
+                        <h5>Estado de la adopcion: @item.estadoAdopcion</h5>
                         <br />
                         <a href="#" class="cart-btn openModal" data-toggle="modal" data-target="#exampleModalCenter"
-                           data-backdrop="static" data-keyboard="false" data-id=@*@item.idAnimal*@>Aceptar adopcion</a>
-
+                           data-backdrop="static" data-keyboard="false" data-idAdopcion=@item.idAdopcion>Aceptar adopcion</a>
+                        <br />
+                        <br />
+                        <a href="#" class="cart-btn openModal2" data-toggle="modal" data-target="#exampleModalCenter2"
+                           data-backdrop="static" data-keyboard="false" data-idAdopcion=@item.idAdopcion>Denegar adopcion</a>
                     </div>
                 </div>
             }
-
-
-            @* Dejo esto comentado por si lo llegamos a necesitar *@
-            @*<div class="col-lg-4 col-md-6 text-center strawberry">
-            <div class="single-product-item">
-                <div class="product-image">
-                    <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
-                </div>
-                <h3>Strawberry</h3>
-                <p class="product-price"><span>Per Kg</span> 80$ </p>
-                <a class="cart-btn" href="@Url.Action("FormPerro", "Perros")"><img src="~/assets/imgs/form.png" alt=""> Llenar Formulario</a>
-            </div>
-        </div>*@
 
         </div>
     </div>
 </div>
 
+<!-- Modal estado -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Aceptar donación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="color: black">
+                ¿Seguro qué desea aceptar la solicitud de donación de este animal?
+                <input type="hidden" id="idModalHidden" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AceptarAdopcion();">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal solicitud -->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle2">Denegar donación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="color: black">
+                ¿Seguro qué desea degenegar la solicitud de donación de este animal?
+                <input type="hidden" id="idModalHidden2" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="DenegarDonacion();">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="~/assets/js/Adopciones.js"></script>

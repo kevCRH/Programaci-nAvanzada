@@ -17,5 +17,7 @@ namespace TiendaMascotas.Entities
         public string nombreAnimal { get; set; }
         public string descripcion { get; set; }
         public string tipoAnimal { get; set; }
+        public string estadoAdopcion { get; set; }
+
     }
 }

@@ -4,21 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="98228205d3c84fcd907ed45758183ff3" Name="Diagram1">
-        <EntityTypeShape EntityType="ProyectoPAModel.Adopciones" Width="1.5" PointX="7.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Animales" Width="1.5" PointX="5" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Bitacoras" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+      <Diagram DiagramId="469673b7326043fd95776068e5616d6f" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoPAModel.Adopciones" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Animales" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Bitacoras" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoPAModel.DetalleFactura" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.EstadoAdopcion" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoPAModel.Factura" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoPAModel.Productos" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Roles" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.TipoAnimal" Width="1.5" PointX="2.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Usuarios" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="ProyectoPAModel.FK__Adopcione__idAni__4BAC3F29" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Roles" Width="1.5" PointX="2.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.TipoAnimal" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Usuarios" Width="1.5" PointX="5" PointY="5" IsExpanded="true" />
         <AssociationConnector Association="ProyectoPAModel.FK__Animales__idTipo__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idFac__5DCAEF64" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idPro__5EBF139D" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoPAModel.FK__Usuarios__idRol__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idFac__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idPro__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__Usuarios__idRol__4D94879B" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
