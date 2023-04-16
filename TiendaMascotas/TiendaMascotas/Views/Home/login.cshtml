@@ -91,6 +91,9 @@
             })
 
             <a href="@Url.Action("RecuperarContrasenna", "Home")" class="nav-link btn btn-primary">¿Olvidó su contraseña?</a>
+            <div style="text-align:center; color:red;">
+                @ViewBag.mensaje
+            </div>
             <input type="Submit" value="Iniciar Sesión"> <!--Buscar la clase por defecto para el CSS-->
             <!--<button>Iniciar Sesión</button>-->
         }

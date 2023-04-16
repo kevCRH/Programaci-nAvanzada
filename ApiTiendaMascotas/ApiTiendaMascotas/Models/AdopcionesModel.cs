@@ -60,13 +60,13 @@ namespace ApiTiendaMascotas.Models
                 LogsModel modeloLogs = new LogsModel();
                 if (e == 1)
                 {
-                    var mensaje = "Su solicitud fue aceptada";
+                    var mensaje = "Su solicitud de adopción de una mascota fue ACEPTADA";
                     conexion.CambiarEstadoAdopcion(q, e);
                     modeloLogs.CorreoAdopcion(correo, nombre, asunto, mensaje);
                 }
                 else if (e == 2) 
                 {
-                    var mensaje = "Su solicitud fue denegada";
+                    var mensaje = "Su solicitud de adopción de una mascota fue DENEGADA";
                     conexion.CambiarEstadoAdopcion(q, e);
                     modeloLogs.CorreoAdopcion(correo, nombre, asunto, mensaje);
                 }

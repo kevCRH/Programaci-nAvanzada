@@ -27,12 +27,12 @@
                         <a class="nav-link" href="#adopciones">Adopciones</a>
                     </li>
                     @*@if (Session["rol"] != null)
-                    {
-                        if (Session["rol"] == 1)
                         {
+                            if (Session["rol"] == 1)
+                            {
 
-                        }
-                    }*@
+                            }
+                        }*@
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("SolicitudesAdopcion", "Perros")">Solicitudes de adopcion</a>
                     </li>
@@ -73,7 +73,7 @@
             <h6>Tienda de Mascotas</h6>
         </div>
     </header>
-    
+
     @RenderBody()
 
     <section class="pb-0">
@@ -89,7 +89,6 @@
                     </li>
                 </ul>
                 <ul class="list">
-                    
                 </ul>
                 <ul class="list">
                     <li class="list-head">
@@ -125,6 +124,5 @@
     <script src="~/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
     <script src="~/assets/vendors/bootstrap/bootstrap.affix.js"></script>
     <script src="~/assets/js/creative-design.js"></script>
-
 </body>
 </html> 
