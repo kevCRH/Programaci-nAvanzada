@@ -29,12 +29,12 @@ namespace ApiTiendaMascotas.Controllers
             return model.MostrarAdopciones();
         }
 
-        [HttpDelete]
+        [HttpPost]
         [AllowAnonymous]
         [Route("api/CambiarEstadoAdopcion")]
-        public void CambiarEstadoAdopcion(int q, int e)
+        public void CambiarEstadoAdopcion(int q, int e, UsuariosEnt entidad)
         {
-            model.CambiarEstadoAdopcion(q,e);
+            model.CambiarEstadoAdopcion(q,e,entidad);
         }
     }
 }

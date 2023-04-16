@@ -14,7 +14,16 @@ namespace ApiTiendaMascotas.ModeloBD
     
     public partial class EstadoAdopcion
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public EstadoAdopcion()
+        {
+            this.Adopciones = new HashSet<Adopciones>();
+        }
+    
         public int idEstadoAdopcion { get; set; }
         public string estadoAdopcion1 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Adopciones> Adopciones { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace ApiTiendaMascotas.Entities
 
         public String CorreoElectronico { get; set; }
 
+
         public String Contrasenna { get; set; }
 
         public int ConfirmarContrasenna { get; set; }

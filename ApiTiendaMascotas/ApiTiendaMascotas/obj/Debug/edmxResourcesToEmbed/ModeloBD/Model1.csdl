@@ -9,6 +9,8 @@
     <Property Name="idAnimal" Type="Int32" Nullable="false" />
     <Property Name="fechaAdopcion" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="estadoAdopcion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Animales" Relationship="Self.FK_Adopciones_Animales" FromRole="Adopciones" ToRole="Animales" />
+    <NavigationProperty Name="EstadoAdopcion1" Relationship="Self.FK_Adopciones_EstadoAdopcion" FromRole="Adopciones" ToRole="EstadoAdopcion" />
   </EntityType>
   <EntityType Name="Animales">
     <Key>
@@ -19,6 +21,7 @@
     <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Adopciones" Relationship="Self.FK_Adopciones_Animales" FromRole="Animales" ToRole="Adopciones" />
     <NavigationProperty Name="TipoAnimal" Relationship="Self.FK__Animales__idTipo__49C3F6B7" FromRole="Animales" ToRole="TipoAnimal" />
   </EntityType>
   <EntityType Name="Bitacoras">
@@ -39,8 +42,8 @@
     <Property Name="idProducto" Type="Int32" Nullable="false" />
     <Property Name="cantidad" Type="Int32" Nullable="false" />
     <Property Name="monto" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Factura" Relationship="Self.FK__DetalleFa__idFac__38996AB5" FromRole="DetalleFactura" ToRole="Factura" />
-    <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleFa__idPro__398D8EEE" FromRole="DetalleFactura" ToRole="Productos" />
+    <NavigationProperty Name="Factura" Relationship="Self.FK__DetalleFa__idFac__3B75D760" FromRole="DetalleFactura" ToRole="Factura" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleFa__idPro__3C69FB99" FromRole="DetalleFactura" ToRole="Productos" />
   </EntityType>
   <EntityType Name="EstadoAdopcion">
     <Key>
@@ -48,6 +51,7 @@
     </Key>
     <Property Name="idEstadoAdopcion" Type="Int32" Nullable="false" />
     <Property Name="estadoAdopcion1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Adopciones" Relationship="Self.FK_Adopciones_EstadoAdopcion" FromRole="EstadoAdopcion" ToRole="Adopciones" />
   </EntityType>
   <EntityType Name="Factura">
     <Key>
@@ -57,7 +61,7 @@
     <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="terminos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-    <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idFac__38996AB5" FromRole="Factura" ToRole="DetalleFactura" />
+    <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idFac__3B75D760" FromRole="Factura" ToRole="DetalleFactura" />
   </EntityType>
   <EntityType Name="Productos">
     <Key>
@@ -70,7 +74,7 @@
     <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="descuento" Type="Int32" />
     <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idPro__398D8EEE" FromRole="Productos" ToRole="DetalleFactura" />
+    <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idPro__3C69FB99" FromRole="Productos" ToRole="DetalleFactura" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>
@@ -78,7 +82,7 @@
     </Key>
     <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__3B75D760" FromRole="Roles" ToRole="Usuarios" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__3E52440B" FromRole="Roles" ToRole="Usuarios" />
   </EntityType>
   <EntityType Name="TipoAnimal">
     <Key>
@@ -99,8 +103,32 @@
     <Property Name="contrasenna" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="estado" Type="Boolean" Nullable="false" />
     <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__3B75D760" FromRole="Usuarios" ToRole="Roles" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__3E52440B" FromRole="Usuarios" ToRole="Roles" />
   </EntityType>
+  <Association Name="FK_Adopciones_Animales">
+    <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
+    <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animales">
+        <PropertyRef Name="idAnimal" />
+      </Principal>
+      <Dependent Role="Adopciones">
+        <PropertyRef Name="idAnimal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Adopciones_EstadoAdopcion">
+    <End Role="EstadoAdopcion" Type="Self.EstadoAdopcion" Multiplicity="1" />
+    <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoAdopcion">
+        <PropertyRef Name="idEstadoAdopcion" />
+      </Principal>
+      <Dependent Role="Adopciones">
+        <PropertyRef Name="estadoAdopcion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Animales__idTipo__49C3F6B7">
     <End Role="TipoAnimal" Type="Self.TipoAnimal" Multiplicity="1" />
     <End Role="Animales" Type="Self.Animales" Multiplicity="*" />
@@ -113,7 +141,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DetalleFa__idFac__38996AB5">
+  <Association Name="FK__DetalleFa__idFac__3B75D760">
     <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
     <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -125,7 +153,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DetalleFa__idPro__398D8EEE">
+  <Association Name="FK__DetalleFa__idPro__3C69FB99">
     <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
     <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -137,7 +165,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Usuarios__idRol__3B75D760">
+  <Association Name="FK__Usuarios__idRol__3E52440B">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
     <ReferentialConstraint>
@@ -160,19 +188,27 @@
     <EntitySet Name="Roles" EntityType="Self.Roles" />
     <EntitySet Name="TipoAnimal" EntityType="Self.TipoAnimal" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <AssociationSet Name="FK_Adopciones_Animales" Association="Self.FK_Adopciones_Animales">
+      <End Role="Animales" EntitySet="Animales" />
+      <End Role="Adopciones" EntitySet="Adopciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Adopciones_EstadoAdopcion" Association="Self.FK_Adopciones_EstadoAdopcion">
+      <End Role="EstadoAdopcion" EntitySet="EstadoAdopcion" />
+      <End Role="Adopciones" EntitySet="Adopciones" />
+    </AssociationSet>
     <AssociationSet Name="FK__Animales__idTipo__49C3F6B7" Association="Self.FK__Animales__idTipo__49C3F6B7">
       <End Role="TipoAnimal" EntitySet="TipoAnimal" />
       <End Role="Animales" EntitySet="Animales" />
     </AssociationSet>
-    <AssociationSet Name="FK__DetalleFa__idFac__38996AB5" Association="Self.FK__DetalleFa__idFac__38996AB5">
+    <AssociationSet Name="FK__DetalleFa__idFac__3B75D760" Association="Self.FK__DetalleFa__idFac__3B75D760">
       <End Role="Factura" EntitySet="Factura" />
       <End Role="DetalleFactura" EntitySet="DetalleFactura" />
     </AssociationSet>
-    <AssociationSet Name="FK__DetalleFa__idPro__398D8EEE" Association="Self.FK__DetalleFa__idPro__398D8EEE">
+    <AssociationSet Name="FK__DetalleFa__idPro__3C69FB99" Association="Self.FK__DetalleFa__idPro__3C69FB99">
       <End Role="Productos" EntitySet="Productos" />
       <End Role="DetalleFactura" EntitySet="DetalleFactura" />
     </AssociationSet>
-    <AssociationSet Name="FK__Usuarios__idRol__3B75D760" Association="Self.FK__Usuarios__idRol__3B75D760">
+    <AssociationSet Name="FK__Usuarios__idRol__3E52440B" Association="Self.FK__Usuarios__idRol__3E52440B">
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Usuarios" EntitySet="Usuarios" />
     </AssociationSet>

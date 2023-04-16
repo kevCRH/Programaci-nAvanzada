@@ -13,12 +13,12 @@
                     <nav class="main-menu">
                         <ul>
                             <li class="current-list-item">
-                                <a href="@Url.Action("Index", "Home")">Home</a>
+                                <a href="@Url.Action("Index", "Home")">HOME</a>
                             </li>
                             <li>
                                 @if (Session["NombreUsuario"] != null)
                                 {
-                                    <p style="color:#FFFFFF">Usuario @Session["NombreUsuario"].ToString()</p>
+                                    <p style="color:#FFFFFF">@Session["NombreUsuario"].ToString()</p>
                                 }
                             </li>
                             <li>

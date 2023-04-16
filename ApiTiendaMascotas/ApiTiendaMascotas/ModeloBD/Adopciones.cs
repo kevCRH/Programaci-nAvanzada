@@ -19,5 +19,8 @@ namespace ApiTiendaMascotas.ModeloBD
         public int idAnimal { get; set; }
         public System.DateTime fechaAdopcion { get; set; }
         public int estadoAdopcion { get; set; }
+    
+        public virtual Animales Animales { get; set; }
+        public virtual EstadoAdopcion EstadoAdopcion1 { get; set; }
     }
 }

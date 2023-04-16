@@ -30,6 +30,7 @@ namespace ApiTiendaMascotas.Models
                 respuesta.idUsuario = datosBD.idUsuario;
                 respuesta.Nombre= datosBD.nombre;
                 respuesta.Cedula = datosBD.cedula;
+                respuesta.CorreoElectronico = datosBD.correoElectronico;
                 respuesta.Token = token.GenerateTokenJwt(datosBD.correoElectronico);
                 respuesta.Estado = datosBD.estado;
                

@@ -128,11 +128,13 @@ namespace TiendaMascotas.Controllers
         public ActionResult SolicitarAdopcion(int idAnimal, string Cedula)
         {
             AdopcionesEnt adopcion = new AdopcionesEnt();
+
             adopcion.idAnimal = idAnimal;
             adopcion.cedula = Cedula;
             adopcionesModel.RegistrarAdopciones(adopcion);
             return Json("Ok", JsonRequestBehavior.AllowGet);
         }
+
 
         [HttpGet]
         //[FiltroSesion]
@@ -152,14 +154,15 @@ namespace TiendaMascotas.Controllers
 
         [HttpPost]
         //[FiltroSesion]
-        public ActionResult CambiarEstadoAdopcion(int idAdopcion, int id)
+        public ActionResult CambiarEstadoAdopcion(int idAdopcion, int id, UsuariosEnt entidad)
         {
+            entidad.Nombre = @Session["NombreUsuario"].ToString();
+            entidad.CorreoElectronico = @Session["Correo"].ToString();
 
-            adopcionesModel.CambiarEstadoAdopcion(idAdopcion,id);
+            adopcionesModel.CambiarEstadoAdopcion(idAdopcion,id,entidad);
             return Json("Ok", JsonRequestBehavior.AllowGet);
         }
-
-
+        
         //Metodo registrar bitacora
         public void RegistrarLog(Exception ex)
         {

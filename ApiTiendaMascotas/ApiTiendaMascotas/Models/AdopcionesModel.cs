@@ -50,20 +50,25 @@ namespace ApiTiendaMascotas.Models
             }
         }
 
-        public void CambiarEstadoAdopcion(int q, int e)
+        public void CambiarEstadoAdopcion(int q, int e, UsuariosEnt entidad)
         {
+            var correo = entidad.CorreoElectronico;
+            var nombre = entidad.Nombre;
+            var asunto = "Respuesta de la adopción solicitada";
             using (var conexion = new ProyectoPAEntities())
             {
-
+                LogsModel modeloLogs = new LogsModel();
                 if (e == 1)
                 {
-                    //metodo enviar correo si fue aceptada la donacion
+                    var mensaje = "Su solicitud fue aceptada";
                     conexion.CambiarEstadoAdopcion(q, e);
+                    modeloLogs.CorreoAdopcion(correo, nombre, asunto, mensaje);
                 }
                 else if (e == 2) 
                 {
-                    //metodo enviar correo si fue denegada la donacion
+                    var mensaje = "Su solicitud fue denegada";
                     conexion.CambiarEstadoAdopcion(q, e);
+                    modeloLogs.CorreoAdopcion(correo, nombre, asunto, mensaje);
                 }
 
             }

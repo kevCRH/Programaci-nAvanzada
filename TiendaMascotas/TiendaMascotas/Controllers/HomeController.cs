@@ -56,11 +56,12 @@ namespace TiendaMascotas.Controllers
             {
                 Usuariosmodel = new UsuariosModel();
                 var resultado = Usuariosmodel.ValidarUsuario(entidad);
-                if (resultado != null) //Es lo mismo que decir: "resultado = true"
+                if (resultado != null)
                 {
                     Session["Consecutivo"] = resultado.idUsuario; 
                     Session["NombreUsuario"] = resultado.Nombre;
                     Session["Cedula"] = resultado.Cedula;
+                    Session["Correo"] = resultado.CorreoElectronico;
                     Session["Token"] = resultado.Token;
                     //Session["rol"] = resultado.rol;
                     return View("Index");

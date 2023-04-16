@@ -42,15 +42,14 @@ namespace TiendaMascotas.Models
             }
         }
 
-        public void CambiarEstadoAdopcion(int idAdopcion, int id)
+        public void CambiarEstadoAdopcion(int idAdopcion, int id, UsuariosEnt entidad)
         {
             using (var client = new HttpClient())
             {
+                JsonContent body = JsonContent.Create(entidad);
                 string url = "https://localhost:44331/api/CambiarEstadoAdopcion?q=" + idAdopcion + "&e="+ id;
-                HttpResponseMessage respuesta = client.DeleteAsync(url).GetAwaiter().GetResult();
+                HttpResponseMessage respuesta = client.PostAsync(url, body).GetAwaiter().GetResult();
             }
         }
-        
-
     }
 }

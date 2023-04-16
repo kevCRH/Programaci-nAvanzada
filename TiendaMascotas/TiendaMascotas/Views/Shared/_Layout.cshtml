@@ -28,9 +28,9 @@
                     </li>
                     @*@if (Session["rol"] != null)
                     {
-                        if (Session["rol"] == 1) 
+                        if (Session["rol"] == 1)
                         {
-                        
+
                         }
                     }*@
                     <li class="nav-item">
@@ -55,16 +55,15 @@
                             @Html.ActionLink("Iniciar Sesión", "login", "Home", null, new { @class = "nav-link btn btn-primary" })
                         }
                     </li>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li class="nav-item">
-                        @if (Session["NombreUsuario"] != null) //Hay que arreglar esta vista
-                        {
-                            <p class="nav-link">Bienvenido:</p>
-                            <p class="nav-link">@Session["NombreUsuario"].ToString()</p>
-                        }
-                    </li>
                 </ul>
             </div>
+        </div>
+        <div class="nav-item">
+            @if (Session["NombreUsuario"] != null) //Hay que arreglar esta vista
+            {
+                <h4 class="nav-link">Bienvenido</h4>
+                <h6 class="nav-link">@Session["NombreUsuario"].ToString()</h6>
+            }
         </div>
     </nav>
     <header id="home" class="header">
