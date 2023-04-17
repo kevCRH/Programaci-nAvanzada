@@ -54,6 +54,14 @@ namespace ApiTiendaMascotas.Controllers
         {
             model.ActualizarProducto(entidad);
         }
+        
+        [HttpDelete]
+        [Authorize]
+        [Route("api/EliminarProducto")]
+        public void EliminarProducto(long q)
+        {
+            model.EliminarProducto(q);
+        }
 
 
     }

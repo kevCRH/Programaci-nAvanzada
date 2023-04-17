@@ -105,7 +105,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DetalleFa__idFac__3B75D760">
+  <Association Name="FK__DetalleFa__idFac__4D94879B">
     <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
     <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -117,7 +117,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DetalleFa__idPro__3C69FB99">
+  <Association Name="FK__DetalleFa__idPro__4E88ABD4">
     <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
     <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -130,9 +130,9 @@
     </ReferentialConstraint>
   </Association>
   <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Factura__cedula__3D5E1FD2' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Factura__cedula__3D5E1FD2" />-->
-  <Association Name="FK__Usuarios__idRol__3E52440B">
+warning 6035: The relationship 'FK__Factura__cedula__4F7CD00D' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Factura__cedula__4F7CD00D" />-->
+  <Association Name="FK__Usuarios__idRol__5070F446">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
     <ReferentialConstraint>
@@ -171,10 +171,6 @@ warning 6035: The relationship 'FK__Factura__cedula__3D5E1FD2' has columns that 
   <!--Errors Found During Generation:
 warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK_Adopciones_Usuarios" />-->
-  <Function Name="AgregarRoll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="idRol" Type="varchar" Mode="In" />
-    <Parameter Name="rol" Type="varchar" Mode="In" />
-  </Function>
   <Function Name="CambiarEstadoAdopcion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idAdopcion" Type="int" Mode="In" />
     <Parameter Name="id" Type="int" Mode="In" />
@@ -226,15 +222,15 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
       <End Role="TipoAnimal" EntitySet="TipoAnimal" />
       <End Role="Animales" EntitySet="Animales" />
     </AssociationSet>
-    <AssociationSet Name="FK__DetalleFa__idFac__3B75D760" Association="Self.FK__DetalleFa__idFac__3B75D760">
+    <AssociationSet Name="FK__DetalleFa__idFac__4D94879B" Association="Self.FK__DetalleFa__idFac__4D94879B">
       <End Role="Factura" EntitySet="Factura" />
       <End Role="DetalleFactura" EntitySet="DetalleFactura" />
     </AssociationSet>
-    <AssociationSet Name="FK__DetalleFa__idPro__3C69FB99" Association="Self.FK__DetalleFa__idPro__3C69FB99">
+    <AssociationSet Name="FK__DetalleFa__idPro__4E88ABD4" Association="Self.FK__DetalleFa__idPro__4E88ABD4">
       <End Role="Productos" EntitySet="Productos" />
       <End Role="DetalleFactura" EntitySet="DetalleFactura" />
     </AssociationSet>
-    <AssociationSet Name="FK__Usuarios__idRol__3E52440B" Association="Self.FK__Usuarios__idRol__3E52440B">
+    <AssociationSet Name="FK__Usuarios__idRol__5070F446" Association="Self.FK__Usuarios__idRol__5070F446">
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Usuarios" EntitySet="Usuarios" />
     </AssociationSet>

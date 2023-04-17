@@ -223,6 +223,7 @@
     <Content Include="assets\jsadopciones\owl.carousel.min.js" />
     <Content Include="assets\jsadopciones\sticker.js" />
     <Content Include="assets\jsadopciones\waypoints.js" />
+    <Content Include="assets\jsProductos\productos.js" />
     <Content Include="assets\js\Adopciones.js" />
     <Content Include="assets\js\Animales.js" />
     <Content Include="assets\js\BuscarID.js" />

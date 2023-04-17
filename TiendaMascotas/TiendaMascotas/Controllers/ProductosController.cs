@@ -74,6 +74,16 @@ namespace TiendaMascotas.Controllers
             }
         }
 
+        [HttpPost]
+        //[FiltroSesion]
+        //Parte 1 - Con AJAX, se llama desde ~/assets/jsProductos/productos.js que eventualmente se llama desde la vista ProductosVenta.cshtml en el Eliminar
+        //Parte 2 - Una vez se recibe respuesta del API/ProductosModel/EliminarProducto se dice que se eliminó correctamente (devuelve 'Ok')
+        public ActionResult EliminarProducto(long id)
+        {
+            model.EliminarProducto(id);
+            return Json("Ok", JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         [FiltroSesion]
         public ActionResult FormProductos()

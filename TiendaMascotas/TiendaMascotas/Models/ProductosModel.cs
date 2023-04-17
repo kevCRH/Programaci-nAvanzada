@@ -100,6 +100,19 @@ namespace TiendaMascotas.Models
         }
 
 
+        public void EliminarProducto(long id)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = "https://localhost:44331/api/EliminarProducto?q=" + id;
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["Token"].ToString());
+                HttpResponseMessage respuesta = client.DeleteAsync(url).GetAwaiter().GetResult();
+
+            }
+        }
+
+
 
     }
 }

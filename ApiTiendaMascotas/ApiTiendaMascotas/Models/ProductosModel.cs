@@ -117,6 +117,26 @@ namespace ApiTiendaMascotas.Models
             }
         }
 
+
+
+        // Eliminar usando LinQ, por lo tanto no existe procedimiento en la DB, recibe el ID (q) desde el Productos
+        // Controller y salva los cambios, una vez finaliza se devuelve al webapp ProductosController/EliminarProducto
+        public void EliminarProducto(long q)
+        {
+            using (var conexion = new ProyectoPAEntities())
+            {
+                var respuesta = (from x in conexion.Productos
+                                 where x.idProducto == q
+                                 select x).FirstOrDefault();
+
+                if (respuesta != null)
+                {
+                    conexion.Productos.Remove(respuesta);
+                    conexion.SaveChanges();
+                }
+            }
+        }
+
     }
 
 

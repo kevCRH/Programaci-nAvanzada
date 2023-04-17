@@ -104,7 +104,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="AgregarRoll" FunctionName="ProyectoPAModel.Store.AgregarRoll" />
     <FunctionImportMapping FunctionImportName="CambiarEstadoAdopcion" FunctionName="ProyectoPAModel.Store.CambiarEstadoAdopcion" />
     <FunctionImportMapping FunctionImportName="MostrarAdopciones" FunctionName="ProyectoPAModel.Store.MostrarAdopciones">
       <ResultMapping>
