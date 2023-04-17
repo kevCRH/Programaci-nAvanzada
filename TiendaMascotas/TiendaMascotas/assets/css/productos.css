@@ -1,0 +1,23 @@
+﻿input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+input[type="number"]:focus {
+        outline: none;
+        border-color: #007bff;
+}
+
+label[for="quantity"] {
+    color: black;
+}
+.product-btn {
+    width: 200px; /* set your desired width value here */
+}
+.cart-btn img {
+    float: left;
+    margin-right: 10px;
+}

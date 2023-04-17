@@ -62,7 +62,14 @@ namespace ApiTiendaMascotas.Controllers
         {
             model.EliminarProducto(q);
         }
-
+        
+        [HttpPut]
+        [Authorize]
+        [Route("api/ActualizarCarrito")]
+        public void ActualizarCarrito(ProductoEnt entidad)
+        {
+            model.ActualizarCarrito(entidad);
+        }
 
     }
 }

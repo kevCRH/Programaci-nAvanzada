@@ -117,6 +117,46 @@ namespace ApiTiendaMascotas.Models
             }
         }
 
+        public void ActualizarCarrito(ProductoEnt entidad)
+        {
+            using (var conexion = new ProyectoPAEntities())
+            {
+                var respuesta = (from x in conexion.Carrito
+                                 where x.idProducto == entidad.idProducto
+                                    && x.ConsecutivoUsuario == entidad.ConsecutivoUsuario
+                                 select x).FirstOrDefault();
+
+                if (respuesta == null)
+                {
+                    //Insert
+                    Carrito carrito = new Carrito();
+                    carrito.idProducto = entidad.idProducto;
+                    carrito.ConsecutivoUsuario = entidad.ConsecutivoUsuario;
+                    carrito.Cantidad = entidad.cantidad;
+                    carrito.Fecha = DateTime.Now;
+                    conexion.Carrito.Add(carrito);
+                    conexion.SaveChanges();
+                }
+                else
+                {
+                    if (entidad.cantidad == 0)
+                    {
+                        //Delete
+                        conexion.Carrito.Remove(respuesta);
+                        conexion.SaveChanges();
+                    }
+                    else
+                    {
+                        //Update
+                        respuesta.Cantidad = entidad.cantidad;
+                        respuesta.Fecha = DateTime.Now;
+                        conexion.SaveChanges();
+                    }
+                }
+
+
+            }
+        }
 
 
         // Eliminar usando LinQ, por lo tanto no existe procedimiento en la DB, recibe el ID (q) desde el Productos

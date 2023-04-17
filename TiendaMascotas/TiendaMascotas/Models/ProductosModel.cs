@@ -99,6 +99,23 @@ namespace TiendaMascotas.Models
             }
         }
 
+        
+        public void ActualizarCarrito(int idProducto, int cantidad)
+        {
+            using (var client = new HttpClient())
+            {
+                ProductoEnt entidad = new ProductoEnt();
+                entidad.idProducto = idProducto;
+                entidad.cantidad = cantidad;
+                entidad.ConsecutivoUsuario = int.Parse(HttpContext.Current.Session["Consecutivo"].ToString());
+
+
+                JsonContent body = JsonContent.Create(entidad);
+                string url = "https://localhost:44331/api/ActualizarCarrito";
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["Token"].ToString());
+                HttpResponseMessage respuesta = client.PutAsync(url, body).GetAwaiter().GetResult();
+            }
+        }
 
         public void EliminarProducto(long id)
         {

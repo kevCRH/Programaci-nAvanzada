@@ -111,22 +111,24 @@
                         <br>
                         <div class="form-group col-lg-8 offset-lg-2 text-center">
                             @Html.TextBoxFor(Model => Model.cantidad, new
-                            {
-                               @class = "form-control form-control-lg",
-                               @placeholder = "Cantidad del producto",
-                               @autocomplete = "Off",
-                               @required = true
-                            })
+                       {
+                           @class = "form-control form-control-lg",
+                           @placeholder = "Cantidad del producto",
+                           @autocomplete = "Off",
+                           @required = true,
+                           @onkeypress = "return isNumberKey(event)"
+                       })
                         </div>
                         <br>
                         <div class="form-group col-lg-8 offset-lg-2 text-center">
                             @Html.TextBoxFor(Model => Model.precio, new
-                            {
-                               @class = "form-control form-control-lg",
-                               @placeholder = "Precio del producto",
-                               @autocomplete = "Off",
-                               @required = true
-                            })
+                       {
+                           @class = "form-control form-control-lg",
+                           @placeholder = "Precio del producto",
+                           @autocomplete = "Off",
+                           @required = true,
+                           @onkeypress = "return isNumberKey(event)"
+                       })
                         </div>
                         <br>
                         <div class="form-group col-lg-8 offset-lg-2 text-center">
@@ -136,7 +138,7 @@
                                @placeholder = "Imagen del producto"
                             })
                             <div>
-                                <input type="file" id="imagen1" name="imagen1" class="form-control form-control-lg" accept=".jpg,.jpeg,.png,.gif">
+                                <input type="file" id="imagen1" name="imagen1" class="form-control form-control-lg" accept=".jpg,.jpeg,.png,.gif" required>
                             </div>
                         </div>
                         <br>
@@ -168,3 +170,13 @@
 
         </div>
 </div>
+
+
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>

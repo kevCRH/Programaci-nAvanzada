@@ -3,7 +3,6 @@
     ViewBag.Title = "ProductosVenta";
     Layout = "~/Views/Shared/LayoutProducts.cshtml";
 }
-
 <div class="top-header-area" id="sticker">
     <div class="container">
         <div class="row">
@@ -36,6 +35,9 @@
         </div>
     </div>
 </div>
+
+<link href="~/assets/css/productos.css" rel="stylesheet" type="text/css" />
+
 <!-- end header -->
 <!-- search area -->
 <div class="search-area">
@@ -103,16 +105,21 @@
 
                         <br>
                         <br />
-                        <a class="cart-btn" href="@Url.Action("FormProductos", "Productos")"><img src="~/assets/imgs/form.png" alt=""> Agregar a Carrito</a>
-                        <br>
-                        <br />
-                        <a class="cart-btn" href="@Url.Action("ActualizarProducto", "Productos", new { q = item.idProducto})"><img src="~/assets/imgs/form.png" alt="">Actualizar Producto</a>
-                        <br>
-                        <br />
-                        <a class="cart-btn openModal" data-toggle="modal" data-target="#exampleModalCenter" href="#" data-backdrop="static" data-keyboard="false" data-id=@item.idProducto><img src="~/assets/imgs/delete.png" alt="">Eliminar Producto</a>
+                        <a class="cart-btn product-btn" onclick="ActualizarCarrito(@item.idProducto, @item.cantidad)"><img src="~/assets/imgs/carshop.png" alt=""> Agregar a Carrito</a>
 
-                        @*<a href="#" class="ti-trash openModal" data-toggle="modal" data-target="#exampleModalCenter"
-                            data-backdrop="static" data-keyboard="false" data-id=@item.idProducto></a>*@
+                        
+                        <br>
+                        <br />
+                        <a class="cart-btn product-btn" href="@Url.Action("ActualizarProducto", "Productos", new { q = item.idProducto})"><img src="~/assets/imgs/form.png" alt="">Actualizar</a>
+                        <br>
+                        <br />
+                        <a class="cart-btn product-btn openModal" data-toggle="modal" data-target="#exampleModalCenter" href="#" data-backdrop="static" data-keyboard="false" data-id=@item.idProducto><img src="~/assets/imgs/delete.png" alt="">Eliminar Producto</a>
+
+                        <br>
+                        <br />
+
+                        <label for="quantity">Cantidad:</label>
+                        <input type="number" id="carrito-@item.idProducto" name="quantity" min="1" max="10" value="1">
 
                     </div>
                 </div>
@@ -146,3 +153,50 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="~/assets/jsProductos/productos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function ActualizarCarrito(idProducto, cantidad) {
+
+        let CantidadCarrito = $("#carrito-" + idProducto).val();
+    
+        if (CantidadCarrito > cantidad) {
+
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: '¡La cantidad de producto seleccionada excede disponibilidad en inventario!',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        }
+        else {
+
+            $.ajax({
+                type: "POST",
+                url: "/Productos/ActualizarCarrito",
+                dataType: "json",
+                data: {
+                    "idProducto": idProducto,
+                    "CantidadCarrito": CantidadCarrito
+                },
+                success: function (res) {
+
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'Producto agregado a carrito',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+
+                    setTimeout(function () {
+                        RecargarPantalla();
+                    }, 2200);
+                }
+            });
+        }
+
+    }
+
+</script>

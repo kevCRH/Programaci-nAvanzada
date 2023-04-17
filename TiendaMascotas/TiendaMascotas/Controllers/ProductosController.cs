@@ -145,5 +145,15 @@ namespace TiendaMascotas.Controllers
             LogsModel.RegistrarBitacora(log);
         }
 
+
+        [HttpPost]
+        public ActionResult ActualizarCarrito(int idProducto, int cantidad)
+        {
+            model.ActualizarCarrito(idProducto, cantidad);
+            return Json("Ok", JsonRequestBehavior.AllowGet);
+        }
+
+
+
     }
 }

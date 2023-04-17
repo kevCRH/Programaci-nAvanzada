@@ -14,5 +14,6 @@ namespace ApiTiendaMascotas.Entities
         public decimal precio { get; set; }
         public int descuento { get; set; }
         public byte[] imagen { get; set; }
+        public int ConsecutivoUsuario { get; set; }
     }
 }

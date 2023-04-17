@@ -184,6 +184,7 @@
   <ItemGroup>
     <Content Include="assets\css\creative-design.css" />
     <Content Include="assets\css\login.css" />
+    <Content Include="assets\css\productos.css" />
     <Content Include="assets\css_adopciones\all.min.css" />
     <Content Include="assets\css_adopciones\animate.css" />
     <Content Include="assets\css_adopciones\bootstrap.min.css" />
