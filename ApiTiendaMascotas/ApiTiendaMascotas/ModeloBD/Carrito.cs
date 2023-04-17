@@ -12,15 +12,15 @@ namespace ApiTiendaMascotas.ModeloBD
     using System;
     using System.Collections.Generic;
     
-    public partial class DetalleFactura
+    public partial class Carrito
     {
-        public int idDetalleFactura { get; set; }
-        public int idFactura { get; set; }
+        public long idCarrito { get; set; }
         public int idProducto { get; set; }
-        public int cantidad { get; set; }
-        public int monto { get; set; }
+        public int ConsecutivoUsuario { get; set; }
+        public int Cantidad { get; set; }
+        public System.DateTime Fecha { get; set; }
     
-        public virtual Factura Factura { get; set; }
         public virtual Productos Productos { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
     }
 }

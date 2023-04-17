@@ -16,5 +16,7 @@ namespace TiendaMascotas.Entities
         public string Descripcion { get; set; }
 
         public bool Estado { get; set; }
+
+        public byte[] imagen { get; set; }
     }
 }

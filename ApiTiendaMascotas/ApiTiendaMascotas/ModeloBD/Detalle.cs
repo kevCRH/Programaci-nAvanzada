@@ -10,14 +10,17 @@
 namespace ApiTiendaMascotas.ModeloBD
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class MostrarAnimales_Result
+    public partial class Detalle
     {
-        public int idAnimal { get; set; }
-        public string tipoAnimal { get; set; }
-        public string nombre { get; set; }
-        public string descripcion { get; set; }
-        public bool estado { get; set; }
-        public byte[] imagen { get; set; }
+        public long idDetalle { get; set; }
+        public long idMaestro { get; set; }
+        public int idProducto { get; set; }
+        public int cantidad { get; set; }
+        public decimal precioCompra { get; set; }
+    
+        public virtual Maestro Maestro { get; set; }
+        public virtual Productos Productos { get; set; }
     }
 }

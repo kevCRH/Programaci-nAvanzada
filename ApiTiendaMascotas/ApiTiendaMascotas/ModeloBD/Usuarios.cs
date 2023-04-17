@@ -14,6 +14,13 @@ namespace ApiTiendaMascotas.ModeloBD
     
     public partial class Usuarios
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Usuarios()
+        {
+            this.Carrito = new HashSet<Carrito>();
+            this.Maestro = new HashSet<Maestro>();
+        }
+    
         public int idUsuario { get; set; }
         public string cedula { get; set; }
         public string nombre { get; set; }
@@ -22,6 +29,10 @@ namespace ApiTiendaMascotas.ModeloBD
         public bool estado { get; set; }
         public string idRol { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Carrito> Carrito { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Maestro> Maestro { get; set; }
         public virtual Roles Roles { get; set; }
     }
 }

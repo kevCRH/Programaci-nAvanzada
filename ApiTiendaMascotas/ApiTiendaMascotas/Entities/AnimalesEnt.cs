@@ -17,5 +17,7 @@ namespace ApiTiendaMascotas.Entities
 
         public bool Estado { get; set; }
 
+        public byte[] imagen { get; set; }
+
     }
 }

@@ -26,7 +26,8 @@ namespace ApiTiendaMascotas.Models
                             Nombre = item.nombre,
                             tipoAnimal = item.tipoAnimal,
                             Descripcion = item.descripcion,
-                            Estado= item.estado
+                            Estado= item.estado,
+                            imagen = item.imagen
                         });
                     }
                 }
@@ -71,6 +72,7 @@ namespace ApiTiendaMascotas.Models
                     respuesta.Nombre = datosBD.nombre;
                     respuesta.Descripcion = datosBD.descripcion;
                     respuesta.tipoAnimal = datosBD.idTipoAnimal;
+                    respuesta.imagen = datosBD.imagen;
                 }
                 return respuesta;
             }
@@ -80,7 +82,7 @@ namespace ApiTiendaMascotas.Models
         {
             using (var conexion = new ProyectoPAEntities())
             {
-                return conexion.RegistrarAnimal(entidad.tipoAnimal, entidad.Nombre, entidad.Descripcion);
+                return conexion.RegistrarAnimal(entidad.tipoAnimal, entidad.Nombre, entidad.Descripcion, entidad.imagen);
             }
         }
 

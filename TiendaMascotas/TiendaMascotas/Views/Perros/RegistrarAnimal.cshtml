@@ -79,7 +79,7 @@
                 <br>
                 <br>
 
-                @using (Html.BeginForm("RegistrarAnimal", "Perros", FormMethod.Post, new { @class = "pt-3" }))
+                @using (Html.BeginForm("RegistrarAnimal", "Perros", FormMethod.Post, new { enctype = "multipart/form-data", @class = "pt-3" }))
                 {
                     <!-- corregir diseño inputs, seguir trabajando en crud-->
                     <div class="form-group col-lg-8 offset-lg-2 text-center">
@@ -99,13 +99,13 @@
                             @placeholder = "Selecciona el tipo de animal",
                             required = true
                         })
-                            
+
                         @*@Html.TextBoxFor(Model => Model.tipoAnimal, new
-                        {
-                            @placeholder = "Ingrese el tipo de animal",
-                            @autocomplete = "Off",
-                            @required = true
-                        })*@
+                {
+                    @placeholder = "Ingrese el tipo de animal",
+                    @autocomplete = "Off",
+                    @required = true
+                })*@
 
                     </div>
                     <br>
@@ -117,6 +117,18 @@
                            @autocomplete = "Off",
                            @required = true
                         })
+                    </div>
+                    <br>
+                    <div class="form-group col-lg-8 offset-lg-2 text-center">
+                        @Html.LabelFor(Model => Model.imagen, new
+                        {
+                           @class = "control-label",
+                           @placeholder = "Imagen del animal",
+                           required = true
+                        })
+                        <div>
+                            <input type="file" id="imagen1" name="imagen1" class="form-control form-control-lg" accept=".jpg,.jpeg,.png,.gif">
+                        </div>
                     </div>
                     <br>
                     <div class="mt-3">

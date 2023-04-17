@@ -20,6 +20,7 @@
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="imagen" ColumnName="imagen" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -33,14 +34,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DetalleFactura">
-      <EntityTypeMapping TypeName="ProyectoPAModel.DetalleFactura">
-        <MappingFragment StoreEntitySet="DetalleFactura">
-          <ScalarProperty Name="idDetalleFactura" ColumnName="idDetalleFactura" />
-          <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+    <EntitySetMapping Name="Carrito">
+      <EntityTypeMapping TypeName="ProyectoPAModel.Carrito">
+        <MappingFragment StoreEntitySet="Carrito">
+          <ScalarProperty Name="idCarrito" ColumnName="idCarrito" />
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+          <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Detalle">
+      <EntityTypeMapping TypeName="ProyectoPAModel.Detalle">
+        <MappingFragment StoreEntitySet="Detalle">
+          <ScalarProperty Name="idDetalle" ColumnName="idDetalle" />
+          <ScalarProperty Name="idMaestro" ColumnName="idMaestro" />
           <ScalarProperty Name="idProducto" ColumnName="idProducto" />
           <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="precioCompra" ColumnName="precioCompra" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -52,13 +64,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Factura">
-      <EntityTypeMapping TypeName="ProyectoPAModel.Factura">
-        <MappingFragment StoreEntitySet="Factura">
-          <ScalarProperty Name="idFactura" ColumnName="idFactura" />
-          <ScalarProperty Name="cedula" ColumnName="cedula" />
-          <ScalarProperty Name="terminos" ColumnName="terminos" />
-          <ScalarProperty Name="fecha" ColumnName="fecha" />
+    <EntitySetMapping Name="Maestro">
+      <EntityTypeMapping TypeName="ProyectoPAModel.Maestro">
+        <MappingFragment StoreEntitySet="Maestro">
+          <ScalarProperty Name="idMaestro" ColumnName="idMaestro" />
+          <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
+          <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+          <ScalarProperty Name="Impuestos" ColumnName="Impuestos" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -130,6 +144,7 @@
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="imagen" ColumnName="imagen" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

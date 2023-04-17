@@ -24,6 +24,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="imagen" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Bitacoras">
           <Key>
@@ -34,15 +35,25 @@
           <Property Name="origen" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="mensajeError" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="DetalleFactura">
+        <EntityType Name="Carrito">
           <Key>
-            <PropertyRef Name="idDetalleFactura" />
+            <PropertyRef Name="idCarrito" />
           </Key>
-          <Property Name="idDetalleFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idFactura" Type="int" Nullable="false" />
+          <Property Name="idCarrito" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProducto" Type="int" Nullable="false" />
+          <Property Name="ConsecutivoUsuario" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Detalle">
+          <Key>
+            <PropertyRef Name="idDetalle" />
+          </Key>
+          <Property Name="idDetalle" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMaestro" Type="bigint" Nullable="false" />
           <Property Name="idProducto" Type="int" Nullable="false" />
           <Property Name="cantidad" Type="int" Nullable="false" />
-          <Property Name="monto" Type="int" Nullable="false" />
+          <Property Name="precioCompra" Type="numeric" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="EstadoAdopcion">
           <Key>
@@ -51,14 +62,16 @@
           <Property Name="idEstadoAdopcion" Type="int" Nullable="false" />
           <Property Name="estadoAdopcion" Type="varchar" MaxLength="20" />
         </EntityType>
-        <EntityType Name="Factura">
+        <EntityType Name="Maestro">
           <Key>
-            <PropertyRef Name="idFactura" />
+            <PropertyRef Name="idMaestro" />
           </Key>
-          <Property Name="idFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="terminos" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="idMaestro" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConsecutivoUsuario" Type="int" Nullable="false" />
+          <Property Name="FechaCompra" Type="datetime" Nullable="false" />
+          <Property Name="SubTotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Impuestos" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
@@ -110,34 +123,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleFa__idFac__4D94879B">
-          <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
-          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Factura">
-              <PropertyRef Name="idFactura" />
-            </Principal>
-            <Dependent Role="DetalleFactura">
-              <PropertyRef Name="idFactura" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__DetalleFa__idPro__4E88ABD4">
-          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
-          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Productos">
-              <PropertyRef Name="idProducto" />
-            </Principal>
-            <Dependent Role="DetalleFactura">
-              <PropertyRef Name="idProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Factura__cedula__4F7CD00D' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Factura__cedula__4F7CD00D" />-->
-        <Association Name="FK__Usuarios__idRol__5070F446">
+        <Association Name="FK__Usuarios__idRol__4F7CD00D">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -176,6 +162,66 @@ warning 6035: The relationship 'FK__Factura__cedula__4F7CD00D' has columns that 
         <!--Errors Found During Generation:
 warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK_Adopciones_Usuarios" />-->
+        <Association Name="FK_Carrito_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="Carrito">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carrito_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Carrito">
+              <PropertyRef Name="ConsecutivoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Maestro">
+          <End Role="Maestro" Type="Self.Maestro" Multiplicity="1" />
+          <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maestro">
+              <PropertyRef Name="idMaestro" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="idMaestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maestro_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Maestro" Type="Self.Maestro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Maestro">
+              <PropertyRef Name="ConsecutivoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="CambiarEstadoAdopcion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idAdopcion" Type="int" Mode="In" />
           <Parameter Name="id" Type="int" Mode="In" />
@@ -199,6 +245,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Parameter Name="idTipoAnimal" Type="varchar" Mode="In" />
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="imagen" Type="varbinary(max)" Mode="In" />
         </Function>
         <Function Name="RegistrarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombre" Type="varchar" Mode="In" />
@@ -216,9 +263,10 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <EntitySet Name="Adopciones" EntityType="Self.Adopciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Animales" EntityType="Self.Animales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bitacoras" EntityType="Self.Bitacoras" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Carrito" EntityType="Self.Carrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle" EntityType="Self.Detalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EstadoAdopcion" EntityType="Self.EstadoAdopcion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Factura" EntityType="Self.Factura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Maestro" EntityType="Self.Maestro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoAnimal" EntityType="Self.TipoAnimal" Schema="dbo" store:Type="Tables" />
@@ -227,15 +275,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             <End Role="TipoAnimal" EntitySet="TipoAnimal" />
             <End Role="Animales" EntitySet="Animales" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__idFac__4D94879B" Association="Self.FK__DetalleFa__idFac__4D94879B">
-            <End Role="Factura" EntitySet="Factura" />
-            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
-          </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__idPro__4E88ABD4" Association="Self.FK__DetalleFa__idPro__4E88ABD4">
-            <End Role="Productos" EntitySet="Productos" />
-            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__idRol__5070F446" Association="Self.FK__Usuarios__idRol__5070F446">
+          <AssociationSet Name="FK__Usuarios__idRol__4F7CD00D" Association="Self.FK__Usuarios__idRol__4F7CD00D">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -246,6 +286,26 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <AssociationSet Name="FK_Adopciones_EstadoAdopcion" Association="Self.FK_Adopciones_EstadoAdopcion">
             <End Role="EstadoAdopcion" EntitySet="EstadoAdopcion" />
             <End Role="Adopciones" EntitySet="Adopciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carrito_Productos" Association="Self.FK_Carrito_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Carrito" EntitySet="Carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carrito_Usuarios" Association="Self.FK_Carrito_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Carrito" EntitySet="Carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Maestro" Association="Self.FK_Detalle_Maestro">
+            <End Role="Maestro" EntitySet="Maestro" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Productos" Association="Self.FK_Detalle_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maestro_Usuarios" Association="Self.FK_Maestro_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Maestro" EntitySet="Maestro" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -274,6 +334,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Adopciones" Relationship="Self.FK_Adopciones_Animales" FromRole="Animales" ToRole="Adopciones" />
           <NavigationProperty Name="TipoAnimal" Relationship="Self.FK__Animales__idTipo__49C3F6B7" FromRole="Animales" ToRole="TipoAnimal" />
         </EntityType>
@@ -286,17 +347,29 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Property Name="origen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="mensajeError" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="DetalleFactura">
+        <EntityType Name="Carrito">
           <Key>
-            <PropertyRef Name="idDetalleFactura" />
+            <PropertyRef Name="idCarrito" />
           </Key>
-          <Property Name="idDetalleFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idFactura" Type="Int32" Nullable="false" />
+          <Property Name="idCarrito" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProducto" Type="Int32" Nullable="false" />
+          <Property Name="ConsecutivoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Carrito_Productos" FromRole="Carrito" ToRole="Productos" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Carrito_Usuarios" FromRole="Carrito" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Detalle">
+          <Key>
+            <PropertyRef Name="idDetalle" />
+          </Key>
+          <Property Name="idDetalle" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMaestro" Type="Int64" Nullable="false" />
           <Property Name="idProducto" Type="Int32" Nullable="false" />
           <Property Name="cantidad" Type="Int32" Nullable="false" />
-          <Property Name="monto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Factura" Relationship="Self.FK__DetalleFa__idFac__4D94879B" FromRole="DetalleFactura" ToRole="Factura" />
-          <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleFa__idPro__4E88ABD4" FromRole="DetalleFactura" ToRole="Productos" />
+          <Property Name="precioCompra" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Maestro" Relationship="Self.FK_Detalle_Maestro" FromRole="Detalle" ToRole="Maestro" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Detalle_Productos" FromRole="Detalle" ToRole="Productos" />
         </EntityType>
         <EntityType Name="EstadoAdopcion">
           <Key>
@@ -306,15 +379,18 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Property Name="estadoAdopcion1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Adopciones" Relationship="Self.FK_Adopciones_EstadoAdopcion" FromRole="EstadoAdopcion" ToRole="Adopciones" />
         </EntityType>
-        <EntityType Name="Factura">
+        <EntityType Name="Maestro">
           <Key>
-            <PropertyRef Name="idFactura" />
+            <PropertyRef Name="idMaestro" />
           </Key>
-          <Property Name="idFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="terminos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idFac__4D94879B" FromRole="Factura" ToRole="DetalleFactura" />
+          <Property Name="idMaestro" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConsecutivoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SubTotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Impuestos" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Detalle" Relationship="Self.FK_Detalle_Maestro" FromRole="Maestro" ToRole="Detalle" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Maestro_Usuarios" FromRole="Maestro" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
@@ -327,7 +403,8 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="descuento" Type="Int32" />
           <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idPro__4E88ABD4" FromRole="Productos" ToRole="DetalleFactura" />
+          <NavigationProperty Name="Carrito" Relationship="Self.FK_Carrito_Productos" FromRole="Productos" ToRole="Carrito" />
+          <NavigationProperty Name="Detalle" Relationship="Self.FK_Detalle_Productos" FromRole="Productos" ToRole="Detalle" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -335,7 +412,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           </Key>
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__5070F446" FromRole="Roles" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__4F7CD00D" FromRole="Roles" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="TipoAnimal">
           <Key>
@@ -356,7 +433,9 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Property Name="contrasenna" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__5070F446" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Carrito" Relationship="Self.FK_Carrito_Usuarios" FromRole="Usuarios" ToRole="Carrito" />
+          <NavigationProperty Name="Maestro" Relationship="Self.FK_Maestro_Usuarios" FromRole="Usuarios" ToRole="Maestro" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__4F7CD00D" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
         <Association Name="FK_Adopciones_Animales">
           <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
@@ -394,31 +473,67 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleFa__idFac__4D94879B">
-          <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
-          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Factura">
-              <PropertyRef Name="idFactura" />
-            </Principal>
-            <Dependent Role="DetalleFactura">
-              <PropertyRef Name="idFactura" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__DetalleFa__idPro__4E88ABD4">
+        <Association Name="FK_Carrito_Productos">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
-          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+          <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Productos">
               <PropertyRef Name="idProducto" />
             </Principal>
-            <Dependent Role="DetalleFactura">
+            <Dependent Role="Carrito">
               <PropertyRef Name="idProducto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__idRol__5070F446">
+        <Association Name="FK_Carrito_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Carrito">
+              <PropertyRef Name="ConsecutivoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Maestro">
+          <End Role="Maestro" Type="Self.Maestro" Multiplicity="1" />
+          <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maestro">
+              <PropertyRef Name="idMaestro" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="idMaestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maestro_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Maestro" Type="Self.Maestro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Maestro">
+              <PropertyRef Name="ConsecutivoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__idRol__4F7CD00D">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -434,9 +549,10 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <EntitySet Name="Adopciones" EntityType="Self.Adopciones" />
           <EntitySet Name="Animales" EntityType="Self.Animales" />
           <EntitySet Name="Bitacoras" EntityType="Self.Bitacoras" />
-          <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" />
+          <EntitySet Name="Carrito" EntityType="Self.Carrito" />
+          <EntitySet Name="Detalle" EntityType="Self.Detalle" />
           <EntitySet Name="EstadoAdopcion" EntityType="Self.EstadoAdopcion" />
-          <EntitySet Name="Factura" EntityType="Self.Factura" />
+          <EntitySet Name="Maestro" EntityType="Self.Maestro" />
           <EntitySet Name="Productos" EntityType="Self.Productos" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="TipoAnimal" EntityType="Self.TipoAnimal" />
@@ -453,15 +569,27 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             <End Role="TipoAnimal" EntitySet="TipoAnimal" />
             <End Role="Animales" EntitySet="Animales" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__idFac__4D94879B" Association="Self.FK__DetalleFa__idFac__4D94879B">
-            <End Role="Factura" EntitySet="Factura" />
-            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
-          </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__idPro__4E88ABD4" Association="Self.FK__DetalleFa__idPro__4E88ABD4">
+          <AssociationSet Name="FK_Carrito_Productos" Association="Self.FK_Carrito_Productos">
             <End Role="Productos" EntitySet="Productos" />
-            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+            <End Role="Carrito" EntitySet="Carrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__idRol__5070F446" Association="Self.FK__Usuarios__idRol__5070F446">
+          <AssociationSet Name="FK_Carrito_Usuarios" Association="Self.FK_Carrito_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Carrito" EntitySet="Carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Maestro" Association="Self.FK_Detalle_Maestro">
+            <End Role="Maestro" EntitySet="Maestro" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Productos" Association="Self.FK_Detalle_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maestro_Usuarios" Association="Self.FK_Maestro_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Maestro" EntitySet="Maestro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__idRol__4F7CD00D" Association="Self.FK__Usuarios__idRol__4F7CD00D">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -488,6 +616,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             <Parameter Name="idTipoAnimal" Mode="In" Type="String" />
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="imagen" Mode="In" Type="Binary" />
           </FunctionImport>
           <FunctionImport Name="RegistrarProducto">
             <Parameter Name="nombre" Mode="In" Type="String" />
@@ -521,6 +650,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
           <Property Type="Boolean" Name="estado" Nullable="false" />
+          <Property Type="Binary" Name="imagen" Nullable="true" />
         </ComplexType>
         <ComplexType Name="MostrarProductos_Result">
           <Property Type="Int32" Name="idProducto" Nullable="false" />
@@ -564,6 +694,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -577,14 +708,25 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DetalleFactura">
-            <EntityTypeMapping TypeName="ProyectoPAModel.DetalleFactura">
-              <MappingFragment StoreEntitySet="DetalleFactura">
-                <ScalarProperty Name="idDetalleFactura" ColumnName="idDetalleFactura" />
-                <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+          <EntitySetMapping Name="Carrito">
+            <EntityTypeMapping TypeName="ProyectoPAModel.Carrito">
+              <MappingFragment StoreEntitySet="Carrito">
+                <ScalarProperty Name="idCarrito" ColumnName="idCarrito" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle">
+            <EntityTypeMapping TypeName="ProyectoPAModel.Detalle">
+              <MappingFragment StoreEntitySet="Detalle">
+                <ScalarProperty Name="idDetalle" ColumnName="idDetalle" />
+                <ScalarProperty Name="idMaestro" ColumnName="idMaestro" />
                 <ScalarProperty Name="idProducto" ColumnName="idProducto" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="precioCompra" ColumnName="precioCompra" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -596,13 +738,15 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Factura">
-            <EntityTypeMapping TypeName="ProyectoPAModel.Factura">
-              <MappingFragment StoreEntitySet="Factura">
-                <ScalarProperty Name="idFactura" ColumnName="idFactura" />
-                <ScalarProperty Name="cedula" ColumnName="cedula" />
-                <ScalarProperty Name="terminos" ColumnName="terminos" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <EntitySetMapping Name="Maestro">
+            <EntityTypeMapping TypeName="ProyectoPAModel.Maestro">
+              <MappingFragment StoreEntitySet="Maestro">
+                <ScalarProperty Name="idMaestro" ColumnName="idMaestro" />
+                <ScalarProperty Name="ConsecutivoUsuario" ColumnName="ConsecutivoUsuario" />
+                <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Impuestos" ColumnName="Impuestos" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -674,6 +818,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -4,23 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9073c1691d08490b9d5cfae4bbc611c8" Name="Diagram1">
-        <EntityTypeShape EntityType="ProyectoPAModel.Adopciones" Width="1.5" PointX="7.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Animales" Width="1.5" PointX="5" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Bitacoras" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.DetalleFactura" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.EstadoAdopcion" Width="1.5" PointX="5" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Factura" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Productos" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Roles" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.TipoAnimal" Width="1.5" PointX="2.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Usuarios" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="f93a7cac7465414b871b01e811ebf703" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoPAModel.Adopciones" Width="1.5" PointX="12.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Animales" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Bitacoras" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Carrito" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Detalle" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.EstadoAdopcion" Width="1.5" PointX="10" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Maestro" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Productos" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Roles" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.TipoAnimal" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Usuarios" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
         <AssociationConnector Association="ProyectoPAModel.FK_Adopciones_Animales" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoPAModel.FK_Adopciones_EstadoAdopcion" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoPAModel.FK__Animales__idTipo__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idFac__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoPAModel.FK__DetalleFa__idPro__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoPAModel.FK__Usuarios__idRol__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK_Carrito_Productos" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK_Carrito_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK_Detalle_Maestro" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK_Detalle_Productos" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK_Maestro_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__Usuarios__idRol__4F7CD00D" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

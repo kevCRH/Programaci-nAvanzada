@@ -12,20 +12,23 @@ namespace ApiTiendaMascotas.ModeloBD
     using System;
     using System.Collections.Generic;
     
-    public partial class Factura
+    public partial class Maestro
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Factura()
+        public Maestro()
         {
-            this.DetalleFactura = new HashSet<DetalleFactura>();
+            this.Detalle = new HashSet<Detalle>();
         }
     
-        public int idFactura { get; set; }
-        public string cedula { get; set; }
-        public string terminos { get; set; }
-        public System.DateTime fecha { get; set; }
+        public long idMaestro { get; set; }
+        public int ConsecutivoUsuario { get; set; }
+        public System.DateTime FechaCompra { get; set; }
+        public decimal SubTotal { get; set; }
+        public decimal Impuestos { get; set; }
+        public decimal Total { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetalleFactura> DetalleFactura { get; set; }
+        public virtual ICollection<Detalle> Detalle { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
     }
 }

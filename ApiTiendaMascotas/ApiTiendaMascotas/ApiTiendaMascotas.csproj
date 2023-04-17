@@ -234,13 +234,16 @@
     <Compile Include="ModeloBD\Bitacoras.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModeloBD\DetalleFactura.cs">
+    <Compile Include="ModeloBD\Carrito.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloBD\Detalle.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ModeloBD\EstadoAdopcion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModeloBD\Factura.cs">
+    <Compile Include="ModeloBD\Maestro.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ModeloBD\Model1.Context.cs">

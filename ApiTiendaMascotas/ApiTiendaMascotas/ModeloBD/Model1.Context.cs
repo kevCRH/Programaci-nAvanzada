@@ -30,9 +30,10 @@ namespace ApiTiendaMascotas.ModeloBD
         public virtual DbSet<Adopciones> Adopciones { get; set; }
         public virtual DbSet<Animales> Animales { get; set; }
         public virtual DbSet<Bitacoras> Bitacoras { get; set; }
-        public virtual DbSet<DetalleFactura> DetalleFactura { get; set; }
+        public virtual DbSet<Carrito> Carrito { get; set; }
+        public virtual DbSet<Detalle> Detalle { get; set; }
         public virtual DbSet<EstadoAdopcion> EstadoAdopcion { get; set; }
-        public virtual DbSet<Factura> Factura { get; set; }
+        public virtual DbSet<Maestro> Maestro { get; set; }
         public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<TipoAnimal> TipoAnimal { get; set; }
@@ -108,7 +109,7 @@ namespace ApiTiendaMascotas.ModeloBD
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarAdopcion", idAnimalParameter, cedulaParameter, fechaAdopcionParameter, estadoAdopcionParameter);
         }
     
-        public virtual int RegistrarAnimal(string idTipoAnimal, string nombre, string descripcion)
+        public virtual int RegistrarAnimal(string idTipoAnimal, string nombre, string descripcion, byte[] imagen)
         {
             var idTipoAnimalParameter = idTipoAnimal != null ?
                 new ObjectParameter("idTipoAnimal", idTipoAnimal) :
@@ -122,7 +123,11 @@ namespace ApiTiendaMascotas.ModeloBD
                 new ObjectParameter("descripcion", descripcion) :
                 new ObjectParameter("descripcion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarAnimal", idTipoAnimalParameter, nombreParameter, descripcionParameter);
+            var imagenParameter = imagen != null ?
+                new ObjectParameter("imagen", imagen) :
+                new ObjectParameter("imagen", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarAnimal", idTipoAnimalParameter, nombreParameter, descripcionParameter, imagenParameter);
         }
     
         public virtual int RegistrarProducto(string nombre, string descripcion, Nullable<int> cantidad, Nullable<decimal> precio, Nullable<int> descuento, byte[] imagen)

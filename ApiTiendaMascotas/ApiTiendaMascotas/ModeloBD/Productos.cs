@@ -17,7 +17,8 @@ namespace ApiTiendaMascotas.ModeloBD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Productos()
         {
-            this.DetalleFactura = new HashSet<DetalleFactura>();
+            this.Carrito = new HashSet<Carrito>();
+            this.Detalle = new HashSet<Detalle>();
         }
     
         public int idProducto { get; set; }
@@ -29,6 +30,8 @@ namespace ApiTiendaMascotas.ModeloBD
         public byte[] imagen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetalleFactura> DetalleFactura { get; set; }
+        public virtual ICollection<Carrito> Carrito { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detalle> Detalle { get; set; }
     }
 }
