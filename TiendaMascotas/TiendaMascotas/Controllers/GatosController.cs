@@ -109,10 +109,18 @@ namespace TiendaMascotas.Controllers
         {
             try
             {
-                entidad.imagen = new byte[imagen1.ContentLength];
-                imagen1.InputStream.Read(entidad.imagen, 0, imagen1.ContentLength);
-                model.ActualizarAnimales(entidad);
-                return RedirectToAction("AdopcionGatos", "Gatos");
+                if (entidad.imagen != null)
+                {
+                    entidad.imagen = new byte[imagen1.ContentLength];
+                    imagen1.InputStream.Read(entidad.imagen, 0, imagen1.ContentLength);
+                    model.ActualizarAnimales(entidad);
+                    return RedirectToAction("AdopcionGatos", "Gatos");
+                }
+                else
+                {
+                    model.ActualizarAnimales(entidad);
+                    return RedirectToAction("AdopcionGatos", "Gatos");
+                }      
             }
             catch (Exception ex)
             {

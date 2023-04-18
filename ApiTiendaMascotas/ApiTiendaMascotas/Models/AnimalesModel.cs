@@ -99,8 +99,11 @@ namespace ApiTiendaMascotas.Models
                     respuesta.nombre = entidad.Nombre;
                     respuesta.descripcion = entidad.Descripcion;
                     respuesta.idTipoAnimal = entidad.tipoAnimal;
-                    respuesta.imagen = entidad.imagen;
-
+                    if (entidad.imagen != null) 
+                    {
+                        respuesta.imagen = entidad.imagen;
+                    }
+                    
                     conexion.SaveChanges(); 
                 }
             }
