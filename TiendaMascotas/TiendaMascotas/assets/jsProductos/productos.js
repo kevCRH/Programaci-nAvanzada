@@ -4,7 +4,6 @@ $(document).on("click", ".openModal", function () {
 });
 
 function EliminarProducto() {
-
     let id = $("#idModalHidden").val();
 
     $.ajax({
@@ -15,10 +14,12 @@ function EliminarProducto() {
             "id": id
         },
         success: function (res) {
-
             window.location.href = "/Productos/ProductosVenta";
-            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("Error eliminando el producto:", errorThrown);
         }
     });
+}
 
-} 
+

@@ -7,6 +7,7 @@ using System.Web;
 using TiendaMascotas.Entities;
 using System.Net.Http.Json;
 using System.Web.Mvc;
+using System.ComponentModel;
 
 
 namespace TiendaMascotas.Models
@@ -117,7 +118,7 @@ namespace TiendaMascotas.Models
             }
         }
 
-        public void EliminarProducto(long id)
+        public void EliminarProducto(int id)
         {
             using (var client = new HttpClient())
             {
@@ -125,11 +126,42 @@ namespace TiendaMascotas.Models
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["Token"].ToString());
                 HttpResponseMessage respuesta = client.DeleteAsync(url).GetAwaiter().GetResult();
-
             }
         }
 
+        public CompraEnt MostrarCompraCarrito()
+        {
+            using (var client = new HttpClient())
+            {
+                int idUsuario = int.Parse(HttpContext.Current.Session["Consecutivo"].ToString());
+                string url = "https://localhost:44331/api/MostrarCompraCarrito?idUsuario=" + idUsuario;
 
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["Token"].ToString());
+                HttpResponseMessage respuesta = client.GetAsync(url).GetAwaiter().GetResult();
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<CompraEnt>().Result;
+
+                return new CompraEnt();
+            }
+        }
+
+        public List<DetalleComprasEnt> MostrarDetalleCarrito()
+        {
+            using (var client = new HttpClient())
+            {
+                int idUsuario = int.Parse(HttpContext.Current.Session["Consecutivo"].ToString());
+                string url = "https://localhost:44331/api/MostrarDetalleCarrito?idUsuario=" + idUsuario;
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Current.Session["Token"].ToString());
+                HttpResponseMessage respuesta = client.GetAsync(url).GetAwaiter().GetResult();
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<List<DetalleComprasEnt>>().Result;
+
+                return new List<DetalleComprasEnt>();
+            }
+        }
 
     }
 }

@@ -15,6 +15,7 @@ namespace TiendaMascotas.Controllers
 
         UsuariosModel Usuariosmodel = new UsuariosModel();
         LogsModel LogsModel = new LogsModel();
+        ProductosModel productosModel = new ProductosModel();
         AdopcionesModel adopcionesModel = new AdopcionesModel();
 
         //Abrir vistas
@@ -65,7 +66,12 @@ namespace TiendaMascotas.Controllers
                     Session["Cedula"] = resultado.Cedula;
                     Session["Correo"] = resultado.CorreoElectronico;
                     Session["Token"] = resultado.Token;
-                    Session["rol"] = resultado.Rol;
+                    //Consultar los productos
+                    var datos = productosModel.MostrarProductos();
+                    var Temporal = productosModel.MostrarCompraCarrito();
+                    Session["CantidadCompra"] = Temporal.CantidadCompra;
+                    Session["MontoCompra"] = Temporal.MontoCompra;
+                    Session["rol"] = resultado.rol;
                     return View("Index");
                 }
                 else
@@ -82,6 +88,28 @@ namespace TiendaMascotas.Controllers
             }
 
         }
+
+
+        //[HttpGet]
+        ////[FiltroPersonalizadoSesion]
+        //public ActionResult IniciarSesion()
+        //{
+        //    try
+        //    {
+        //        //Consultar los productos
+        //        var datos = productosModel.MostrarProductos();
+        //        var Temporal = productosModel.MostrarCompraCarrito();
+        //        Session["CantidadCompra"] = Temporal.CantidadCompra;
+        //        Session["MontoCompra"] = Temporal.MontoCompra;
+
+        //        return View(datos);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        RegistrarLog(ex);
+        //        return View("Index");
+        //    }
+        //}
 
         [HttpPost]
         public ActionResult Registrar(UsuariosEnt entidad)

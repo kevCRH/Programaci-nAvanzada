@@ -217,6 +217,7 @@
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Entities\AdopcionEnt.cs" />
     <Compile Include="Entities\AnimalesEnt.cs" />
+    <Compile Include="Entities\CompraEnt.cs" />
     <Compile Include="Entities\ContactenosEnt.cs" />
     <Compile Include="Entities\LogsEnt.cs" />
     <Compile Include="Entities\ProductoEnt.cs" />
@@ -265,6 +266,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ModeloBD\MostrarAnimales_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloBD\MostrarCompraCarrito_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloBD\MostrarDetalleCarrito_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ModeloBD\MostrarProductos_Result.cs">

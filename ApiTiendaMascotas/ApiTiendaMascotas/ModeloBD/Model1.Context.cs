@@ -171,5 +171,23 @@ namespace ApiTiendaMascotas.ModeloBD
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarUsuario_Result>("ValidarUsuario", correoElectronicoParameter, contrasennaParameter);
         }
+    
+        public virtual ObjectResult<MostrarCompraCarrito_Result> MostrarCompraCarrito(Nullable<int> consecutivoUsuario)
+        {
+            var consecutivoUsuarioParameter = consecutivoUsuario.HasValue ?
+                new ObjectParameter("ConsecutivoUsuario", consecutivoUsuario) :
+                new ObjectParameter("ConsecutivoUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarCompraCarrito_Result>("MostrarCompraCarrito", consecutivoUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<MostrarDetalleCarrito_Result> MostrarDetalleCarrito(Nullable<int> consecutivoUsuario)
+        {
+            var consecutivoUsuarioParameter = consecutivoUsuario.HasValue ?
+                new ObjectParameter("ConsecutivoUsuario", consecutivoUsuario) :
+                new ObjectParameter("ConsecutivoUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarDetalleCarrito_Result>("MostrarDetalleCarrito", consecutivoUsuarioParameter);
+        }
     }
 }

@@ -42,7 +42,7 @@ namespace ApiTiendaMascotas.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("api/ConsultarProducto")]
-        public ProductoEnt ConsultarProducto(long q)
+        public ProductoEnt ConsultarProducto(int q)
         {
             return model.ConsultarProducto(q);
         }
@@ -58,7 +58,7 @@ namespace ApiTiendaMascotas.Controllers
         [HttpDelete]
         [Authorize]
         [Route("api/EliminarProducto")]
-        public void EliminarProducto(long q)
+        public void EliminarProducto(int q)
         {
             model.EliminarProducto(q);
         }
@@ -69,6 +69,22 @@ namespace ApiTiendaMascotas.Controllers
         public void ActualizarCarrito(ProductoEnt entidad)
         {
             model.ActualizarCarrito(entidad);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("api/MostrarCompraCarrito")]
+        public CompraEnt MostrarCompraCarrito(int idUsuario)
+        {
+            return model.MostrarCompraCarrito(idUsuario);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("api/MostrarDetalleCarrito")]
+        public List<DetalleComprasEnt> MostrarDetalleCarrito(int idUsuario)
+        {
+            return model.MostrarDetalleCarrito(idUsuario);
         }
 
     }
