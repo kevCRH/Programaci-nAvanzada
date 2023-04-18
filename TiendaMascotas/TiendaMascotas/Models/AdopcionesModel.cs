@@ -27,7 +27,7 @@ namespace TiendaMascotas.Models
             }
         }
 
-        public List<AdopcionesEnt> MostrarAnimales()
+        public List<AdopcionesEnt> MostrarAdopciones()
         {
             using (var client = new HttpClient())
             {

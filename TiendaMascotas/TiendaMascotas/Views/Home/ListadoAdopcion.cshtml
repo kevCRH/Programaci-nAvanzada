@@ -1,0 +1,155 @@
+﻿@model IEnumerable<TiendaMascotas.Entities.AdopcionesEnt>
+
+@{
+    ViewBag.Title = "ListadoAdopcion";
+    Layout = "~/Views/Shared/LayoutProducts.cshtml";
+}
+
+<div class="top-header-area" id="sticker">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- menu start -->
+                    <nav class="main-menu">
+                        <ul>
+                            <li class="current-list-item">
+                                <a href="@Url.Action("Index", "Home")">INICIO</a>
+                            </li>
+                            <li>
+                                @if (Session["NombreUsuario"] != null)
+                                {
+                                    <p style="color:#FFFFFF">@Session["NombreUsuario"].ToString()</p>
+                                }
+                            </li>
+                            <li>
+                                <div class="header-icons">
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                    <div class="mobile-menu"></div>
+                    <!-- menu end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+<!-- search area -->
+<div class="search-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="close-btn"><i class="fas fa-window-close"></i></span>
+                <div class="search-bar">
+                    <div class="search-bar-tablecell">
+                        <h3>Buscar:</h3>
+                        <input type="text" placeholder="Escriba palabras claves">
+                        <button type="submit">Buscar <i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end search arewa -->
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <h1>Solicitudes de adopción</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- end breadcrumb section -->
+<!-- products -->
+<div class="product-section mt-100 mb-150">
+    @*<li class="col-lg-12 col-md-6 text-center strawberry">
+            <h3>Registre un animal</h3>
+            <a href="@Url.Action("RegistrarAnimal", "Perros")">¡Haz click aquí!</a>
+        </li>*@
+    <br>
+    <br>
+    <h1 class="col-lg-12 col-md-6 text-center strawberry">
+        Listado de adopciones
+    </h1>
+    <br>
+    <div class="container" style="color: black">
+        <div class="row product-lists">
+
+            <div class="row">
+                <div class="col-md-1 grid-margin stretch-card">
+                </div>
+                <div class="col-md-10 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+
+
+                            <h4>Listado de adopciones</h4>
+
+                            <table class="table table-hover" id="tablaAnimales">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Tipo de animal</th>
+                                        <th>Descripción</th>
+                                        <th>Usuario adoptante</th>
+                                        <th>Cedula</th>
+                                        <th>Correo</th>
+                                        <th>rol</th>
+                                        <th>Fecha adopción</th>
+                                        <th>Estado adopción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.nombreAnimal</td>
+                                            <td>@item.tipoAnimal</td>
+                                            <td>@item.descripcion</td>
+                                            <td>@item.nombre</td>
+                                            <td>@item.cedula</td>
+                                            <td>@item.correo</td>
+                                            <td>@item.rol</td>
+                                            <td>@item.fecha</td>
+                                            <td>@item.estadoAdopcion</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 grid-margin stretch-card">
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $('#tablaAnimales').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        });
+    });
+
+</script>

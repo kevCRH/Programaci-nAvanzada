@@ -24,5 +24,6 @@ namespace ApiTiendaMascotas.Entities
         public bool Estado { get; set; }
 
         public string Token { get; set; }
+        public string Rol { get; set; }
     }
 }

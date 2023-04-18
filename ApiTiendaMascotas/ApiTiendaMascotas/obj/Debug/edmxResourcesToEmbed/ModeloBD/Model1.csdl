@@ -328,6 +328,7 @@
     <Property Type="String" Name="rol" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="nombre_animal" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Binary" Name="imagen" Nullable="true" />
     <Property Type="String" Name="tipoAnimal" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="estadoAdopcion" Nullable="true" MaxLength="20" />
   </ComplexType>

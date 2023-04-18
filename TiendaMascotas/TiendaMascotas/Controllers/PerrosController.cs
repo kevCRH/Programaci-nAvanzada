@@ -104,10 +104,12 @@ namespace TiendaMascotas.Controllers
 
         [HttpPost]
         //[FiltroSesion]
-        public ActionResult ActualizarAnimales(AnimalesEnt entidad)
+        public ActionResult ActualizarAnimales([Bind(Include = "idAnimal, Nombre, tipoAnimal,Descripcion")] AnimalesEnt entidad, HttpPostedFileBase imagen1)
         {
             try
             {
+                entidad.imagen = new byte[imagen1.ContentLength];
+                imagen1.InputStream.Read(entidad.imagen, 0, imagen1.ContentLength);
                 model.ActualizarAnimales(entidad);
                 return RedirectToAction("AdopcionPerros", "Perros");
             }
@@ -124,34 +126,6 @@ namespace TiendaMascotas.Controllers
         {
             model.CambiarEstadoAnimal(id);
             return Json("Ok",JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public ActionResult SolicitarAdopcion(int idAnimal, string Cedula)
-        {
-            AdopcionesEnt adopcion = new AdopcionesEnt();
-
-            adopcion.idAnimal = idAnimal;
-            adopcion.cedula = Cedula;
-            adopcionesModel.RegistrarAdopciones(adopcion);
-            return Json("Ok", JsonRequestBehavior.AllowGet);
-        }
-
-
-        [HttpGet]
-        //[FiltroSesion]
-        public ActionResult SolicitudesAdopcion()
-        {
-            try
-            {
-                var resultado = adopcionesModel.MostrarAnimales();
-                return View(resultado);
-            }
-            catch (Exception ex)
-            {
-                RegistrarLog(ex);
-                return View();
-            }
         }
 
         [HttpPost]

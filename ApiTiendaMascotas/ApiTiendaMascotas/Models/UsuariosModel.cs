@@ -33,6 +33,7 @@ namespace ApiTiendaMascotas.Models
                 respuesta.CorreoElectronico = datosBD.correoElectronico;
                 respuesta.Token = token.GenerateTokenJwt(datosBD.correoElectronico);
                 respuesta.Estado = datosBD.estado;
+                respuesta.Rol = datosBD.idRol;
                
                 return respuesta;
             }

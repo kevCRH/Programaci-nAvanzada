@@ -26,16 +26,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#adopciones">Adopciones</a>
                     </li>
-                    @*@if (Session["rol"] != null)
+                    @if (Session["rol"] != null)
+                    {
+                        if (Convert.ToInt32(Session["rol"].ToString()) == 1)
                         {
-                            if (Session["rol"] == 1)
-                            {
-
-                            }
-                        }*@
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("SolicitudesAdopcion", "Perros")">Solicitudes de adopcion</a>
-                    </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("SolicitudesAdopcion", "Home")">Solicitudes de adopción</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("ListadoAdopcion", "Home")">Lista de adopciones</a>
+                            </li>
+                        }
+                    }
                     <li class="nav-item">
                         <a class="nav-link" href="#productos">Productos</a>
                     </li>

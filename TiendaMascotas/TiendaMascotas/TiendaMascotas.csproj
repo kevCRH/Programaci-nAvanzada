@@ -398,8 +398,9 @@
     <Content Include="Views\Perros\ActualizarAnimales.cshtml" />
     <Content Include="Views\Gatos\ActualizarAnimales.cshtml" />
     <Content Include="Views\Perros\AdopcionPerros.cshtml" />
-    <Content Include="Views\Perros\SolicitudesAdopcion.cshtml" />
+    <Content Include="Views\Home\SolicitudesAdopcion.cshtml" />
     <Content Include="Views\Productos\ActualizarProducto.cshtml" />
+    <Content Include="Views\Home\ListadoAdopcion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

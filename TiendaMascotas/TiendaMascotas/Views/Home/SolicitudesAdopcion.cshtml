@@ -14,7 +14,7 @@
                     <nav class="main-menu">
                         <ul>
                             <li class="current-list-item">
-                                <a href="@Url.Action("Index", "Home")">HOME</a>
+                                <a href="@Url.Action("Index", "Home")">INICIO</a>
                             </li>
                             <li>
                                 @if (Session["NombreUsuario"] != null)
@@ -61,8 +61,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
-                    <p>Adopte un lindo</p>
-                    <h1>Perrito</h1>
+                    <h1>Solicitudes de adopción</h1>
                 </div>
             </div>
         </div>
@@ -73,16 +72,16 @@
 <!-- end breadcrumb section -->
 <!-- products -->
 <div class="product-section mt-100 mb-150">
-    <li class="col-lg-12 col-md-6 text-center strawberry">
+    @*<li class="col-lg-12 col-md-6 text-center strawberry">
         <h3>Registre un animal</h3>
         <a href="@Url.Action("RegistrarAnimal", "Perros")">¡Haz click aquí!</a>
-    </li>
+    </li>*@
     <br>
     <br>
     <br>
     <br>
     <h1 class="col-lg-12 col-md-6 text-center strawberry">
-        Lista de perritos en adopcion
+        Lista de solicitudes en espera
     </h1>
     <br>
     <br>
@@ -92,34 +91,50 @@
 
             @foreach (var item in Model)
             {
-                <div class="col-lg-4 col-md-6 text-center strawberry">
-                    <div class="single-product-item">
-                        <div class="product-image">
-                            <a href="cart.html"><img src="~/assets/imgperros/Ruffos.jpg" alt=""></a>
-                        </div>
+                if (item.estadoAdopcion == "En Espera")
+                {
+                    <div class="col-lg-4 col-md-6 text-center strawberry">
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                @{
+                                    var base64 = Convert.ToBase64String(item.imagen);
+                                    var imagensrc = string.Format("data:image/gif;base64,{0}", base64);
+                                }
+                                @*<a href="cart.html"><img src="~/assets/imgperros/Ruffos.jpg" alt=""></a>*@
+                                <img src="@imagensrc" style="max-height: 1200px; max-width: 900px" />
+                            </div>
 
-                        <h1>Adoptado</h1>
-                        <h5>@item.nombreAnimal</h5>
-                        <h5>Tipo de animal: @item.tipoAnimal</h5>
-                        <h5>Descripcion: @item.descripcion</h5>
-                        <br />
-                        <h1>Usuario</h1>
-                        <h5>@item.nombre</h5>
-                        <h5>Cedula: @item.cedula </h5>
-                        <h5>Correo: @item.correo</h5>
-                        <h5>Rol: @item.rol</h5>
-                        <h2>Fecha adopcion</h2>
-                        <h5>Fecha: @item.fecha</h5>
-                        <h5>Estado de la adopcion: @item.estadoAdopcion</h5>
-                        <br />
-                        <a href="#" class="cart-btn openModal" data-toggle="modal" data-target="#exampleModalCenter"
-                           data-backdrop="static" data-keyboard="false" data-idAdopcion=@item.idAdopcion>Aceptar adopcion</a>
-                        <br />
-                        <br />
-                        <a href="#" class="cart-btn openModal2" data-toggle="modal" data-target="#exampleModalCenter2"
-                           data-backdrop="static" data-keyboard="false" data-idAdopcion=@item.idAdopcion>Denegar adopcion</a>
+                            <h1>Adoptado</h1>
+                            <h5>@item.nombreAnimal</h5>
+                            <h5>Tipo de animal: @item.tipoAnimal</h5>
+                            <h5>Descripción: @item.descripcion</h5>
+                            <br />
+                            <h1>Usuario</h1>
+                            <h5>@item.nombre</h5>
+                            <h5>Cedula: @item.cedula </h5>
+                            <h5>Correo: @item.correo</h5>
+                            <h5>Rol: @item.rol</h5>
+                            <h2>Fecha adopcion</h2>
+                            <h5>Fecha: @item.fecha</h5>
+                            <h5>Estado de la adopción: @item.estadoAdopcion</h5>
+                            <br />
+                            <a href="#" class="cart-btn openModal" data-toggle="modal" data-target="#exampleModalCenter"
+                               data-backdrop="static" data-keyboard="false" data-idAdopcion=@item.idAdopcion>Aceptar adopción</a>
+                            <br />
+                            <br />
+                            <a href="#" class="cart-btn openModal2" data-toggle="modal" data-target="#exampleModalCenter2"
+                               data-backdrop="static" data-keyboard="false" data-idAdopcion=@item.idAdopcion>Denegar adopción</a>
+                        </div>
                     </div>
-                </div>
+
+                }
+            }
+
+            @if (!Model.Any(item => item.estadoAdopcion == "En Espera"))
+            {
+                <h3 class="col-lg-12 col-md-6 text-center strawberry">
+                    No hay solicitudes de adopción en este momento
+                </h3>
             }
 
         </div>

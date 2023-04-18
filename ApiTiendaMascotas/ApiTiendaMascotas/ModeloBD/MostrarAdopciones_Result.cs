@@ -22,6 +22,7 @@ namespace ApiTiendaMascotas.ModeloBD
         public string rol { get; set; }
         public string nombre_animal { get; set; }
         public string descripcion { get; set; }
+        public byte[] imagen { get; set; }
         public string tipoAnimal { get; set; }
         public string estadoAdopcion { get; set; }
     }

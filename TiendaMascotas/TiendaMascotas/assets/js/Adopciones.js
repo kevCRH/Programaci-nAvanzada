@@ -70,7 +70,7 @@ function DenegarDonacion() {
 
 
 function RecargarPantalla() {
-        window.location.href = "/Perros/SolicitudesAdopcion";
+        window.location.href = "/Home/SolicitudesAdopcion";
 }
 
 

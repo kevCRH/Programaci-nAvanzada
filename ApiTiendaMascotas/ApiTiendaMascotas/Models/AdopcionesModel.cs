@@ -43,6 +43,8 @@ namespace ApiTiendaMascotas.Models
                            descripcion = item.descripcion,
                            tipoAnimal = item.tipoAnimal,
                            estadoAdopcion = item.estadoAdopcion,
+                           imagen = item.imagen,
+
                         });
                     }
                 }

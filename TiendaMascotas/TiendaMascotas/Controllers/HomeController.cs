@@ -15,6 +15,7 @@ namespace TiendaMascotas.Controllers
 
         UsuariosModel Usuariosmodel = new UsuariosModel();
         LogsModel LogsModel = new LogsModel();
+        AdopcionesModel adopcionesModel = new AdopcionesModel();
 
         //Abrir vistas
 
@@ -64,7 +65,7 @@ namespace TiendaMascotas.Controllers
                     Session["Cedula"] = resultado.Cedula;
                     Session["Correo"] = resultado.CorreoElectronico;
                     Session["Token"] = resultado.Token;
-                    //Session["rol"] = resultado.rol;
+                    Session["rol"] = resultado.Rol;
                     return View("Index");
                 }
                 else
@@ -178,9 +179,52 @@ namespace TiendaMascotas.Controllers
                 return View("Index");
             }
         }
-        
 
 
+        [HttpGet]
+        //[FiltroSesion]
+        public ActionResult SolicitudesAdopcion()
+        {
+            try
+            {
+                var resultado = adopcionesModel.MostrarAdopciones();
+                return View(resultado);
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return View();
+            }
+        }
+
+        [HttpGet]
+        //[FiltroSesion]
+        public ActionResult ListadoAdopcion()
+        {
+            try
+            {
+                var resultado = adopcionesModel.MostrarAdopciones();
+                return View(resultado);
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SolicitarAdopcion(int idAnimal, string Cedula)
+        {
+            AdopcionesEnt adopcion = new AdopcionesEnt();
+
+            adopcion.idAnimal = idAnimal;
+            adopcion.cedula = Cedula;
+            adopcionesModel.RegistrarAdopciones(adopcion);
+            return Json("Ok", JsonRequestBehavior.AllowGet);
+        }
+
+        //
 
         public void RegistrarLog(Exception ex)
         {

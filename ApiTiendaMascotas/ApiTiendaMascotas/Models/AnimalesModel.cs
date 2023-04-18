@@ -93,11 +93,14 @@ namespace ApiTiendaMascotas.Models
                 var respuesta = (from x in conexion.Animales
                                  where x.idAnimal == entidad.idAnimal
                                  select x).FirstOrDefault();
+
                 if (respuesta != null)
                 {
                     respuesta.nombre = entidad.Nombre;
                     respuesta.descripcion = entidad.Descripcion;
-                    respuesta.idTipoAnimal = entidad.tipoAnimal; 
+                    respuesta.idTipoAnimal = entidad.tipoAnimal;
+                    respuesta.imagen = entidad.imagen;
+
                     conexion.SaveChanges(); 
                 }
             }

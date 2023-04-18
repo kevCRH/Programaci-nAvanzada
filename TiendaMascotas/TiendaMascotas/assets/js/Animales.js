@@ -47,8 +47,10 @@ function CambiarEstadoAnimal2() {
 $(document).on("click", ".openModal2", function () {
     var idAnimal = $(this).data('idanimal');
     var cedula = $(this).data('cedula');
+    var tipoanimal = $(this).data('idtanimal');
     $("#idModalHidden2").val(idAnimal);
     $("#idModalHidden3").val(cedula);
+    $("#idModalHidden4").val(tipoanimal);
 });
 
 function SolicitudAdopcion() {
@@ -58,7 +60,7 @@ function SolicitudAdopcion() {
 
     $.ajax({
         type: "POST",
-        url: "/Perros/SolicitarAdopcion",
+        url: "/Home/SolicitarAdopcion",
         dataType: "json",
         data: {
             "IdAnimal": IdAnimal,
@@ -81,7 +83,15 @@ function SolicitudAdopcion() {
 
     function RecargarPantalla()
     {
-        window.location.href = "/Perros/AdopcionPerros";
+        let tipoAnimal = $("#idModalHidden4").val();
+
+        if (tipoAnimal == "perro")
+        {
+            window.location.href = "/Perros/AdopcionPerros";
+        }
+        else {
+            window.location.href = "/Gatos/AdopcionGatos";
+        }
     }
 
 }
