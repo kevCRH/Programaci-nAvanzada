@@ -226,12 +226,18 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Parameter Name="idAdopcion" Type="int" Mode="In" />
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="ConfirmarPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConsecutivoUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="MostrarAdopciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MostrarAnimales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MostrarCompraCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ConsecutivoUsuario" Type="int" Mode="In" />
         </Function>
         <Function Name="MostrarDetalleCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConsecutivoUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="MostrarFacturas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ConsecutivoUsuario" Type="int" Mode="In" />
         </Function>
         <Function Name="MostrarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -602,8 +608,14 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             <Parameter Name="idAdopcion" Mode="In" Type="Int32" />
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="ConfirmarPago">
+          <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="MostrarAdopciones" ReturnType="Collection(ProyectoPAModel.MostrarAdopciones_Result)" />
           <FunctionImport Name="MostrarAnimales" ReturnType="Collection(ProyectoPAModel.MostrarAnimales_Result)" />
+          <FunctionImport Name="MostrarFacturas" ReturnType="Collection(ProyectoPAModel.MostrarFacturas_Result)">
+          <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="MostrarProductos" ReturnType="Collection(ProyectoPAModel.MostrarProductos_Result)" />
           <FunctionImport Name="Registrar">
             <Parameter Name="cedula" Mode="In" Type="String" />
@@ -663,6 +675,11 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
           <Property Type="Boolean" Name="estado" Nullable="false" />
           <Property Type="Binary" Name="imagen" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="MostrarFacturas_Result">
+          <Property Type="Int64" Name="idMaestro" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCompra" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
         </ComplexType>
         <ComplexType Name="MostrarProductos_Result">
           <Property Type="Int32" Name="idProducto" Nullable="false" />
@@ -817,6 +834,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="CambiarEstadoAdopcion" FunctionName="ProyectoPAModel.Store.CambiarEstadoAdopcion" />
+          <FunctionImportMapping FunctionImportName="ConfirmarPago" FunctionName="ProyectoPAModel.Store.ConfirmarPago" />
           <FunctionImportMapping FunctionImportName="MostrarAdopciones" FunctionName="ProyectoPAModel.Store.MostrarAdopciones">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarAdopciones_Result">
@@ -844,6 +862,15 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MostrarFacturas" FunctionName="ProyectoPAModel.Store.MostrarFacturas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarFacturas_Result">
+                <ScalarProperty Name="idMaestro" ColumnName="idMaestro" />
+                <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

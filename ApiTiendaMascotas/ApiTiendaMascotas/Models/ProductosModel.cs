@@ -199,6 +199,7 @@ namespace ApiTiendaMascotas.Models
         {
             using (var conexion = new ProyectoPAEntities())
             {
+
                 var datosBD = conexion.MostrarDetalleCarrito(idUsuario).ToList();
 
                 List<DetalleComprasEnt> respuesta = new List<DetalleComprasEnt>();

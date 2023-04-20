@@ -71,7 +71,7 @@ namespace TiendaMascotas.Controllers
                     var Temporal = productosModel.MostrarCompraCarrito();
                     Session["CantidadCompra"] = Temporal.CantidadCompra;
                     Session["MontoCompra"] = Temporal.MontoCompra;
-                    Session["rol"] = resultado.rol;
+                    //Session["rol"] = resultado.rol;
                     return View("Index");
                 }
                 else

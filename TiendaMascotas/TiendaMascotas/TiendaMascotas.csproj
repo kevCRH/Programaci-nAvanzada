@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GatosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PagosController.cs" />
     <Compile Include="Controllers\PerrosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Entities\AdopcionesEnt.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Entities\CompraEnt.cs" />
     <Compile Include="Entities\ContactenosEnt.cs" />
     <Compile Include="Entities\LogsEnt.cs" />
+    <Compile Include="Entities\PagosEnt.cs" />
     <Compile Include="Entities\ProductoEnt.cs" />
     <Compile Include="Entities\TiposAnimalesEnt.cs" />
     <Compile Include="Entities\UsuariosEnt.cs" />
@@ -178,6 +180,7 @@
     <Compile Include="Models\AdopcionesModel.cs" />
     <Compile Include="Models\AnimalesModel.cs" />
     <Compile Include="Models\LogsModel.cs" />
+    <Compile Include="Models\PagosModel.cs" />
     <Compile Include="Models\ProductosModel.cs" />
     <Compile Include="Models\UsuariosModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -406,6 +409,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Adopciones\" />
+    <Folder Include="Views\Pagos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

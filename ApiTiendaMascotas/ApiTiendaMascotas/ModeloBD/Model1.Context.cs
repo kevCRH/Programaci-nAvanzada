@@ -52,6 +52,15 @@ namespace ApiTiendaMascotas.ModeloBD
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstadoAdopcion", idAdopcionParameter, idParameter);
         }
     
+        public virtual int ConfirmarPago(Nullable<int> consecutivoUsuario)
+        {
+            var consecutivoUsuarioParameter = consecutivoUsuario.HasValue ?
+                new ObjectParameter("ConsecutivoUsuario", consecutivoUsuario) :
+                new ObjectParameter("ConsecutivoUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ConfirmarPago", consecutivoUsuarioParameter);
+        }
+    
         public virtual ObjectResult<MostrarAdopciones_Result> MostrarAdopciones()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarAdopciones_Result>("MostrarAdopciones");
@@ -60,6 +69,15 @@ namespace ApiTiendaMascotas.ModeloBD
         public virtual ObjectResult<MostrarAnimales_Result> MostrarAnimales()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarAnimales_Result>("MostrarAnimales");
+        }
+    
+        public virtual ObjectResult<MostrarFacturas_Result> MostrarFacturas(Nullable<int> consecutivoUsuario)
+        {
+            var consecutivoUsuarioParameter = consecutivoUsuario.HasValue ?
+                new ObjectParameter("ConsecutivoUsuario", consecutivoUsuario) :
+                new ObjectParameter("ConsecutivoUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarFacturas_Result>("MostrarFacturas", consecutivoUsuarioParameter);
         }
     
         public virtual ObjectResult<MostrarProductos_Result> MostrarProductos()
