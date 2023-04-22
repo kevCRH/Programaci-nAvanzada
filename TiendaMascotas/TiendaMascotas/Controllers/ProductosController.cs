@@ -13,6 +13,7 @@ namespace TiendaMascotas.Controllers
     {
 
         ProductosModel model = new ProductosModel();
+
         LogsModel LogsModel = new LogsModel();
 
         [HttpGet]
@@ -20,6 +21,9 @@ namespace TiendaMascotas.Controllers
         {
             try
             {
+                var Temporal = model.MostrarCompraCarrito();
+                Session["CantidadCompra"] = Temporal.CantidadCompra;
+                Session["MontoCompra"] = Temporal.MontoCompra;
 
                 var resultado = model.MostrarProductos();
                 return View(resultado);
@@ -153,7 +157,14 @@ namespace TiendaMascotas.Controllers
             return Json("Ok", JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public ActionResult ProductoCarrito()
+        {
+            var Datos = model.MostrarDetalleCarrito();
+            ViewBag.Totalizador = Datos.Sum(x => x.Total);
 
+            return View(Datos);
+        }
 
     }
 }

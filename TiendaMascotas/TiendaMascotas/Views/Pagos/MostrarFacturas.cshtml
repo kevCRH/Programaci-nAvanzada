@@ -1,6 +1,6 @@
-﻿@model IEnumerable<TiendaMascotas.Entities.DetalleComprasEnt>
+﻿@model IEnumerable<TiendaMascotas.Entities.PagosEnt>
 @{
-    ViewBag.Title = "ProductoCarrito";
+    ViewBag.Title = "MostrarFacturas";
     Layout = "~/Views/Shared/LayoutProducts.cshtml";
 }
 
@@ -31,7 +31,8 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
-                    <h1>Carrito de Compra</h1>
+                    <h1>Historial de Facturas</h1>
+                    <p>De Compras Realizadas</p>
                 </div>
             </div>
         </div>
@@ -41,6 +42,8 @@
 
 <!-- end breadcrumb section -->
 
+
+
 <div class="row">
 
     <div class="col-md-1 grid-margin stretch-card">
@@ -49,16 +52,13 @@
     <div class="col-md-10 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Detalle a pagar</h4>
+                <h4 class="card-title">Facturas Realizadas</h4>
 
-                <table class="table table-hover" id="tablaDetalleCarrito">
+                <table class="table table-hover" id="tablaFacturas">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Cantidad</th>
-                            <th>¢ Precio</th>
-                            <th>¢ Sub Total</th>
-                            <th>¢ Impuesto</th>
+                            <th>#Factura</th>
+                            <th>Fecha</th>
                             <th>¢ Total</th>
                         </tr>
                     </thead>
@@ -67,33 +67,14 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.Nombre</td>
-                                <td>@item.Cantidad</td>
-                                <td>@string.Format("{0:n2}", @item.Precio)</td>
-                                <td>@string.Format("{0:n2}", @item.SubTotal)</td>
-                                <td>@string.Format("{0:n2}", @item.Impuesto)</td>
+                                <td>@item.IdMaestro</td>
+                                <td>@item.FechaCompra.ToString("dd/MM/yyyy")</td>
                                 <td>@string.Format("{0:n2}", @item.Total)</td>
                             </tr>
                         }
 
                     </tbody>
                 </table>
-
-                <br />
-                <br />
-
-                @using (Html.BeginForm("ConfirmarPago", "Pagos", FormMethod.Post))
-                {
-                    var x = string.Format("{0:n2}", @ViewBag.Totalizador);
-                    <Label>Total a pagar: </Label> @x;
-
-                    if (decimal.Parse(@x) > 0)
-                    {
-                        <input type="submit" value="Realizar Pago" class="btn btn-success">
-                    }
-
-                }
-
 
             </div>
         </div>
@@ -106,10 +87,11 @@
 
 <script>
     $(document).ready(function () {
-        $('#tablaDetalleCarrito').DataTable({
+        $('#tablaFacturas').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
             }
         });
     });
-</script> 
+</script>
+

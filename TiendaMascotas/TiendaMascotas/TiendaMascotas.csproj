@@ -405,11 +405,11 @@
     <Content Include="Views\Home\SolicitudesAdopcion.cshtml" />
     <Content Include="Views\Productos\ActualizarProducto.cshtml" />
     <Content Include="Views\Home\ListadoAdopcion.cshtml" />
+    <Content Include="Views\Pagos\MostrarFacturas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Adopciones\" />
-    <Folder Include="Views\Pagos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
