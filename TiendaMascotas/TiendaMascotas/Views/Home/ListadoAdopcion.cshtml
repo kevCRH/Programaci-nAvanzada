@@ -5,37 +5,6 @@
     Layout = "~/Views/Shared/LayoutProducts.cshtml";
 }
 
-<div class="top-header-area" id="sticker">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-sm-12 text-center">
-                <div class="main-menu-wrap">
-                    <!-- menu start -->
-                    <nav class="main-menu">
-                        <ul>
-                            <li class="current-list-item">
-                                <a href="@Url.Action("Index", "Home")">INICIO</a>
-                            </li>
-                            <li>
-                                @if (Session["NombreUsuario"] != null)
-                                {
-                                    <p style="color:#FFFFFF">@Session["NombreUsuario"].ToString()</p>
-                                }
-                            </li>
-                            <li>
-                                <div class="header-icons">
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
-                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                    <div class="mobile-menu"></div>
-                    <!-- menu end -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- end header -->
 <!-- search area -->
 <div class="search-area">
@@ -82,63 +51,80 @@
         Listado de adopciones
     </h1>
     <br>
-    <div class="container" style="color: black">
-        <div class="row product-lists">
 
-            <div class="row">
-                <div class="col-md-1 grid-margin stretch-card">
-                </div>
-                <div class="col-md-10 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
+    @if (!Model.Any())
+    {
+        <h3 class="col-lg-12 col-md-6 text-center strawberry">
+            No tenemos adopciones registradas en este momento.
+        </h3>
+    }
+    else
+    {
+        var adopciones = Model.Where(item => item.estadoAdopcion != "En Espera");
 
+        if (adopciones.Any())
+        {
+            foreach (var item in adopciones)
+            {
+                <div class="container" style="color: black">
+                    <div class="row product-lists">
 
-                            <h4>Listado de adopciones</h4>
+                        <div class="row">
+                            <div class="col-md-1 grid-margin stretch-card">
+                            </div>
+                            <div class="col-md-10 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
 
-                            <table class="table table-hover" id="tablaAnimales">
-                                <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Tipo de animal</th>
-                                        <th>Descripción</th>
-                                        <th>Usuario adoptante</th>
-                                        <th>Cedula</th>
-                                        <th>Correo</th>
-                                        <th>rol</th>
-                                        <th>Fecha adopción</th>
-                                        <th>Estado adopción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            <td>@item.nombreAnimal</td>
-                                            <td>@item.tipoAnimal</td>
-                                            <td>@item.descripcion</td>
-                                            <td>@item.nombre</td>
-                                            <td>@item.cedula</td>
-                                            <td>@item.correo</td>
-                                            <td>@item.rol</td>
-                                            <td>@item.fecha</td>
-                                            <td>@item.estadoAdopcion</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                        <table class="table table-hover" id="tablaAnimales">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Tipo de animal</th>
+                                                    <th>Descripción</th>
+                                                    <th>Usuario adoptante</th>
+                                                    <th>Cedula</th>
+                                                    <th>Correo</th>
+                                                    <th>rol</th>
+                                                    <th>Fecha adopción</th>
+                                                    <th>Estado adopción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>@item.nombreAnimal</td>
+                                                    <td>@item.tipoAnimal</td>
+                                                    <td>@item.descripcion</td>
+                                                    <td>@item.nombre</td>
+                                                    <td>@item.cedula</td>
+                                                    <td>@item.correo</td>
+                                                    <td>@item.rol</td>
+                                                    <td>@item.fecha</td>
+                                                    <td>@item.estadoAdopcion</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
 
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-
+                    </div>
+                    <div class="col-md-1 grid-margin stretch-card">
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-1 grid-margin stretch-card">
-        </div>
-    </div>
+            }
+        }
+        else
+        {
+            <h3 class="col-lg-12 col-md-6 text-center strawberry">
+                No hay adopciones disponibles en este momento.
+            </h3>
+        }
+    }
+
 </div>
-
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 

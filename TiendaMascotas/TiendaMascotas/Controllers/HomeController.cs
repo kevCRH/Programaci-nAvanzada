@@ -66,12 +66,12 @@ namespace TiendaMascotas.Controllers
                     Session["Cedula"] = resultado.Cedula;
                     Session["Correo"] = resultado.CorreoElectronico;
                     Session["Token"] = resultado.Token;
+                    Session["rol"] = resultado.Rol;
                     //Consultar los productos
                     var datos = productosModel.MostrarProductos();
                     var Temporal = productosModel.MostrarCompraCarrito();
                     Session["CantidadCompra"] = Temporal.CantidadCompra;
-                    Session["MontoCompra"] = Temporal.MontoCompra;
-                    Session["rol"] = resultado.Rol;
+                    Session["MontoCompra"] = Temporal.MontoCompra;                    
                     return View("Index");
                 }
                 else
