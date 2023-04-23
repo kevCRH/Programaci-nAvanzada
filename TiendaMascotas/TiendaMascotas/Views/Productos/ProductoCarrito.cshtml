@@ -82,7 +82,9 @@
                 <br />
                 <br />
 
-                @using (Html.BeginForm("ConfirmarPago", "Pagos", FormMethod.Post))
+                <a class="cart-btn product-btn" onclick="Pagando()"> Realizar Pago<a>
+
+                @*@using (Html.BeginForm("ConfirmarPago", "Pagos", FormMethod.Post))
                 {
                     var x = string.Format("{0:n2}", @ViewBag.Totalizador);
                     <Label>Total a pagar: </Label> @x;
@@ -92,7 +94,13 @@
                         <input type="submit" value="Realizar Pago" class="btn btn-success">
                     }
 
-                }
+
+
+                }*@
+
+
+
+
 
 
             </div>
@@ -101,8 +109,8 @@
 
 </div>
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     $(document).ready(function () {
@@ -112,4 +120,44 @@
             }
         });
     });
+
+    function RecargarPantalla() {
+        window.location.href = "/Productos/ProductoCarrito";
+    }
+
+
+    function Pagando() {
+
+            $.ajax({
+                type: "POST",
+                url: "/Pagos/ConfirmarPago",
+                dataType: "json",
+                success: function (res) {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'Pago efectuado exitosamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+
+                    setTimeout(function () {
+                        RecargarPantalla();
+                    }, 2200);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    Swal.fire({
+                            position: 'top-center',
+                            icon: 'error',
+                            title: 'Error al ejecutar el pago del carrito',
+                            text: '@TempData["ErrorMessage"]',
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                }
+            });
+
+        
+
+    }
 </script> 

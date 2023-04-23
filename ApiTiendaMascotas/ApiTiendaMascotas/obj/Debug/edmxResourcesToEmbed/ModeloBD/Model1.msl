@@ -208,5 +208,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ValidarStock" FunctionName="ProyectoPAModel.Store.ValidarStock" />
   </EntityContainerMapping>
 </Mapping>

@@ -29,5 +29,16 @@ namespace ApiTiendaMascotas.Controllers
             return model.MostrarFacturas(idUsuario);
         }
 
+
+        
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("api/ValidarStock")]
+        public int ValidarStock(PagosEnt entidad)
+        {
+            return model.ValidarStock(entidad.IdUsuario);
+        }
+
+
     }
 }

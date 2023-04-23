@@ -29,37 +29,6 @@ namespace TiendaMascotas.Models
             }
         }
 
-        /*//TIPO PRODUCTO (ELIMINADO)
-        public List<SelectListItem> ConsultarProducto()
-        {
-            using (var client = new HttpClient())
-            {
-                string url = "https://localhost:44331/api/ConsultarProductos";
-
-            
-
-                HttpResponseMessage respuesta = client.GetAsync(url).GetAwaiter().GetResult();
-
-                if (respuesta.IsSuccessStatusCode)
-                {
-                    var datos = respuesta.Content.ReadFromJsonAsync<List<TipoProductoEnt>>().Result;
-
-                    List<SelectListItem> ProductosCombo = new List<SelectListItem>();
-                    foreach (var item in datos)
-                    {
-                        ProductosCombo.Add(new SelectListItem
-                        {
-                            Value = item.idTipoProducto.ToString(),
-                            Text = item.TipoProducto.ToString()
-                        });
-                    }
-                    return ProductosCombo;
-                }
-
-                return new List<SelectListItem>();
-            }
-        }*/
-
         public int RegistrarProducto( ProductoEnt entidad)
         {
             using (var client = new HttpClient())

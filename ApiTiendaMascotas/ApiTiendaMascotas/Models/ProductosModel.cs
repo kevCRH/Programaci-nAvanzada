@@ -38,31 +38,6 @@ namespace ApiTiendaMascotas.Models
             }
         }
 
-        /*//TIPO PRODUCTO (ELIMINADO)
-        public List<TipoProductoEnt> ConsultarProductos()
-        {
-            using (var conexion = new ProyectoPAEntities())
-            {
-                List<TipoProductoEnt> respuesta = new List<TipoProductoEnt>();
-                var datosBD = (from x in conexion.TipoProductos
-                               select x).ToList();
-
-                if (datosBD.Count > 0)
-                {
-                    foreach (var item in datosBD)
-                    {
-                        respuesta.Add(new TipoProductoEnt()
-                        {
-                            idTipoProducto = item.idTipoProducto,
-                            TipoProducto = item.tipoProducto
-                        });
-                    }
-                }
-                return respuesta;
-            }
-        }*/
-
-
         public int RegistrarProducto(ProductoEnt entidad)
         {
             using (var conexion = new ProyectoPAEntities())

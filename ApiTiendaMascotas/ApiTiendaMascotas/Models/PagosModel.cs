@@ -43,5 +43,16 @@ namespace ApiTiendaMascotas.Models
             }
         }
 
+        
+        public int ValidarStock(int idUsuario)
+        {
+            using (var conexion = new ProyectoPAEntities())
+            {
+                bool? result = conexion.ValidarStock(idUsuario).FirstOrDefault();
+                return (result != null && result.Value) ? 1 : 0;
+            }
+        }
+
+
     }
 }

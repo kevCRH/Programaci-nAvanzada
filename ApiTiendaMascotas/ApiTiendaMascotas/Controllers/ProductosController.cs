@@ -21,14 +21,6 @@ namespace ApiTiendaMascotas.Controllers
             //var Productos = User.Identity.Name; //no se usa hasta el momento
             return model.MostrarProductos();
         }
-        /* //TIPO PRODUCTO (ELIMINADO)
-        [HttpGet]
-        [AllowAnonymous]
-        [Route("api/ConsultarProductos")]
-        public List<TipoProductoEnt> ConsultarProductos()
-        {
-            return model.ConsultarProductos();
-        }*/
 
         [HttpPost]
         [AllowAnonymous]

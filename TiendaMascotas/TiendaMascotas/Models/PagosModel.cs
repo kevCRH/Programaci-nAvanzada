@@ -12,6 +12,27 @@ namespace TiendaMascotas.Models
     public class PagosModel
     {
 
+        
+        public int ValidarStock()
+        {
+            using (var client = new HttpClient())
+            {
+                PagosEnt entidad = new PagosEnt();
+                entidad.IdUsuario = int.Parse(HttpContext.Current.Session["Consecutivo"].ToString());
+
+                JsonContent body = JsonContent.Create(entidad);
+                string url = "https://localhost:44331/api/validarStock";
+                HttpResponseMessage respuesta = client.PostAsync(url, body).GetAwaiter().GetResult();
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<int>().Result;
+
+                return 0;
+            }
+        }
+
+
+
         public void ConfirmarPago()
         {
             using (var client = new HttpClient())

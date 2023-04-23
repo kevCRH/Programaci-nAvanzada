@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adopciones">
           <Key>
             <PropertyRef Name="idAdopcion" />
@@ -123,7 +123,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__idRol__628FA481">
+        <Association Name="FK__Usuarios__idRol__4F7CD00D">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -159,8 +159,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK_Adopciones_Usuarios" />-->
         <Association Name="FK_Carrito_Productos">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
@@ -267,6 +267,9 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
           <Parameter Name="descuento" Type="int" Mode="In" />
           <Parameter Name="imagen" Type="varbinary(max)" Mode="In" />
         </Function>
+        <Function Name="ValidarStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConsecutivoUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
           <Parameter Name="contrasenna" Type="varchar" Mode="In" />
@@ -287,7 +290,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
             <End Role="TipoAnimal" EntitySet="TipoAnimal" />
             <End Role="Animales" EntitySet="Animales" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__idRol__628FA481" Association="Self.FK__Usuarios__idRol__628FA481">
+          <AssociationSet Name="FK__Usuarios__idRol__4F7CD00D" Association="Self.FK__Usuarios__idRol__4F7CD00D">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -320,8 +323,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
             <End Role="Maestro" EntitySet="Maestro" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProyectoPAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -424,7 +426,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
           </Key>
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__628FA481" FromRole="Roles" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__4F7CD00D" FromRole="Roles" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="TipoAnimal">
           <Key>
@@ -447,7 +449,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Carrito" Relationship="Self.FK_Carrito_Usuarios" FromRole="Usuarios" ToRole="Carrito" />
           <NavigationProperty Name="Maestro" Relationship="Self.FK_Maestro_Usuarios" FromRole="Usuarios" ToRole="Maestro" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__628FA481" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__4F7CD00D" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
         <Association Name="FK_Adopciones_Animales">
           <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
@@ -545,7 +547,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__idRol__628FA481">
+        <Association Name="FK__Usuarios__idRol__4F7CD00D">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -601,7 +603,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Maestro" EntitySet="Maestro" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__idRol__628FA481" Association="Self.FK__Usuarios__idRol__628FA481">
+          <AssociationSet Name="FK__Usuarios__idRol__4F7CD00D" Association="Self.FK__Usuarios__idRol__4F7CD00D">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -610,18 +612,18 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConfirmarPago">
-            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="MostrarAdopciones" ReturnType="Collection(ProyectoPAModel.MostrarAdopciones_Result)" />
           <FunctionImport Name="MostrarAnimales" ReturnType="Collection(ProyectoPAModel.MostrarAnimales_Result)" />
           <FunctionImport Name="MostrarCompraCarrito" ReturnType="Collection(ProyectoPAModel.MostrarCompraCarrito_Result)">
-            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="MostrarDetalleCarrito" ReturnType="Collection(ProyectoPAModel.MostrarDetalleCarrito_Result)">
-            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="MostrarFacturas" ReturnType="Collection(ProyectoPAModel.MostrarFacturas_Result)">
-            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="MostrarProductos" ReturnType="Collection(ProyectoPAModel.MostrarProductos_Result)" />
           <FunctionImport Name="Registrar">
@@ -653,6 +655,9 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
           <FunctionImport Name="ValidarUsuario" ReturnType="Collection(ProyectoPAModel.ValidarUsuario_Result)">
             <Parameter Name="correoElectronico" Mode="In" Type="String" />
             <Parameter Name="contrasenna" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ValidarStock" ReturnType="Collection(Boolean)">
+            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="MostrarAdopciones_Result">
@@ -924,6 +929,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ValidarStock" FunctionName="ProyectoPAModel.Store.ValidarStock" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -941,7 +947,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

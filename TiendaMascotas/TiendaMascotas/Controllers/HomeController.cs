@@ -61,6 +61,7 @@ namespace TiendaMascotas.Controllers
                 var resultado = Usuariosmodel.ValidarUsuario(entidad);
                 if (resultado != null)
                 {
+                    Session["ErrorMessage"] = null;
                     Session["Consecutivo"] = resultado.idUsuario; 
                     Session["NombreUsuario"] = resultado.Nombre;
                     Session["Cedula"] = resultado.Cedula;

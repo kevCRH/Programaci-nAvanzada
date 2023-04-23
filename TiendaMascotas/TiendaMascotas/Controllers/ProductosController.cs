@@ -13,7 +13,6 @@ namespace TiendaMascotas.Controllers
     {
 
         ProductosModel model = new ProductosModel();
-
         LogsModel LogsModel = new LogsModel();
 
         [HttpGet]
@@ -21,16 +20,21 @@ namespace TiendaMascotas.Controllers
         {
             try
             {
-                var Temporal = model.MostrarCompraCarrito();
-                Session["CantidadCompra"] = Temporal.CantidadCompra;
-                Session["MontoCompra"] = Temporal.MontoCompra;
+
+                // Check if Session["Consecutivo"] has a value
+                if (Session["Consecutivo"] != null)
+                {
+                    var Temporal = model.MostrarCompraCarrito();
+                    Session["CantidadCompra"] = Temporal.CantidadCompra;
+                    Session["MontoCompra"] = Temporal.MontoCompra;
+                }
 
                 var resultado = model.MostrarProductos();
                 return View(resultado);
             }
             catch (Exception ex)
             {
-               // RegistrarLog(ex);
+                RegistrarLog(ex);
                 return View();
             }
 
@@ -46,7 +50,7 @@ namespace TiendaMascotas.Controllers
             }
             catch (Exception ex)
             {
-               // RegistrarLog(ex);
+                RegistrarLog(ex);
                 return View();
             }
         }
@@ -165,6 +169,7 @@ namespace TiendaMascotas.Controllers
 
             return View(Datos);
         }
+
 
     }
 }
