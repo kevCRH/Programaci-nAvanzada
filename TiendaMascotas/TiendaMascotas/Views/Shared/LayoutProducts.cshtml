@@ -33,10 +33,17 @@
                             <nav class="main-menu">
                                 <ul>
                                     <!---unidades en carrito y total-->
-                                    <li class="float-left">
-                                        Unidades en Carrito: @(Session["CantidadCompra"] == null ? 0 : Convert.ToInt32(Session["CantidadCompra"]))
-                                        Precio Total: @((Session["MontoCompra"] != null) ? string.Format("¢{0:n2}", decimal.Parse(Session["MontoCompra"].ToString())) : "")
-                                    </li>
+                                    @if (Session["rol"] != null)
+                                    {
+                                        if (Convert.ToInt32(Session["rol"].ToString()) == 2)
+                                        {
+                                            <li class="float-left">
+                                                Unidades en Carrito: @(Session["CantidadCompra"] == null ? 0 : Convert.ToInt32(Session["CantidadCompra"]))
+                                                Precio Total: @((Session["MontoCompra"] != null) ? string.Format("¢{0:n2}", decimal.Parse(Session["MontoCompra"].ToString())) : "")
+                                            </li>
+                                        }
+                                    }
+
                                     <!---unidades en carrito y total-->
 
 
@@ -60,11 +67,18 @@
 
 
                                     <!---boton ver carrito-->
-                                    <li class="float-right">
-                                        <a href="@Url.Action("ProductoCarrito", "Productos")">
-                                            <img src="~/assets/imgs/carshop.png" alt=""> Ver Carrito
-                                        </a>
-                                    </li>
+                                    @if (Session["rol"] != null)
+                                    {
+                                        if (Convert.ToInt32(Session["rol"].ToString()) == 2)
+                                        {
+                                            <li class="float-right">
+                                                <a href="@Url.Action("ProductoCarrito", "Productos")">
+                                                    <img src="~/assets/imgs/carshop.png" alt=""> Ver Carrito
+                                                </a>
+                                            </li>
+
+                                        }
+                                    }
                                     <!---boton ver carrito-->
 
 

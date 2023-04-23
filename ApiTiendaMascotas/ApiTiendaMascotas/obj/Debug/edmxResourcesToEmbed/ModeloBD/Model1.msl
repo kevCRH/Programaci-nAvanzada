@@ -150,6 +150,26 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="MostrarCompraCarrito" FunctionName="ProyectoPAModel.Store.MostrarCompraCarrito">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarCompraCarrito_Result">
+          <ScalarProperty Name="CantidadCompra" ColumnName="CantidadCompra" />
+          <ScalarProperty Name="MontoCompra" ColumnName="MontoCompra" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="MostrarDetalleCarrito" FunctionName="ProyectoPAModel.Store.MostrarDetalleCarrito">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarDetalleCarrito_Result">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+          <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="MostrarFacturas" FunctionName="ProyectoPAModel.Store.MostrarFacturas">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarFacturas_Result">
@@ -185,26 +205,6 @@
           <ScalarProperty Name="cedula" ColumnName="cedula" />
           <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="idRol" ColumnName="idRol" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="MostrarCompraCarrito" FunctionName="ProyectoPAModel.Store.MostrarCompraCarrito">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarCompraCarrito_Result">
-          <ScalarProperty Name="CantidadCompra" ColumnName="CantidadCompra" />
-          <ScalarProperty Name="MontoCompra" ColumnName="MontoCompra" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="MostrarDetalleCarrito" FunctionName="ProyectoPAModel.Store.MostrarDetalleCarrito">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarDetalleCarrito_Result">
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-          <ScalarProperty Name="Precio" ColumnName="Precio" />
-          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
-          <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
-          <ScalarProperty Name="Total" ColumnName="Total" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
