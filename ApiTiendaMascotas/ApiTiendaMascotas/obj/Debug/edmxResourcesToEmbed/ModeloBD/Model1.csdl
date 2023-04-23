@@ -99,7 +99,7 @@
     </Key>
     <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__4F7CD00D" FromRole="Roles" ToRole="Usuarios" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__628FA481" FromRole="Roles" ToRole="Usuarios" />
   </EntityType>
   <EntityType Name="TipoAnimal">
     <Key>
@@ -122,7 +122,7 @@
     <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Carrito" Relationship="Self.FK_Carrito_Usuarios" FromRole="Usuarios" ToRole="Carrito" />
     <NavigationProperty Name="Maestro" Relationship="Self.FK_Maestro_Usuarios" FromRole="Usuarios" ToRole="Maestro" />
-    <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__4F7CD00D" FromRole="Usuarios" ToRole="Roles" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__628FA481" FromRole="Usuarios" ToRole="Roles" />
   </EntityType>
   <Association Name="FK_Adopciones_Animales">
     <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
@@ -220,7 +220,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Usuarios__idRol__4F7CD00D">
+  <Association Name="FK__Usuarios__idRol__628FA481">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
     <ReferentialConstraint>
@@ -276,7 +276,7 @@
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="Maestro" EntitySet="Maestro" />
     </AssociationSet>
-    <AssociationSet Name="FK__Usuarios__idRol__4F7CD00D" Association="Self.FK__Usuarios__idRol__4F7CD00D">
+    <AssociationSet Name="FK__Usuarios__idRol__628FA481" Association="Self.FK__Usuarios__idRol__628FA481">
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Usuarios" EntitySet="Usuarios" />
     </AssociationSet>
@@ -289,6 +289,12 @@
     </FunctionImport>
     <FunctionImport Name="MostrarAdopciones" ReturnType="Collection(ProyectoPAModel.MostrarAdopciones_Result)" />
     <FunctionImport Name="MostrarAnimales" ReturnType="Collection(ProyectoPAModel.MostrarAnimales_Result)" />
+    <FunctionImport Name="MostrarCompraCarrito" ReturnType="Collection(ProyectoPAModel.MostrarCompraCarrito_Result)">
+      <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MostrarDetalleCarrito" ReturnType="Collection(ProyectoPAModel.MostrarDetalleCarrito_Result)">
+      <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="MostrarFacturas" ReturnType="Collection(ProyectoPAModel.MostrarFacturas_Result)">
       <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -323,12 +329,6 @@
       <Parameter Name="correoElectronico" Mode="In" Type="String" />
       <Parameter Name="contrasenna" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="MostrarCompraCarrito" ReturnType="Collection(ProyectoPAModel.MostrarCompraCarrito_Result)">
-      <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="MostrarDetalleCarrito" ReturnType="Collection(ProyectoPAModel.MostrarDetalleCarrito_Result)">
-      <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
-    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="MostrarAdopciones_Result">
     <Property Type="Int32" Name="idAdopcion" Nullable="false" />
@@ -352,6 +352,18 @@
     <Property Type="Boolean" Name="estado" Nullable="false" />
     <Property Type="Binary" Name="imagen" Nullable="true" />
   </ComplexType>
+  <ComplexType Name="MostrarCompraCarrito_Result">
+    <Property Type="Int32" Name="CantidadCompra" Nullable="false" />
+    <Property Type="Decimal" Name="MontoCompra" Nullable="false" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="MostrarDetalleCarrito_Result">
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="63" />
+    <Property Type="Int32" Name="Cantidad" Nullable="false" />
+    <Property Type="Decimal" Name="Precio" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="SubTotal" Nullable="true" Precision="21" Scale="2" />
+    <Property Type="Decimal" Name="Impuesto" Nullable="true" Precision="32" Scale="4" />
+    <Property Type="Decimal" Name="Total" Nullable="true" Precision="33" Scale="4" />
+  </ComplexType>
   <ComplexType Name="MostrarFacturas_Result">
     <Property Type="Int64" Name="idMaestro" Nullable="false" />
     <Property Type="DateTime" Name="FechaCompra" Nullable="false" Precision="23" />
@@ -373,17 +385,5 @@
     <Property Type="String" Name="cedula" Nullable="false" MaxLength="50" />
     <Property Type="Boolean" Name="estado" Nullable="false" />
     <Property Type="String" Name="idRol" Nullable="false" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="MostrarCompraCarrito_Result">
-    <Property Type="Int32" Name="CantidadCompra" Nullable="false" />
-    <Property Type="Decimal" Name="MontoCompra" Nullable="false" Precision="38" Scale="2" />
-  </ComplexType>
-  <ComplexType Name="MostrarDetalleCarrito_Result">
-    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="63" />
-    <Property Type="Int32" Name="Cantidad" Nullable="false" />
-    <Property Type="Decimal" Name="Precio" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="SubTotal" Nullable="true" Precision="21" Scale="2" />
-    <Property Type="Decimal" Name="Impuesto" Nullable="true" Precision="32" Scale="4" />
-    <Property Type="Decimal" Name="Total" Nullable="true" Precision="33" Scale="4" />
   </ComplexType>
 </Schema>
