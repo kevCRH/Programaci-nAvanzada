@@ -123,7 +123,7 @@ namespace ApiTiendaMascotas.Models
             {
                 var respuesta = (from x in conexion.Carrito
                                  where x.idProducto == entidad.idProducto
-                                    && x.ConsecutivoUsuario == entidad.ConsecutivoUsuario
+                                     && x.ConsecutivoUsuario == entidad.ConsecutivoUsuario
                                  select x).FirstOrDefault();
 
                 if (respuesta == null)
@@ -135,7 +135,6 @@ namespace ApiTiendaMascotas.Models
                     carrito.Cantidad = entidad.cantidad;
                     carrito.Fecha = DateTime.Now;
                     conexion.Carrito.Add(carrito);
-                    conexion.SaveChanges();
                 }
                 else
                 {
@@ -143,18 +142,15 @@ namespace ApiTiendaMascotas.Models
                     {
                         //Delete
                         conexion.Carrito.Remove(respuesta);
-                        conexion.SaveChanges();
                     }
                     else
                     {
                         //Update
-                        respuesta.Cantidad = entidad.cantidad;
+                        respuesta.Cantidad += entidad.cantidad;
                         respuesta.Fecha = DateTime.Now;
-                        conexion.SaveChanges();
                     }
                 }
-
-
+                conexion.SaveChanges();
             }
         }
 
