@@ -29,37 +29,26 @@
 
                     <div class="text-center">
                         <div class="main-menu-wrap">
-                            <!-- menu start -->
+                            
                             <nav class="main-menu">
                                 <ul>
-                                    @if (Session["rol"] != null)
-                                    {
-                                        if (Convert.ToInt32(Session["rol"].ToString()) == 2)
-                                        {
+                                    <!--  -->
 
-                                            <li class="float-left">
+                                    <li class="float-left">       
+                                        <p style="color: white">
+                                            <strong>
                                                 Unidades en Carrito: @(Session["CantidadCompra"] == null ? 0 : Convert.ToInt32(Session["CantidadCompra"]))
+                                                <br />
                                                 Precio Total: @((Session["MontoCompra"] != null) ? string.Format("¢{0:n2}", decimal.Parse(Session["MontoCompra"].ToString())) : "")
-                                                <p style="color: white">
-                                                    <strong>
-                                                        Unidades en Carrito: @(Session["CantidadCompra"] == null ? 0 : Convert.ToInt32(Session["CantidadCompra"]))
-                                                        <br />
-                                                        Precio Total: @((Session["MontoCompra"] != null) ? string.Format("¢{0:n2}", decimal.Parse(Session["MontoCompra"].ToString())) : "")
-                                                    </strong>
-                                                </p>
-                                            </li>
+                                            </strong>
+                                        </p>
+                                    </li>
 
-                                        }
-                                    }
 
-                                    <!---unidades en carrito y total-->
-                                    <!----->
+                                    <!--  -->
                                     <li class="current-list-item">
-                                        <a href="@Url.Action("Index", "Home")">HOME</a>
                                         <a href="@Url.Action("Index", "Home")">INICIO</a>
                                     </li>
-
-                                    <!---unidades en carrito y total-->
                                     <li>
                                         @if (Session["NombreUsuario"] != null)
                                         {
@@ -67,56 +56,14 @@
                                         }
                                     </li>
 
+                                    <!-- = -->
 
-
-
-                                    <!---unidades en carrito y total-->
-                                    @if (Session["rol"] != null)
-                                    {
-                                        if (Convert.ToInt32(Session["rol"].ToString()) == 2)
-                                        {
-                                            <li class="float-left">
-                                                Unidades en Carrito: @(Session["CantidadCompra"] == null ? 0 : Convert.ToInt32(Session["CantidadCompra"]))
-                                                Precio Total: @((Session["MontoCompra"] != null) ? string.Format("¢{0:n2}", decimal.Parse(Session["MontoCompra"].ToString())) : "")
-                                            </li>
-                                        }
-                                    }
-
-                                    <!---unidades en carrito y total-->
-
-
-                                    <li class="current-list-item">
-                                        <a href="@Url.Action("Index", "Home")">HOME</a>
-                                    </li>
-                                    <li>
-                                        @if (Session["NombreUsuario"] != null)
-                                        {
-                                            <p style="color:#FFFFFF">@Session["NombreUsuario"].ToString()</p>
-                                        }
-                                    </li>
-                                    <li>
-                                        <div class="header-icons">
-                                            @if (Session["Correo"] != null)
-                                            {
-                                                <p>@Session["Correo"].ToString()</p>
-                                            }
-                                        </div>
+                                    <li class="float-right">
+                                        <a href="@Url.Action("ProductoCarrito", "Productos")">
+                                            <img src="~/assets/imgs/carshop.png" alt=""> Ver Carrito
+                                        </a>
                                     </li>
 
-
-                                    <!---boton ver carrito-->
-                                    @if (Session["rol"] != null)
-                                    {
-                                        if (Convert.ToInt32(Session["rol"].ToString()) == 2)
-                                        { 
-                                            <li class="float-right">
-                                                <a href="@Url.Action("ProductoCarrito", "Productos")">
-                                                    <img src="~/assets/imgs/carshop.png" alt=""> Ver Carrito
-                                                </a>
-                                            </li>
-                                        }
-                                    }
-                                            
                                 </ul>
                             </nav>
                             <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>

@@ -3,38 +3,6 @@
     ViewBag.Title = "RegistrarAnimal";
     Layout = "~/Views/Shared/LayoutProducts.cshtml";
 }
-
-<div class="top-header-area" id="sticker">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-sm-12 text-center">
-                <div class="main-menu-wrap">
-                    <!-- menu start -->
-                    <nav class="main-menu">
-                        <ul>
-                            <li class="current-list-item">
-                                <a href="@Url.Action("Index", "Home")">INICIO</a>
-                            </li>
-                            <li>
-                                @if (Session["NombreUsuario"] != null)
-                                {
-                                    <p style="color:#FFFFFF">@Session["NombreUsuario"].ToString()</p>
-                                }
-                            </li>
-                            <li>
-                                <div class="header-icons">
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
-                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                    <div class="mobile-menu"></div>
-                    <!-- menu end -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- end header -->
 <!-- search area -->
 <div class="search-area">
@@ -124,7 +92,6 @@
                         {
                            @class = "control-label",
                            @placeholder = "Imagen del animal",
-                           required = true
                         })
                         <div>
                             <input type="file" id="imagen1" name="imagen1" class="form-control form-control-lg" accept=".jpg,.jpeg,.png,.gif" required>
