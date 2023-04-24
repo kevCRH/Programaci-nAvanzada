@@ -54,12 +54,14 @@ namespace ApiTiendaMascotas.Models
 
         public void CambiarEstadoAdopcion(int q, int e, UsuariosEnt entidad)
         {
-            var correo = entidad.CorreoElectronico;
+            //q = idAdopcion
+            //e = opcion 1 = aceptado, 2 = denegado
             var nombre = entidad.Nombre;
             var asunto = "Respuesta de la adopción solicitada";
             using (var conexion = new ProyectoPAEntities())
             {
                 LogsModel modeloLogs = new LogsModel();
+                var correo = conexion.CorreoAdopcion(q).FirstOrDefault();
                 if (e == 1)
                 {
                     var mensaje = "Su solicitud de adopción de una mascota fue ACEPTADA";

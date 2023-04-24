@@ -10,7 +10,7 @@ function AceptarAdopcion() {
 
     $.ajax({
         type: "POST",
-        url: "/Perros/CambiarEstadoAdopcion",
+        url: "/Home/CambiarEstadoAdopcion",
         dataType: "json",
         data: {
             "idAdopcion": idAdopcion,
@@ -46,7 +46,7 @@ function DenegarDonacion() {
 
     $.ajax({
         type: "POST",
-        url: "/Perros/CambiarEstadoAdopcion",
+        url: "/Home/CambiarEstadoAdopcion",
         dataType: "json",
         data: {
             "idAdopcion": idAdopcion,

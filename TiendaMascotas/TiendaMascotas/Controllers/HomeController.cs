@@ -253,6 +253,18 @@ namespace TiendaMascotas.Controllers
             return Json("Ok", JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        //[FiltroSesion]
+        public ActionResult CambiarEstadoAdopcion(int idAdopcion, int id, UsuariosEnt entidad)
+        {
+            entidad.Nombre = @Session["NombreUsuario"].ToString();
+            entidad.CorreoElectronico = @Session["Correo"].ToString();
+
+            adopcionesModel.CambiarEstadoAdopcion(idAdopcion, id, entidad);
+            return Json("Ok", JsonRequestBehavior.AllowGet);
+        }
+
+
         //
 
         public void RegistrarLog(Exception ex)

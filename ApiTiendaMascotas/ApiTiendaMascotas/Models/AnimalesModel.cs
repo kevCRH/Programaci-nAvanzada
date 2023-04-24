@@ -65,7 +65,8 @@ namespace ApiTiendaMascotas.Models
                 AnimalesEnt respuesta = new AnimalesEnt();
                 var datosBD = (from x in conexion.Animales
                                where x.idAnimal == q
-                               select x).FirstOrDefault();  
+                               select x).FirstOrDefault(); 
+                
                 if (datosBD != null)
                 {
                     respuesta.idAnimal = datosBD.idAnimal;

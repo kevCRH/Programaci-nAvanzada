@@ -62,7 +62,7 @@
             <div class="container">
                 <div class="row product-lists">
 
-                    @if (Convert.ToInt32(Session["rol"].ToString()) == 1)
+                    @if (Session["rol"] == null)
                     {
                         foreach (var item in Model)
                         {
@@ -89,7 +89,44 @@
                                         {
                                             <h5>Estado: Adoptado </h5>
                                         }
-
+                                    </div>
+                                </div>
+                            }
+                        }
+                        if (!Model.Any(item => item.tipoAnimal == "gato" && item.Estado == true))
+                        {
+                            <h3 class="col-lg-12 col-md-6 text-center strawberry">
+                                No hay animales en adopción en este momento
+                            </h3>
+                        }
+                    }
+                    else if (Convert.ToInt32(Session["rol"].ToString()) == 1)
+                    {
+                        foreach (var item in Model)
+                        {
+                            if (item.tipoAnimal == "gato")
+                            {
+                                <div class="col-lg-4 col-md-6 text-center strawberry">
+                                    <div class="single-product-item">
+                                        <div class="product-image">
+                                            @{
+                                                var base64 = Convert.ToBase64String(item.imagen);
+                                                var imagensrc = string.Format("data:image/gif;base64,{0}", base64);
+                                            }
+                                            @*<a href="cart.html"><img src="~/assets/imgperros/Ruffos.jpg" alt=""></a>*@
+                                            <img src="@imagensrc" style="max-height: 1200px; max-width: 900px" />
+                                        </div>
+                                        <h1>@item.Nombre</h1>
+                                        <h5>Tipo de animal: @item.tipoAnimal</h5>
+                                        <h5>Descripción: @item.Descripcion</h5>
+                                        @if (item.Estado)
+                                        {
+                                            <h5>Estado: Sin adoptar </h5>
+                                        }
+                                        else
+                                        {
+                                            <h5>Estado: Adoptado </h5>
+                                        }
                                         <a href="#" class="cart-btn openModal2" data-toggle="modal" data-target="#exampleModalCenter2"
                                            data-backdrop="static" data-keyboard="false" data-idAnimal="@item.idAnimal" data-idTAnimal="@item.tipoAnimal" data-Cedula="@Session["Cedula"].ToString()">Solicitar adopción</a>
                                         <br>
@@ -98,10 +135,9 @@
                                         <br>
                                         <br />
                                         <a href="#" class="cart-btn openModal" data-toggle="modal" data-target="#exampleModalCenter"
-                                            data-backdrop="static" data-keyboard="false" data-id=@item.idAnimal>Eliminar de la lista</a>
+                                           data-backdrop="static" data-keyboard="false" data-id=@item.idAnimal>Eliminar de la lista</a>
                                     </div>
                                 </div>
-
                             }
                         }
                         if (!Model.Any(item => item.tipoAnimal == "gato"))
@@ -144,7 +180,6 @@
                                         <br />
                                     </div>
                                 </div>
-
                             }
                         }
                         if (!Model.Any(item => item.tipoAnimal == "gato" && item.Estado == true))
