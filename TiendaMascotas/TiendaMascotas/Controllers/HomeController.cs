@@ -147,6 +147,21 @@ namespace TiendaMascotas.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult ValidarCedula(string validar)
+        {
+            try
+            {
+                return Json(Usuariosmodel.ValidarCedula(validar), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                RegistrarLog(ex);
+                return Json(null, JsonRequestBehavior.DenyGet);
+            }
+        }
+
+
         [HttpGet]
         public ActionResult RecuperarContrasenna()
         {

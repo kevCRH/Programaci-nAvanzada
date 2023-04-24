@@ -37,6 +37,14 @@ namespace ApiTiendaMascotas.Controllers
             return model.ValidarRegistrar(validar);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("api/ValidarCedula")]
+        public string ValidarCedula(string validar)
+        {
+            return model.ValidarCedula(validar);
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [Route("api/RecuperarContrasenna")]

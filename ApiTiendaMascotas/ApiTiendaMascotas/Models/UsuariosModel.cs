@@ -67,6 +67,26 @@ namespace ApiTiendaMascotas.Models
             }
         }
 
+        public string ValidarCedula(string validar)
+        {
+            using (var conexion = new ProyectoPAEntities())
+            {
+                var respuesta = (from x in conexion.Usuarios
+                                 where x.cedula == validar
+                                 select x).FirstOrDefault();
+
+                if (respuesta == null)
+                    return string.Empty;
+                else
+                {
+                    if (respuesta.estado == false)
+                        return "La cédula se encuentra inactivo";
+                    else
+                        return "Ya hay un usuario registrado con esta cédula";
+                }
+            }
+        }
+        
         public void RecuperarContrasenna(UsuariosEnt entidad)
         {
             using (var conexion = new ProyectoPAEntities())

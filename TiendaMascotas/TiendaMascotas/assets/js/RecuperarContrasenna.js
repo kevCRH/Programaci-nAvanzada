@@ -16,7 +16,11 @@
                         $("#btnEnviar").prop("disabled", false);
                     }
                     else {
-                        alert("No hay registro de este nombre de usuario");
+                        Swal.fire({
+                            title: "Upss...",
+                            text: "No hay registro de este nombre de usuario",
+                            icon: 'error',
+                        });
                     }
                 }
             }

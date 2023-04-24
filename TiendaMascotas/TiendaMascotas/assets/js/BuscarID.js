@@ -15,7 +15,11 @@
 
         if (nombre == null)
         {
-            alert("No se encontró a nadie con esta identificación")
+            Swal.fire({
+                title: "Upss...",
+                text: "No se encontró a nadie con esta identificación",
+                icon: 'error',
+            });
             $("#Identificacion").val("");
             $("#Nombre").val("");
         }

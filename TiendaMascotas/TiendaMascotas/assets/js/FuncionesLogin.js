@@ -18,12 +18,54 @@
                     $("#btRegistrarse").prop("disabled", false);
                 }
                 else {
-                    alert(res);
+                    $("#CorreoElectronico").val("");
+                    Swal.fire({
+                        title: "Uups...",
+                        text: "Este correo ya está registrado",
+                        icon: 'error',
+                        //*************VER POSIBILIDAD DE AGREGAR UNA IMAGEN*************/
+                        //imageUrl: 'View/images/coche.png',
+                        //imageWidth:'150px',
+                        //imageAlt: 'Foto coche'
+                    });
                 }
             }
         }
     });
 }
+
+
+function ValidarCedula() {
+
+    $("#btRegistrarse").prop("disabled", true);
+    let validar = $("#Cedula").val();
+
+    $.ajax({
+        type: "POST",
+        url: "/Home/ValidarCedula",
+        dataType: "json",
+        data: {
+            "validar": validar
+        },
+        success: function (res) {
+            if (res != "ERROR") {
+                if (res == "") {
+                    $("#btRegistrarse").prop("disabled", false);
+                }
+                else {
+                    $("#Cedula").val("");
+                    $("#Nombre").val("");
+                    Swal.fire({
+                        title: "Upss...",
+                        text: res,
+                        icon: 'error',
+                    });
+                }
+            }
+        }
+    });
+}
+
 
 function ValidarContrasenna() {
     let contrasenna = $("#Contrasenna").val();
@@ -32,7 +74,11 @@ function ValidarContrasenna() {
     if (contrasenna.trim() != "" && confirmarContrasenna.trim()) {
         if (contrasenna.trim() != confirmarContrasenna.trim()) {
             $("#ConfirmarContrasenna").val("");
-            alert("Las contraseñas no coinciden");
+            Swal.fire({
+                title: "Upss...",
+                text: "Las contraseñas no coinciden",
+                icon: 'error',
+            });
         }
     }
 }

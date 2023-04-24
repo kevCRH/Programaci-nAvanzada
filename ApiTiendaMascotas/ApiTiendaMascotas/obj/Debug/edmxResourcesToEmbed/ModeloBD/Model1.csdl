@@ -98,7 +98,7 @@
     </Key>
     <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__628FA481" FromRole="Roles" ToRole="Usuarios" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__4F7CD00D" FromRole="Roles" ToRole="Usuarios" />
   </EntityType>
   <EntityType Name="TipoAnimal">
     <Key>
@@ -121,7 +121,7 @@
     <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Carrito" Relationship="Self.FK_Carrito_Usuarios" FromRole="Usuarios" ToRole="Carrito" />
     <NavigationProperty Name="Maestro" Relationship="Self.FK_Maestro_Usuarios" FromRole="Usuarios" ToRole="Maestro" />
-    <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__628FA481" FromRole="Usuarios" ToRole="Roles" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__4F7CD00D" FromRole="Usuarios" ToRole="Roles" />
   </EntityType>
   <Association Name="FK_Adopciones_Animales">
     <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
@@ -219,7 +219,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Usuarios__idRol__628FA481">
+  <Association Name="FK__Usuarios__idRol__4F7CD00D">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
     <ReferentialConstraint>
@@ -275,7 +275,7 @@
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="Maestro" EntitySet="Maestro" />
     </AssociationSet>
-    <AssociationSet Name="FK__Usuarios__idRol__628FA481" Association="Self.FK__Usuarios__idRol__628FA481">
+    <AssociationSet Name="FK__Usuarios__idRol__4F7CD00D" Association="Self.FK__Usuarios__idRol__4F7CD00D">
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Usuarios" EntitySet="Usuarios" />
     </AssociationSet>

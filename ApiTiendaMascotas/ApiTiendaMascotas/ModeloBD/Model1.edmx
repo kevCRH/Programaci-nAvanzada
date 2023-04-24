@@ -122,7 +122,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__idRol__628FA481">
+        <Association Name="FK__Usuarios__idRol__4F7CD00D">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -158,8 +158,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK_Adopciones_Usuarios" />-->
         <Association Name="FK_Carrito_Productos">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
@@ -291,7 +291,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
             <End Role="TipoAnimal" EntitySet="TipoAnimal" />
             <End Role="Animales" EntitySet="Animales" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__idRol__628FA481" Association="Self.FK__Usuarios__idRol__628FA481">
+          <AssociationSet Name="FK__Usuarios__idRol__4F7CD00D" Association="Self.FK__Usuarios__idRol__4F7CD00D">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -427,7 +427,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
           </Key>
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__628FA481" FromRole="Roles" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__4F7CD00D" FromRole="Roles" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="TipoAnimal">
           <Key>
@@ -450,7 +450,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Carrito" Relationship="Self.FK_Carrito_Usuarios" FromRole="Usuarios" ToRole="Carrito" />
           <NavigationProperty Name="Maestro" Relationship="Self.FK_Maestro_Usuarios" FromRole="Usuarios" ToRole="Maestro" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__628FA481" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__4F7CD00D" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
         <Association Name="FK_Adopciones_Animales">
           <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
@@ -548,7 +548,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__idRol__628FA481">
+        <Association Name="FK__Usuarios__idRol__4F7CD00D">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -604,7 +604,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Maestro" EntitySet="Maestro" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__idRol__628FA481" Association="Self.FK__Usuarios__idRol__628FA481">
+          <AssociationSet Name="FK__Usuarios__idRol__4F7CD00D" Association="Self.FK__Usuarios__idRol__4F7CD00D">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -948,7 +948,7 @@ advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no fo
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

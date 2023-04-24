@@ -61,6 +61,22 @@ namespace TiendaMascotas.Models
             }
         }
 
+        public string ValidarCedula(string validar)
+        {
+            using (var cliente = new HttpClient())
+            {
+                string url = "https://localhost:44331/api/ValidarCedula?validar=" + validar;
+
+                HttpResponseMessage respuesta = cliente.GetAsync(url).GetAwaiter().GetResult();
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    return respuesta.Content.ReadFromJsonAsync<string>().Result;
+                }
+                return "ERROR";
+            }
+        }
+
         public void RecuperarContrasenna(UsuariosEnt entidad)
         {
             using (var cliente = new HttpClient())
