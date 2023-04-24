@@ -81,22 +81,18 @@
 
                 <br />
                 <br />
-
-                <a class="cart-btn product-btn" onclick="Pagando()"> Realizar Pago<a>
-
-                @*@using (Html.BeginForm("ConfirmarPago", "Pagos", FormMethod.Post))
+                @using (Html.BeginForm("", "", FormMethod.Post))
                 {
                     var x = string.Format("{0:n2}", @ViewBag.Totalizador);
-                    <Label>Total a pagar: </Label> @x;
-
-                    if (decimal.Parse(@x) > 0)
-                    {
-                        <input type="submit" value="Realizar Pago" class="btn btn-success">
-                    }
+                    <Label style="color: black;">Total a pagar: </Label> <span style="color: black;">¢@x</span>;
 
 
 
-                }*@
+
+                }
+                <a class="cart-btn product-btn" onclick="Pagando()"> Realizar Pago<a>
+
+
 
 
 
@@ -113,6 +109,18 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+    function checkTableIsEmpty() {
+        var table = document.getElementById("tablaDetalleCarrito");
+        var tbody = table.getElementsByTagName("tbody")[0];
+        if (tbody.children.length === 0) {
+            document.querySelector(".cart-btn").style.display = "none";
+        }
+    }
+
+
+
+    window.onload = checkTableIsEmpty;
+
     $(document).ready(function () {
         $('#tablaDetalleCarrito').DataTable({
             "language": {
