@@ -33,6 +33,8 @@
                 <div class="breadcrumb-text">
                     <h1>Carrito de Compra</h1>
                 </div>
+                
+                <div>
             </div>
         </div>
     </div>
@@ -41,56 +43,56 @@
 
 <!-- end breadcrumb section -->
 
-<div class="row">
+    <div class="row">
 
-    <div class="col-md-1 grid-margin stretch-card">
-    </div>
+        <div class="col-md-1 grid-margin stretch-card">
+        </div>
 
-    <div class="col-md-10 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Detalle a pagar</h4>
+        <div class="col-md-10 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Detalle a pagar</h4>
 
-                <table class="table table-hover" id="tablaDetalleCarrito">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Cantidad</th>
-                            <th>¢ Precio</th>
-                            <th>¢ Sub Total</th>
-                            <th>¢ Impuesto</th>
-                            <th>¢ Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        @foreach (var item in Model)
-                        {
+                    <table class="table table-hover" id="tablaDetalleCarrito">
+                        <thead>
                             <tr>
-                                <td>@item.Nombre</td>
-                                <td>@item.Cantidad</td>
-                                <td>@string.Format("{0:n2}", @item.Precio)</td>
-                                <td>@string.Format("{0:n2}", @item.SubTotal)</td>
-                                <td>@string.Format("{0:n2}", @item.Impuesto)</td>
-                                <td>@string.Format("{0:n2}", @item.Total)</td>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>¢ Precio</th>
+                                <th>¢ Sub Total</th>
+                                <th>¢ Impuesto</th>
+                                <th>¢ Total</th>
                             </tr>
-                        }
+                        </thead>
+                        <tbody>
 
-                    </tbody>
-                </table>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Nombre</td>
+                                    <td>@item.Cantidad</td>
+                                    <td>@string.Format("{0:n2}", @item.Precio)</td>
+                                    <td>@string.Format("{0:n2}", @item.SubTotal)</td>
+                                    <td>@string.Format("{0:n2}", @item.Impuesto)</td>
+                                    <td>@string.Format("{0:n2}", @item.Total)</td>
+                                </tr>
+                            }
 
-                <br />
-                <br />
-                @using (Html.BeginForm("", "", FormMethod.Post))
-                {
-                    var x = string.Format("{0:n2}", @ViewBag.Totalizador);
-                    <Label style="color: black;">Total a pagar: </Label> <span style="color: black;">¢@x</span>;
+                        </tbody>
+                    </table>
+
+                    <br />
+                    <br />
+                    @using (Html.BeginForm("", "", FormMethod.Post))
+                    {
+                        var x = string.Format("{0:n2}", @ViewBag.Totalizador);
+                        <Label style="color: black;">Total a pagar: </Label> <span style="color: black;">¢@x</span>;
 
 
 
 
-                }
-                <a class="cart-btn product-btn" onclick="Pagando()"> Realizar Pago<a>
+                    }
+                    <a class="cart-btn product-btn" onclick="Pagando()"> Realizar Pago</a>
 
 
 
@@ -99,11 +101,14 @@
 
 
 
+                </div>
+                <div>
+                    <a class="btn btn-outline-primary btn-sm" href="@Url.Action("MostrarFacturas", "Pagos")">Ver Historial de Facturas</a>
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -133,6 +138,10 @@
         window.location.href = "/Productos/ProductoCarrito";
     }
 
+    function RecargarPantalla2() {
+        window.location.href = "/Pagos/MostrarFacturas";
+    }
+
 
     function Pagando() {
 
@@ -150,7 +159,7 @@
                     })
 
                     setTimeout(function () {
-                        RecargarPantalla();
+                        RecargarPantalla2();
                     }, 2200);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

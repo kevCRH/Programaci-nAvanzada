@@ -60,6 +60,7 @@
                             <th>#Factura</th>
                             <th>Fecha</th>
                             <th>¢ Total</th>
+                         
                         </tr>
                     </thead>
                     <tbody>
@@ -70,6 +71,8 @@
                                 <td>@item.IdMaestro</td>
                                 <td>@item.FechaCompra.ToString("dd/MM/yyyy")</td>
                                 <td>@string.Format("{0:n2}", @item.Total)</td>
+                             
+                                <td>
                             </tr>
                         }
 
@@ -85,7 +88,12 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
+
+
+
 <script>
+
+
     $(document).ready(function () {
         $('#tablaFacturas').DataTable({
             "language": {
@@ -93,5 +101,7 @@
             }
         });
     });
+
+
 </script>
 
