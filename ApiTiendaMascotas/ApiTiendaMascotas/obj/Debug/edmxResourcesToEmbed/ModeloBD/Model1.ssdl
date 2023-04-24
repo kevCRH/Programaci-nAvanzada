@@ -77,7 +77,6 @@
     <Property Name="descripcion" Type="varchar" MaxLength="100" />
     <Property Name="cantidad" Type="int" Nullable="false" />
     <Property Name="precio" Type="numeric" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="descuento" Type="int" />
     <Property Name="imagen" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Roles">
@@ -118,7 +117,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Usuarios__idRol__4F7CD00D">
+  <Association Name="FK__Usuarios__idRol__628FA481">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
     <ReferentialConstraint>
@@ -154,8 +153,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+  <!--Errores durante la generación:
+advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
         <Association Name="FK_Adopciones_Usuarios" />-->
   <Association Name="FK_Carrito_Productos">
     <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
@@ -224,6 +223,9 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
   <Function Name="ConfirmarPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ConsecutivoUsuario" Type="int" Mode="In" />
   </Function>
+  <Function Name="CorreoAdopcion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idAdopcion" Type="int" Mode="In" />
+  </Function>
   <Function Name="MostrarAdopciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="MostrarAnimales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="MostrarCompraCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -259,7 +261,6 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
     <Parameter Name="descripcion" Type="varchar" Mode="In" />
     <Parameter Name="cantidad" Type="int" Mode="In" />
     <Parameter Name="precio" Type="numeric" Mode="In" />
-    <Parameter Name="descuento" Type="int" Mode="In" />
     <Parameter Name="imagen" Type="varbinary(max)" Mode="In" />
   </Function>
   <Function Name="ValidarStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -285,7 +286,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
       <End Role="TipoAnimal" EntitySet="TipoAnimal" />
       <End Role="Animales" EntitySet="Animales" />
     </AssociationSet>
-    <AssociationSet Name="FK__Usuarios__idRol__4F7CD00D" Association="Self.FK__Usuarios__idRol__4F7CD00D">
+    <AssociationSet Name="FK__Usuarios__idRol__628FA481" Association="Self.FK__Usuarios__idRol__628FA481">
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Usuarios" EntitySet="Usuarios" />
     </AssociationSet>

@@ -57,7 +57,7 @@ namespace TiendaMascotas.Controllers
 
         [HttpPost]
         //[FiltroSesion]
-        public ActionResult RegistrarProducto([Bind(Include = "nombre, descripcion,cantidad,precio,descuento")] ProductoEnt entidad, HttpPostedFileBase imagen1)
+        public ActionResult RegistrarProducto([Bind(Include = "nombre, descripcion,cantidad,precio")] ProductoEnt entidad, HttpPostedFileBase imagen1)
         {
             try
             {
@@ -169,6 +169,7 @@ namespace TiendaMascotas.Controllers
 
             return View(Datos);
         }
+
 
 
     }

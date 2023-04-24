@@ -33,16 +33,21 @@
                             <nav class="main-menu">
                                 <ul>
                                     <!--  -->
+                                    @if (Session["rol"] != null)
+                                    {
+                                        <li class="float-left">
+                                            <p style="color: white">
+                                                <strong>
+                                                    Unidades en Carrito: @(Session["CantidadCompra"] == null ? 0 : Convert.ToInt32(Session["CantidadCompra"]))
+                                                    <br />
+                                                    Precio Total: @((Session["MontoCompra"] != null) ? string.Format("¢{0:n2}", decimal.Parse(Session["MontoCompra"].ToString())) : "")
+                                                </strong>
+                                            </p>
+                                        </li>
 
-                                    <li class="float-left">       
-                                        <p style="color: white">
-                                            <strong>
-                                                Unidades en Carrito: @(Session["CantidadCompra"] == null ? 0 : Convert.ToInt32(Session["CantidadCompra"]))
-                                                <br />
-                                                Precio Total: @((Session["MontoCompra"] != null) ? string.Format("¢{0:n2}", decimal.Parse(Session["MontoCompra"].ToString())) : "")
-                                            </strong>
-                                        </p>
-                                    </li>
+                                    }
+
+
 
 
                                     <!--  -->
@@ -57,12 +62,15 @@
                                     </li>
 
                                     <!-- = -->
+                                    @if (Session["rol"] != null)
+                                    {
+                                        <li class="float-right">
+                                            <a href="@Url.Action("ProductoCarrito", "Productos")">
+                                                <img src="~/assets/imgs/carshop.png" alt=""> Ver Carrito
+                                            </a>
+                                        </li>
+                                    }
 
-                                    <li class="float-right">
-                                        <a href="@Url.Action("ProductoCarrito", "Productos")">
-                                            <img src="~/assets/imgs/carshop.png" alt=""> Ver Carrito
-                                        </a>
-                                    </li>
 
                                 </ul>
                             </nav>

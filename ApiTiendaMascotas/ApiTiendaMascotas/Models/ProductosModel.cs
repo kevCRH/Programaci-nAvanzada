@@ -29,7 +29,6 @@ namespace ApiTiendaMascotas.Models
                             descripcion = item.descripcion,
                             cantidad = item.cantidad,
                             precio = item.precio,
-                            descuento = (int)item.descuento,
                             imagen = item.imagen
                         });
                     }
@@ -42,7 +41,7 @@ namespace ApiTiendaMascotas.Models
         {
             using (var conexion = new ProyectoPAEntities())
             {
-                return conexion.RegistrarProducto(entidad.nombre, entidad.descripcion, entidad.cantidad, entidad.precio, entidad.descuento, entidad.imagen);
+                return conexion.RegistrarProducto(entidad.nombre, entidad.descripcion, entidad.cantidad, entidad.precio, entidad.imagen);
             }
         }
 
@@ -61,7 +60,6 @@ namespace ApiTiendaMascotas.Models
                     respuesta.descripcion = datosBD.descripcion;
                     respuesta.cantidad = datosBD.cantidad;
                     respuesta.precio = datosBD.precio;
-                    respuesta.descuento = (int)datosBD.descuento;
                     respuesta.imagen = datosBD.imagen;
                 }
                 return respuesta;
@@ -82,7 +80,6 @@ namespace ApiTiendaMascotas.Models
                     respuesta.descripcion = entidad.descripcion;
                     respuesta.cantidad = entidad.cantidad;
                     respuesta.precio = entidad.precio;
-                    respuesta.descuento = (int)entidad.descuento;
                     if (entidad.imagen != null)
                     {
                         respuesta.imagen = entidad.imagen;

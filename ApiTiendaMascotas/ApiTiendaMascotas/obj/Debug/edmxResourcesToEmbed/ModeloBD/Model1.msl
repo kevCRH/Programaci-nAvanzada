@@ -84,7 +84,6 @@
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="cantidad" ColumnName="cantidad" />
           <ScalarProperty Name="precio" ColumnName="precio" />
-          <ScalarProperty Name="descuento" ColumnName="descuento" />
           <ScalarProperty Name="imagen" ColumnName="imagen" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -120,6 +119,7 @@
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="CambiarEstadoAdopcion" FunctionName="ProyectoPAModel.Store.CambiarEstadoAdopcion" />
     <FunctionImportMapping FunctionImportName="ConfirmarPago" FunctionName="ProyectoPAModel.Store.ConfirmarPago" />
+    <FunctionImportMapping FunctionImportName="CorreoAdopcion" FunctionName="ProyectoPAModel.Store.CorreoAdopcion" />
     <FunctionImportMapping FunctionImportName="MostrarAdopciones" FunctionName="ProyectoPAModel.Store.MostrarAdopciones">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarAdopciones_Result">
@@ -187,7 +187,6 @@
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="cantidad" ColumnName="cantidad" />
           <ScalarProperty Name="precio" ColumnName="precio" />
-          <ScalarProperty Name="descuento" ColumnName="descuento" />
           <ScalarProperty Name="imagen" ColumnName="imagen" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -196,6 +195,7 @@
     <FunctionImportMapping FunctionImportName="RegistrarAdopcion" FunctionName="ProyectoPAModel.Store.RegistrarAdopcion" />
     <FunctionImportMapping FunctionImportName="RegistrarAnimal" FunctionName="ProyectoPAModel.Store.RegistrarAnimal" />
     <FunctionImportMapping FunctionImportName="RegistrarProducto" FunctionName="ProyectoPAModel.Store.RegistrarProducto" />
+    <FunctionImportMapping FunctionImportName="ValidarStock" FunctionName="ProyectoPAModel.Store.ValidarStock" />
     <FunctionImportMapping FunctionImportName="ValidarUsuario" FunctionName="ProyectoPAModel.Store.ValidarUsuario">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ProyectoPAModel.ValidarUsuario_Result">
@@ -208,6 +208,5 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="ValidarStock" FunctionName="ProyectoPAModel.Store.ValidarStock" />
   </EntityContainerMapping>
 </Mapping>

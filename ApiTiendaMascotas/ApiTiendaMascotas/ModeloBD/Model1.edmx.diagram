@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="77c06cfe3e874c9aac0fd25e2497b083" Name="Diagram1">
+      <Diagram DiagramId="319b8e6d26d74b9cace237cfb9256e8f" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="ProyectoPAModel.Adopciones" Width="1.5" PointX="12.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoPAModel.Animales" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoPAModel.Bitacoras" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
@@ -24,7 +24,7 @@
         <AssociationConnector Association="ProyectoPAModel.FK_Detalle_Maestro" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoPAModel.FK_Detalle_Productos" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoPAModel.FK_Maestro_Usuarios" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoPAModel.FK__Usuarios__idRol__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__Usuarios__idRol__628FA481" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

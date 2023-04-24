@@ -60,7 +60,6 @@
                             <th>#Factura</th>
                             <th>Fecha</th>
                             <th>¢ Total</th>
-                         
                         </tr>
                     </thead>
                     <tbody>
@@ -70,9 +69,7 @@
                             <tr>
                                 <td>@item.IdMaestro</td>
                                 <td>@item.FechaCompra.ToString("dd/MM/yyyy")</td>
-                                <td>@string.Format("{0:n2}", @item.Total)</td>
-                             
-                                <td>
+                                <td>@string.Format("{0:n2}", @item.Total)</td>                            
                             </tr>
                         }
 

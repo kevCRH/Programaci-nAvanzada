@@ -13,7 +13,6 @@ namespace TiendaMascotas.Entities
         public int cantidad { get; set; }
         public int inventario { get; set; }
         public decimal precio { get; set; }
-        public int descuento { get; set; }
         public byte[] imagen { get; set; }
         public int ConsecutivoUsuario { get; set; }
     }

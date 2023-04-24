@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adopciones">
           <Key>
             <PropertyRef Name="idAdopcion" />
@@ -82,7 +82,6 @@
           <Property Name="descripcion" Type="varchar" MaxLength="100" />
           <Property Name="cantidad" Type="int" Nullable="false" />
           <Property Name="precio" Type="numeric" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="descuento" Type="int" />
           <Property Name="imagen" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Roles">
@@ -123,7 +122,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__idRol__4F7CD00D">
+        <Association Name="FK__Usuarios__idRol__628FA481">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -159,8 +158,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK_Adopciones_Usuarios' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
         <Association Name="FK_Adopciones_Usuarios" />-->
         <Association Name="FK_Carrito_Productos">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
@@ -229,6 +228,9 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
         <Function Name="ConfirmarPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ConsecutivoUsuario" Type="int" Mode="In" />
         </Function>
+        <Function Name="CorreoAdopcion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idAdopcion" Type="int" Mode="In" />
+        </Function>
         <Function Name="MostrarAdopciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MostrarAnimales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MostrarCompraCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -264,7 +266,6 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Parameter Name="descripcion" Type="varchar" Mode="In" />
           <Parameter Name="cantidad" Type="int" Mode="In" />
           <Parameter Name="precio" Type="numeric" Mode="In" />
-          <Parameter Name="descuento" Type="int" Mode="In" />
           <Parameter Name="imagen" Type="varbinary(max)" Mode="In" />
         </Function>
         <Function Name="ValidarStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -290,7 +291,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             <End Role="TipoAnimal" EntitySet="TipoAnimal" />
             <End Role="Animales" EntitySet="Animales" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__idRol__4F7CD00D" Association="Self.FK__Usuarios__idRol__4F7CD00D">
+          <AssociationSet Name="FK__Usuarios__idRol__628FA481" Association="Self.FK__Usuarios__idRol__628FA481">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -323,7 +324,8 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             <End Role="Maestro" EntitySet="Maestro" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProyectoPAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -415,7 +417,6 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="cantidad" Type="Int32" Nullable="false" />
           <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="descuento" Type="Int32" />
           <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Carrito" Relationship="Self.FK_Carrito_Productos" FromRole="Productos" ToRole="Carrito" />
           <NavigationProperty Name="Detalle" Relationship="Self.FK_Detalle_Productos" FromRole="Productos" ToRole="Detalle" />
@@ -426,7 +427,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           </Key>
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__4F7CD00D" FromRole="Roles" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__idRol__628FA481" FromRole="Roles" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="TipoAnimal">
           <Key>
@@ -449,7 +450,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Property Name="idRol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Carrito" Relationship="Self.FK_Carrito_Usuarios" FromRole="Usuarios" ToRole="Carrito" />
           <NavigationProperty Name="Maestro" Relationship="Self.FK_Maestro_Usuarios" FromRole="Usuarios" ToRole="Maestro" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__4F7CD00D" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__idRol__628FA481" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
         <Association Name="FK_Adopciones_Animales">
           <End Role="Animales" Type="Self.Animales" Multiplicity="1" />
@@ -547,7 +548,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__idRol__4F7CD00D">
+        <Association Name="FK__Usuarios__idRol__628FA481">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -603,7 +604,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Maestro" EntitySet="Maestro" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__idRol__4F7CD00D" Association="Self.FK__Usuarios__idRol__4F7CD00D">
+          <AssociationSet Name="FK__Usuarios__idRol__628FA481" Association="Self.FK__Usuarios__idRol__628FA481">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -612,18 +613,21 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConfirmarPago">
-          <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CorreoAdopcion" ReturnType="Collection(String)">
+            <Parameter Name="idAdopcion" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="MostrarAdopciones" ReturnType="Collection(ProyectoPAModel.MostrarAdopciones_Result)" />
           <FunctionImport Name="MostrarAnimales" ReturnType="Collection(ProyectoPAModel.MostrarAnimales_Result)" />
           <FunctionImport Name="MostrarCompraCarrito" ReturnType="Collection(ProyectoPAModel.MostrarCompraCarrito_Result)">
-          <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="MostrarDetalleCarrito" ReturnType="Collection(ProyectoPAModel.MostrarDetalleCarrito_Result)">
-          <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="MostrarFacturas" ReturnType="Collection(ProyectoPAModel.MostrarFacturas_Result)">
-          <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="MostrarProductos" ReturnType="Collection(ProyectoPAModel.MostrarProductos_Result)" />
           <FunctionImport Name="Registrar">
@@ -649,15 +653,14 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
             <Parameter Name="descripcion" Mode="In" Type="String" />
             <Parameter Name="cantidad" Mode="In" Type="Int32" />
             <Parameter Name="precio" Mode="In" Type="Decimal" />
-            <Parameter Name="descuento" Mode="In" Type="Int32" />
             <Parameter Name="imagen" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="ValidarStock" ReturnType="Collection(Boolean)">
+            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ValidarUsuario" ReturnType="Collection(ProyectoPAModel.ValidarUsuario_Result)">
             <Parameter Name="correoElectronico" Mode="In" Type="String" />
             <Parameter Name="contrasenna" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="ValidarStock" ReturnType="Collection(Boolean)">
-            <Parameter Name="ConsecutivoUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="MostrarAdopciones_Result">
@@ -705,7 +708,6 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="cantidad" Nullable="false" />
           <Property Type="Decimal" Name="precio" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Int32" Name="descuento" Nullable="true" />
           <Property Type="Binary" Name="imagen" Nullable="true" />
         </ComplexType>
         <ComplexType Name="ValidarUsuario_Result">
@@ -805,7 +807,6 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="descuento" ColumnName="descuento" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -841,6 +842,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="CambiarEstadoAdopcion" FunctionName="ProyectoPAModel.Store.CambiarEstadoAdopcion" />
           <FunctionImportMapping FunctionImportName="ConfirmarPago" FunctionName="ProyectoPAModel.Store.ConfirmarPago" />
+          <FunctionImportMapping FunctionImportName="CorreoAdopcion" FunctionName="ProyectoPAModel.Store.CorreoAdopcion" />
           <FunctionImportMapping FunctionImportName="MostrarAdopciones" FunctionName="ProyectoPAModel.Store.MostrarAdopciones">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoPAModel.MostrarAdopciones_Result">
@@ -908,7 +910,6 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="descuento" ColumnName="descuento" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -917,6 +918,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
           <FunctionImportMapping FunctionImportName="RegistrarAdopcion" FunctionName="ProyectoPAModel.Store.RegistrarAdopcion" />
           <FunctionImportMapping FunctionImportName="RegistrarAnimal" FunctionName="ProyectoPAModel.Store.RegistrarAnimal" />
           <FunctionImportMapping FunctionImportName="RegistrarProducto" FunctionName="ProyectoPAModel.Store.RegistrarProducto" />
+          <FunctionImportMapping FunctionImportName="ValidarStock" FunctionName="ProyectoPAModel.Store.ValidarStock" />
           <FunctionImportMapping FunctionImportName="ValidarUsuario" FunctionName="ProyectoPAModel.Store.ValidarUsuario">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoPAModel.ValidarUsuario_Result">
@@ -929,7 +931,6 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ValidarStock" FunctionName="ProyectoPAModel.Store.ValidarStock" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -947,7 +948,7 @@ warning 6035: The relationship 'FK_Adopciones_Usuarios' has columns that are not
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
